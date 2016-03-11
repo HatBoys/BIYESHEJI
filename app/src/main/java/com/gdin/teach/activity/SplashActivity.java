@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.gdin.teach.Constan;
-import com.gdin.teach.MainActivity;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.fragment.SplashFragmentFirst;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -26,14 +25,13 @@ public class SplashActivity extends AppIntro {
     public void init(Bundle savedInstanceState) {
 
         if (MyApplication.mSharedPreferences.getBoolean(Constan.FINISHSPLASH, false)) {
-            MainActivity.start2MainActivity(this);
-            this.finish();
+            SelectUserActivity.start2SelectUserActivity(this);
         }
 
         addSlide(new SplashFragmentFirst());
         addSlide(new SplashFragmentFirst());
         addSlide(new SplashFragmentFirst());
-        setSeparatorColor(Color.parseColor("#2196F3"));
+        setSeparatorColor(Color.parseColor(Constan.COLORPRIMARYDARK));
         showSkipButton(false);
         setProgressButtonEnabled(true);
     }
@@ -51,7 +49,7 @@ public class SplashActivity extends AppIntro {
     @Override
     public void onDonePressed() {
         MyApplication.mSharedPreferences.edit().putBoolean(Constan.FINISHSPLASH, true).commit();
-        MainActivity.start2MainActivity(this);
+        SelectUserActivity.start2SelectUserActivity(this);
         this.finish();
     }
 

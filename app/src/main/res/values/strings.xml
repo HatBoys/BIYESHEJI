@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Teach</string>
+    <string name="select_user">你是：</string>
+    <string name="user_teacher">老师</string>
+    <string name="user_student">学生</string>
+    <string name="schoole_name">广东技术师范学院</string>
 </resources>

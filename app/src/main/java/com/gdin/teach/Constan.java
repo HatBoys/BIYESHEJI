@@ -6,6 +6,15 @@ package com.gdin.teach;
  * 类说明: 全局常量
  */
 public class Constan {
+    //Sharepreference
     public static final String MYSHAREPREFERENCE = "MySharepreference";
     public static final String FINISHSPLASH = "FinishSplash";
+
+    //color
+    public static final String COLORPRIMARYDARK = "#1db9a2";
+
+    //Fragment tag
+    public static final String SELECTUSERFRAGMENT = "SelectUserFragment";
+
+
 }
