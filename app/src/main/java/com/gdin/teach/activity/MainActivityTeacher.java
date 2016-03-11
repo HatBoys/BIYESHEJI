@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.widget.FrameLayout;
 
 import com.gdin.teach.R;
 import com.gdin.teach.adapter.MainTeacherAdapter;
@@ -20,14 +19,12 @@ import butterknife.ButterKnife;
 /**
  * Created by 黄培彦 on 16/3/11.
  * Email: peiyanhuang@yeah.net
- * 类说明:
+ * 类说明: Teacher主页
  */
 public class MainActivityTeacher extends BaseActivity {
 
     @Bind(R.id.vp_main_teacher)
     ViewPager mVpMainTeacher;
-    @Bind(R.id.fl_main_teacehr)
-    FrameLayout mFlMainTeacehr;
 
     private ArrayList<BaseFragment> mFragmentArrayList;
     private FragmentManager mFragmentManager;
@@ -38,7 +35,6 @@ public class MainActivityTeacher extends BaseActivity {
         setContentView(R.layout.activity_main_teacher);
         ButterKnife.bind(this);
         mFragmentManager = getSupportFragmentManager();
-
         initData();
         mVpMainTeacher.setAdapter(new MainTeacherAdapter(this, mFragmentArrayList, mFragmentManager));
     }

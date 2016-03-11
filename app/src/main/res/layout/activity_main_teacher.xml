@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/fl_main_teacehr"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.MainActivityTeacher">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_main_teacher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="1">
     </android.support.v4.view.ViewPager>
 
-</FrameLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/before_class"
+            android:text="@string/before_class"
+            />
+
+        <RadioButton
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/in_class"
+            android:text="@string/in_class"
+            />
+
+        <RadioButton
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/personal_center"
+            android:text="@string/personnal_center"
+            />
+
+
+    </RadioGroup>
+
+</LinearLayout>

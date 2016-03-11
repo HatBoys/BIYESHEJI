@@ -8,4 +8,7 @@
     <string name="password">密码：</string>
     <string name="login">登录</string>
     <string name="login_error_toast">用户名或者密码不正确</string>
+    <string name="before_class">课前</string>
+    <string name="in_class">上课</string>
+    <string name="personnal_center">个人</string>
 </resources>
