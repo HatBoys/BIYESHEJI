@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.LoginActivity;
 import com.gdin.teach.util.CommomUtil;
@@ -47,12 +48,12 @@ public class SelectUserFragment extends BaseFragment {
     @OnClick(R.id.tv_user_student)
     public void skipToStudent() {
         CommomUtil.toastMessage(getContext(), "student");
-        LoginActivity.start2LoginActivity(getContext());
+        LoginActivity.start2LoginActivity(getContext(), Constan.STUDENT);
     }
 
     @OnClick(R.id.tv_user_teacher)
     public void skipToTeacger() {
         CommomUtil.toastMessage(getContext(), "teacher");
-        LoginActivity.start2LoginActivity(getContext());
+        LoginActivity.start2LoginActivity(getContext(), Constan.TEACHER);
     }
 }

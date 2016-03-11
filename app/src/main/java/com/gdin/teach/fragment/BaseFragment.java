@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 public abstract class BaseFragment extends Fragment {
 
     public Activity mActivity;//提供一个Fragment可以随时获取的上下文环境
+    public View mView;//提供一个全局的View
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +27,8 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return initView();
+        mView = initView();
+        return mView;
     }
 
     public abstract View initView();//必须初始化实现View

@@ -28,7 +28,7 @@ public class SelectUserActivity extends BaseActivity {
     }
 
     /**
-     * 跳转到MainActivity
+     * 跳转到SelectUserActivity
      *
      * @param context
      */

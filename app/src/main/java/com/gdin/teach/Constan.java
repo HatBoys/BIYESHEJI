@@ -15,6 +15,13 @@ public class Constan {
 
     //Fragment tag
     public static final String SELECTUSERFRAGMENT = "SelectUserFragment";
+    public static final String LOGINFRAGMENT = "LoginFragment";
+
+    //user
+    public static final String USER = "user";
+    public static final String TEACHER = "teacher";
+    public static final String STUDENT = "student";
+
 
 
 }

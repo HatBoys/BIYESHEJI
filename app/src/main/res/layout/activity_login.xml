@@ -6,12 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activity.SelectUserActivity">
 
-    <!-- <FrameLayout
-         android:id="@+id/select_user_fragment"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"/>-->
-    <TextView
+    <FrameLayout
+        android:id="@+id/login_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_name"/>
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
