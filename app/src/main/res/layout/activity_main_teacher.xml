@@ -7,31 +7,36 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivityTeacher">
 
-    <android.support.v4.view.ViewPager
+    <com.gdin.teach.view.NoScrollViewPager
         android:id="@+id/vp_main_teacher"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    </android.support.v4.view.ViewPager>
+    </com.gdin.teach.view.NoScrollViewPager>
 
     <RadioGroup
+        android:id="@+id/rg_main_teacher_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/little_gray"
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/rb_teacher_before_class"
             style="@style/MainBottomTab"
             android:drawableTop="@drawable/before_class"
             android:text="@string/before_class"
             />
 
         <RadioButton
+            android:id="@+id/rb_teacher_in_class"
             style="@style/MainBottomTab"
             android:drawableTop="@drawable/in_class"
             android:text="@string/in_class"
             />
 
         <RadioButton
+            android:id="@+id/rb_teacher_personal"
             style="@style/MainBottomTab"
             android:drawableTop="@drawable/personal_center"
             android:text="@string/personnal_center"
