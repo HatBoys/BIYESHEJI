@@ -22,6 +22,9 @@ public class Constan {
     public static final String TEACHER = "teacher";
     public static final String STUDENT = "student";
 
+    //虚拟Class info
+    public static final String XINHAOYUXITONG = "信号与系统";
+
 
 
 }

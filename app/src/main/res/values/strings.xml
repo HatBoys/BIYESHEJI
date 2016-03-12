@@ -11,4 +11,5 @@
     <string name="before_class">课前</string>
     <string name="in_class">上课</string>
     <string name="personnal_center">个人</string>
+    <string name="info_class">课程信息</string>
 </resources>
