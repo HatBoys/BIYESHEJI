@@ -18,6 +18,7 @@ public class Constan {
     public static final String LOGINFRAGMENT = "LoginFragment";
     public static final String BEFORECLASSTEACHERFRAGMENT = "BeforeClassTeacherFragment";
     public static final String CLASSINFODETAILFRAGMENT = "ClassInfoDetailFragment";
+    public static final String MAINTEACHERFRAGMENT = "MainTeacherFragment";
 
     //user
     public static final String USER = "user";

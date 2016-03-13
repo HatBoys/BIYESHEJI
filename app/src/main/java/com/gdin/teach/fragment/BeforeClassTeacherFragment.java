@@ -101,8 +101,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
                 .add(new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();*/
 
-//        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(new ClassInfoDetailFragment(), null).commit();
-        ClassInfoDetailActivity.start2ClassInfoDetailActivity(getActivity());//跳转到ClassInfoDetailActivity
+        ClassInfoDetailActivity.start2ClassInfoDetailActivity(getContext());//跳转到ClassInfoDetailActivity
     }
 
     @Override

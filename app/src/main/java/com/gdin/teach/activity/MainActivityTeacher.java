@@ -4,96 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
-import com.gdin.teach.adapter.MainTeacherAdapter;
-import com.gdin.teach.fragment.BaseFragment;
-import com.gdin.teach.fragment.BeforeClassTeacherFragment;
-import com.gdin.teach.fragment.InClassTeacherFragment;
-import com.gdin.teach.fragment.PersonalTeacherFragment;
-import com.gdin.teach.util.CommomUtil;
-import com.gdin.teach.view.NoScrollViewPager;
-
-import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.gdin.teach.fragment.MainTeacherFragment;
 
 /**
  * Created by 黄培彦 on 16/3/11.
  * Email: peiyanhuang@yeah.net
  * 类说明: Teacher主页
  */
-public class MainActivityTeacher extends BaseActivity implements OnClickListener {
+public class MainActivityTeacher extends BaseActivity {
 
-    @Bind(R.id.vp_main_teacher)
-    NoScrollViewPager mVpMainTeacher;
-    @Bind(R.id.rb_teacher_before_class)
-    RadioButton mRbTeacherBeforeClass;
-    @Bind(R.id.rb_teacher_in_class)
-    RadioButton mRbTeacherInClass;
-    @Bind(R.id.rb_teacher_personal)
-    RadioButton mRbTeacherPersonal;
-    @Bind(R.id.rg_main_teacher_bottom)
-    RadioGroup mRgMainTeacherBottom;
-
-    public ArrayList<BaseFragment> mFragmentArrayList;
     public FragmentManager mFragmentManager;
-    public MainTeacherAdapter mMainTeacherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_teacher);
-        ButterKnife.bind(this);
         mFragmentManager = getSupportFragmentManager();
-        initData();
-        initListener();
-        mMainTeacherAdapter = new MainTeacherAdapter(this, mFragmentArrayList, mFragmentManager);
-        mVpMainTeacher.setAdapter(mMainTeacherAdapter);
-        mRbTeacherBeforeClass.setChecked(true);
-        mVpMainTeacher.setCurrentItem(0);
-        mVpMainTeacher.setOffscreenPageLimit(3);
+        mFragmentManager.beginTransaction().add(R.id.fl_base, new MainTeacherFragment(), Constan.CLASSINFODETAILFRAGMENT).commit();
     }
-
-    private void initListener() {
-        mRbTeacherBeforeClass.setOnClickListener(this);
-        mRbTeacherInClass.setOnClickListener(this);
-        mRbTeacherPersonal.setOnClickListener(this);
-    }
-
-    private void initData() {
-        mFragmentArrayList = new ArrayList<BaseFragment>();
-        mFragmentArrayList.add(new BeforeClassTeacherFragment());
-        mFragmentArrayList.add(new InClassTeacherFragment());
-        mFragmentArrayList.add(new PersonalTeacherFragment());
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.rb_teacher_before_class:
-                CommomUtil.toastMessage(this, "rb_teacher_before_class");
-                mRgMainTeacherBottom.check(R.id.rb_teacher_before_class);
-                mVpMainTeacher.setCurrentItem(0);
-                break;
-            case R.id.rb_teacher_in_class:
-                mRgMainTeacherBottom.check(R.id.rb_teacher_in_class);
-                mVpMainTeacher.setCurrentItem(1);
-                break;
-            case R.id.rb_teacher_personal:
-                mRgMainTeacherBottom.check(R.id.rb_teacher_personal);
-                mVpMainTeacher.setCurrentItem(2);
-                break;
-
-        }
-    }
-
 
     /**
      * 跳转到SelectUserActivity

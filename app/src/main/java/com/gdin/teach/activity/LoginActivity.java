@@ -17,11 +17,10 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         Intent mIntent = getIntent();
         String mUser = mIntent.getStringExtra(Constan.USER);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.add(R.id.login_fragment, new LoginFragment(mUser), Constan.LOGINFRAGMENT);
+        mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser), Constan.LOGINFRAGMENT);
         mFragmentTransaction.commit();
     }
 

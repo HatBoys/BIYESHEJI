@@ -15,9 +15,8 @@ public class SelectUserActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_user);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.add(R.id.select_user_fragment, new SelectUserFragment(), Constan.SELECTUSERFRAGMENT);
+        mFragmentTransaction.add(R.id.fl_base, new SelectUserFragment(), Constan.SELECTUSERFRAGMENT);
         mFragmentTransaction.commit();
     }
 
