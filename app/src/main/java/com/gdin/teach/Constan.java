@@ -9,6 +9,7 @@ public class Constan {
     //Sharepreference
     public static final String MYSHAREPREFERENCE = "MySharepreference";
     public static final String FINISHSPLASH = "FinishSplash";
+    public static final String FINISHLOGIN = "FinishLogin";
 
     //color
     public static final String COLORPRIMARYDARK = "#1db9a2";

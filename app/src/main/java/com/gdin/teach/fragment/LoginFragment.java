@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.MainActivityTeacher;
+import com.gdin.teach.activity.SelectUserActivity;
 import com.gdin.teach.util.CommomUtil;
 
 import butterknife.Bind;
@@ -33,10 +34,12 @@ public class LoginFragment extends BaseFragment {
     @Bind(R.id.bt_login)
     TextView mBtLogin;
     private String mUser;
+    private SelectUserActivity mSelectUserActivity;
 
     @SuppressLint("ValidFragment")
-    public LoginFragment(String user) {
+    public LoginFragment(String user, SelectUserActivity selectUserActivity) {
         mUser = user;
+        mSelectUserActivity = selectUserActivity;
     }
 
     public LoginFragment() {
@@ -73,6 +76,9 @@ public class LoginFragment extends BaseFragment {
         } else {
             //Teacher Fragment
             MainActivityTeacher.start2MainActivityTeacher(getContext());
+            if (mSelectUserActivity instanceof SelectUserActivity) {
+                mSelectUserActivity.finish();
+            }
         }
     }
 

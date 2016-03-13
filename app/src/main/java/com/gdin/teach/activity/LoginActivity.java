@@ -14,13 +14,15 @@ import com.gdin.teach.fragment.LoginFragment;
  */
 public class LoginActivity extends BaseActivity {
 
+    private static SelectUserActivity mSelectUserActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent mIntent = getIntent();
         String mUser = mIntent.getStringExtra(Constan.USER);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser), Constan.LOGINFRAGMENT);
+        mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser, mSelectUserActivity), Constan.LOGINFRAGMENT);
         mFragmentTransaction.commit();
     }
 
@@ -36,10 +38,9 @@ public class LoginActivity extends BaseActivity {
      * @param context
      */
     public static void start2LoginActivity(Context context, String user) {
+        mSelectUserActivity = (SelectUserActivity) context;
         Intent mIntent = new Intent(context, LoginActivity.class);
         mIntent.putExtra(Constan.USER, user);
         context.startActivity(mIntent);
-//        SelectUserActivity mSelectUserActivity = (SelectUserActivity) context;
-//        mSelectUserActivity.finish();
     }
 }

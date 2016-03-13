@@ -33,7 +33,6 @@ public class BaseActivity extends AppCompatActivity {
         if (mTlBase != null) {
             setSupportActionBar(mTlBase);
         }
-
     }
 
 

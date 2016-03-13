@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import com.gdin.teach.Constan;
+import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.MainTeacherFragment;
 
@@ -33,7 +34,10 @@ public class MainActivityTeacher extends BaseActivity {
     public static void start2MainActivityTeacher(Context context) {
         Intent mIntent = new Intent(context, MainActivityTeacher.class);
         context.startActivity(mIntent);
-        LoginActivity mLoginActivity = (LoginActivity) context;
-        mLoginActivity.finish();
+//        if (context instanceof LoginActivity) {
+//            LoginActivity mLoginActivity = (LoginActivity) context;
+//            mLoginActivity.finish();
+//        }
+        MyApplication.mSharedPreferences.edit().putBoolean(Constan.FINISHLOGIN, true).commit();
     }
 }
