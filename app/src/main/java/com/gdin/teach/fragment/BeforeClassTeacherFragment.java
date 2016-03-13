@@ -2,6 +2,7 @@ package com.gdin.teach.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.ListView;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
+import com.gdin.teach.activity.ClassInfoDetailActivity;
+import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.adapter.ClassInfoAdapter;
 import com.gdin.teach.util.CommomUtil;
+import com.gdin.teach.view.UpLoadSwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -23,12 +27,17 @@ import butterknife.ButterKnife;
  * Email: peiyanhuang@yeah.net
  * 类说明: 课前课程信息
  */
-public class BeforeClassTeacherFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class BeforeClassTeacherFragment extends BaseFragment implements AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, UpLoadSwipeRefreshLayout.OnLoadListener {
 
 
     @Bind(R.id.lv_info_class)
     ListView mLvInfoClass;
+    @Bind(R.id.sf_class_info)
+    UpLoadSwipeRefreshLayout mSfClassInfo;
     private ArrayList<String> mStringArrayList;
+    private ClassInfoAdapter mClassInfoAdapter;
+    private int mRefreshTime;
+    private MainActivityTeacher mMainActivityTeacher;
 
     public BeforeClassTeacherFragment() {
     }
@@ -42,6 +51,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mMainActivityTeacher = (MainActivityTeacher) getActivity();
     }
 
     @Override
@@ -55,19 +65,24 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initData();
-        mLvInfoClass.setAdapter(new ClassInfoAdapter(getContext(), mStringArrayList));
+        initListViewData();
+        mSfClassInfo.setListView(mLvInfoClass);
+        mLvInfoClass.setAdapter(mClassInfoAdapter);
+        mSfClassInfo.setOnRefreshListener(this);
+        mSfClassInfo.setOnLoadListener(this);
         mLvInfoClass.setOnItemClickListener(this);
+
     }
 
     /**
      * 虚拟数据
      */
-    private void initData() {
+    private void initListViewData() {
         mStringArrayList = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             mStringArrayList.add(Constan.XINHAOYUXITONG + i);
         }
+        mClassInfoAdapter = new ClassInfoAdapter(getContext(), mStringArrayList);
     }
 
     @Override
@@ -79,5 +94,45 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         CommomUtil.toastMessage(getContext(), "Click" + position);
+        // TODO: 16/3/13 跳转详情(暂时找不到跳转Fragment的方法,只能跳转去Activity)
+        /*mMainActivityTeacher.mFragmentManager
+                .beginTransaction()
+                .addToBackStack(Constan.BEFORECLASSTEACHERFRAGMENT)
+                .add(new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
+                .commit();*/
+
+//        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).add(new ClassInfoDetailFragment(), null).commit();
+        ClassInfoDetailActivity.start2ClassInfoDetailActivity(getActivity());//跳转到ClassInfoDetailActivity
+    }
+
+    @Override
+    public void onRefresh() {
+        mSfClassInfo.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mStringArrayList.clear();
+                mRefreshTime++;
+                for (int i = 0; i < 10; i++) {
+                    mStringArrayList.add("模拟电路" + i + "刷新次数" + mRefreshTime);
+                }
+                mClassInfoAdapter.notifyDataSetChanged();
+//                mSfClassInfo.cancelLongPress();
+                mSfClassInfo.setRefreshing(false);//停止刷新
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void onLoad() {
+        mSfClassInfo.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    mStringArrayList.add("下拉刷新加载的数字电路" + i);
+                }
+                mClassInfoAdapter.notifyDataSetChanged();
+                mSfClassInfo.setLoading(false);
+            }
+        }, 2000);
     }
 }

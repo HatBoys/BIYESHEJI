@@ -18,11 +18,18 @@
         android:layout_height="1dp"
         android:background="@color/colorPrimaryDark"/>
 
-    <ListView
-        android:id="@+id/lv_info_class"
+    <com.gdin.teach.view.UpLoadSwipeRefreshLayout
+        android:id="@+id/sf_class_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/colorPrimaryDark"
-        android:scrollbars="none"
-        />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_info_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/colorPrimaryDark"
+            android:scrollbars="none"
+            />
+
+    </com.gdin.teach.view.UpLoadSwipeRefreshLayout>
 </LinearLayout>

@@ -24,6 +24,8 @@
         </activity>
         <activity android:name="com.gdin.teach.activity.MainActivityTeacher">
         </activity>
+        <activity android:name="com.gdin.teach.activity.ClassInfoDetailActivity">
+        </activity>
     </application>
 
 

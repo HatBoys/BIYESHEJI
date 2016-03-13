@@ -41,8 +41,9 @@ public class MainActivityTeacher extends BaseActivity implements OnClickListener
     @Bind(R.id.rg_main_teacher_bottom)
     RadioGroup mRgMainTeacherBottom;
 
-    private ArrayList<BaseFragment> mFragmentArrayList;
-    private FragmentManager mFragmentManager;
+    public ArrayList<BaseFragment> mFragmentArrayList;
+    public FragmentManager mFragmentManager;
+    public MainTeacherAdapter mMainTeacherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class MainActivityTeacher extends BaseActivity implements OnClickListener
         mFragmentManager = getSupportFragmentManager();
         initData();
         initListener();
-        mVpMainTeacher.setAdapter(new MainTeacherAdapter(this, mFragmentArrayList, mFragmentManager));
+        mMainTeacherAdapter = new MainTeacherAdapter(this, mFragmentArrayList, mFragmentManager);
+        mVpMainTeacher.setAdapter(mMainTeacherAdapter);
         mRbTeacherBeforeClass.setChecked(true);
         mVpMainTeacher.setCurrentItem(0);
         mVpMainTeacher.setOffscreenPageLimit(3);
