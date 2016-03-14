@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by 黄培彦 on 16/3/13.
  * Email: peiyanhuang@yeah.net
- * 类说明:
+ * 类说明: 主逻辑界面
  */
 public class MainTeacherFragment extends BaseFragment implements View.OnClickListener {
     @Bind(R.id.vp_main_teacher)

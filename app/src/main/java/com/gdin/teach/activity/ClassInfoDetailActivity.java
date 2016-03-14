@@ -13,7 +13,7 @@ import com.gdin.teach.fragment.ClassInfoDetailFragment;
 /**
  * Created by 黄培彦 on 16/3/13.
  * Email: peiyanhuang@yeah.net
- * 类说明:
+ * 类说明: 课程信息详情界面
  */
 public class ClassInfoDetailActivity extends BaseActivity {
 
@@ -33,6 +33,8 @@ public class ClassInfoDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_class_info_detail);
         mTlBase.setVisibility(View.VISIBLE);
+        mTlBase.setNavigationIcon(R.mipmap.back);
+        setTitle("课程信息");
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fl_base, new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
