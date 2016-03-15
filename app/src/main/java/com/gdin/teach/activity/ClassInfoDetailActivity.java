@@ -31,14 +31,20 @@ public class ClassInfoDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_class_info_detail);
-        mTlBase.setVisibility(View.VISIBLE);
-        mTlBase.setNavigationIcon(R.mipmap.back);
-        setTitle("课程信息");
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fl_base, new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();
+
+        mTlBase.setVisibility(View.VISIBLE);
+        mTlBase.setNavigationIcon(R.mipmap.back);
+        mTlBase.setTitle("");
+    }
+
+    public void setTitle(String title) {
+        if (mTlBase != null) {
+            setMyTitle(title);
+        }
     }
 
     /**

@@ -1,9 +1,12 @@
 package com.gdin.teach.activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
@@ -39,5 +42,27 @@ public class MainActivityTeacher extends BaseActivity {
 //            mLoginActivity.finish();
 //        }
         MyApplication.mSharedPreferences.edit().putBoolean(Constan.FINISHLOGIN, true).commit();
+    }
+
+    /**
+     * 为下属的三个Fragment提供一个设置toolbar是否显示的方法
+     *
+     * @param visiable
+     */
+    @TargetApi(Build.VERSION_CODES.M)
+    public void setToolBar(boolean visiable) {
+        if (visiable) {
+            mTlBase.setVisibility(View.VISIBLE);
+            mTlBase.setTitle("");
+        }
+    }
+
+    /**
+     * 为下属的三个Fragment提供一个设置toolbar的title名称的方法
+     *
+     * @param title
+     */
+    public void setFragmentTitle(String title) {
+        setMyTitle(title);
     }
 }

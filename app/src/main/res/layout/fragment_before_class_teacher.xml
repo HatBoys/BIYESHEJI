@@ -5,18 +5,18 @@
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="@string/info_class"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/text_size_big"/>
+    <!--  <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="5dp"
+          android:text="@string/info_class"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="@dimen/text_size_big"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark"/>
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorPrimaryDark"/>-->
 
     <com.gdin.teach.view.UpLoadSwipeRefreshLayout
         android:id="@+id/sf_class_info"

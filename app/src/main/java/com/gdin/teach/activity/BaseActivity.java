@@ -46,11 +46,12 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param title
      */
-    public void setTitle(String title) {
+    public void setMyTitle(String title) {
         if (mTvTitle != null && mTlBase != null) {
             mTvTitle.setText(title);
         }
     }
+
 
     @Override
     protected void onPause() {

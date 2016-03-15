@@ -52,6 +52,8 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMainActivityTeacher = (MainActivityTeacher) getActivity();
+        mMainActivityTeacher.setToolBar(true);
+        mMainActivityTeacher.setFragmentTitle(Constan.CLASSLISTTITLE);
     }
 
     @Override

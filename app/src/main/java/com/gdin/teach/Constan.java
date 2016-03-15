@@ -29,6 +29,9 @@ public class Constan {
     //虚拟Class info
     public static final String XINHAOYUXITONG = "信号与系统";
 
+    //页面标题
+    public static final String CLASSLISTTITLE = "课程信息";
+    public static final String CLASSDETAILTITLE = "课程详情";
 
 
 }
