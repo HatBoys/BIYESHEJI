@@ -38,6 +38,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     private ClassInfoAdapter mClassInfoAdapter;
     private int mRefreshTime;
     private MainActivityTeacher mMainActivityTeacher;
+    private ArrayList<String> mClassList;
 
     public BeforeClassTeacherFragment() {
     }
@@ -54,6 +55,13 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
         mMainActivityTeacher = (MainActivityTeacher) getActivity();
         mMainActivityTeacher.setToolBar(true);
         mMainActivityTeacher.setFragmentTitle(Constan.CLASSLISTTITLE);
+        mClassList = new ArrayList<String>();
+        mClassList.add("模拟电路");
+        mClassList.add("信号与系统");
+        mClassList.add("数字电路");
+        mClassList.add("电路设计");
+        mClassList.add("单片机");
+        mClassList.add("Java编程思想");
     }
 
     @Override
@@ -81,8 +89,10 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
      */
     private void initListViewData() {
         mStringArrayList = new ArrayList<String>();
-        for (int i = 0; i < 20; i++) {
-            mStringArrayList.add(Constan.XINHAOYUXITONG + i);
+
+        for (int i = 0; i < 18; i++) {
+            int imageIndex = i % mClassList.size();
+            mStringArrayList.add(mClassList.get(imageIndex));
         }
         mClassInfoAdapter = new ClassInfoAdapter(getContext(), mStringArrayList);
     }
@@ -103,7 +113,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
                 .add(new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();*/
 
-        ClassInfoDetailActivity.start2ClassInfoDetailActivity(getContext());//跳转到ClassInfoDetailActivity
+        ClassInfoDetailActivity.start2ClassInfoDetailActivity(getContext(), position, mClassInfoAdapter.getItem(position));//跳转到ClassInfoDetailActivity
     }
 
     @Override
@@ -114,13 +124,14 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
                 mStringArrayList.clear();
                 mRefreshTime++;
                 for (int i = 0; i < 10; i++) {
-                    mStringArrayList.add("模拟电路" + i + "刷新次数" + mRefreshTime);
+                    int imageIndex = i % mClassList.size();
+                    mStringArrayList.add(mClassList.get(imageIndex) + "第" + mRefreshTime + "次版本");
                 }
                 mClassInfoAdapter.notifyDataSetChanged();
 //                mSfClassInfo.cancelLongPress();
                 mSfClassInfo.setRefreshing(false);//停止刷新
             }
-        }, 2000);
+        }, 1500);
     }
 
     @Override
@@ -129,7 +140,8 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    mStringArrayList.add("下拉刷新加载的数字电路" + i);
+                    int imageIndex = i % mClassList.size();
+                    mStringArrayList.add(mClassList.get(imageIndex));
                 }
                 mClassInfoAdapter.notifyDataSetChanged();
                 mSfClassInfo.setLoading(false);

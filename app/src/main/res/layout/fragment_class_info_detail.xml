@@ -1,20 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.Toolbar>
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/ni_class_info_detail"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/faild_load"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_class_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="课程信息详情"
+        android:layout_below="@+id/ni_class_info_detail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"
+        android:text="模拟电路"
         android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_big"
         />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_class_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_class_info"
+        android:layout_marginTop="10dp"
+        android:background="@color/little_gray"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/class_info"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_little_big"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                style="@style/ClassInfoDetail"
+                android:text="@string/class_time"
+                />
+
+            <TextView
+                android:id="@+id/tv_class_info_time"
+                style="@style/ClassInfoDetail"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                style="@style/ClassInfoDetail"
+                android:text="@string/class_location"
+                />
+
+            <TextView
+                android:id="@+id/tv_class_info_location"
+                style="@style/ClassInfoDetail"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_class_info"
+        android:layout_marginTop="20dp"
+        android:background="@color/little_gray"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/bespoke_info"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_little_big"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                style="@style/ClassInfoDetail"
+                android:text="@string/need_person_num"
+                />
+
+            <TextView
+                android:id="@+id/tv_bespoke_need_person"
+                style="@style/ClassInfoDetail"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                style="@style/ClassInfoDetail"
+                android:text="@string/fact_person_num"
+                />
+
+            <TextView
+                android:id="@+id/tv_bespoke_person"
+                style="@style/ClassInfoDetail"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

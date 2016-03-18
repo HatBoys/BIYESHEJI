@@ -13,4 +13,10 @@
     <string name="personnal_center">个人</string>
     <string name="info_class">课程信息</string>
     <string name="loading">加载中...</string>
+    <string name="class_info">课程信息</string>
+    <string name="class_time">时间:</string>
+    <string name="class_location">课室:</string>
+    <string name="bespoke_info">预约信息</string>
+    <string name="need_person_num">应到数：</string>
+    <string name="fact_person_num">预约数：</string>
 </resources>

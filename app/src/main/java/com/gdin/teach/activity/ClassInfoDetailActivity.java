@@ -9,6 +9,7 @@ import android.view.View;
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.ClassInfoDetailFragment;
+import com.gdin.teach.util.CommomUtil;
 
 /**
  * Created by 黄培彦 on 16/3/13.
@@ -16,6 +17,9 @@ import com.gdin.teach.fragment.ClassInfoDetailFragment;
  * 类说明: 课程信息详情界面
  */
 public class ClassInfoDetailActivity extends BaseActivity {
+
+    private static int mCurrentposition;
+    private static String mClassInfo;
 
     // TODO: 16/3/13 两个onCreate方法，有什么不同点
     @Override
@@ -33,12 +37,19 @@ public class ClassInfoDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_base, new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
+                .add(R.id.fl_base, new ClassInfoDetailFragment(mCurrentposition, mClassInfo), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();
 
         mTlBase.setVisibility(View.VISIBLE);
         mTlBase.setNavigationIcon(R.mipmap.back);
         mTlBase.setTitle("");
+        mTlBase.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommomUtil.toastMessage(getApplicationContext(), "back");
+                finish();
+            }
+        });
     }
 
     public void setTitle(String title) {
@@ -49,11 +60,15 @@ public class ClassInfoDetailActivity extends BaseActivity {
 
     /**
      * 跳转到ClassInfoDetailActivity
-     *
-     * @param context
+     *  @param context
+     * @param position
+     * @param item
      */
-    public static void start2ClassInfoDetailActivity(Context context) {
+    public static void start2ClassInfoDetailActivity(Context context, int position, Object item) {
         Intent mIntent = new Intent(context, ClassInfoDetailActivity.class);
+        mCurrentposition = position;
+        mClassInfo = (String) item;
         context.startActivity(mIntent);
+
     }
 }
