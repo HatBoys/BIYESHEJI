@@ -31,5 +31,6 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
 //    compile 'com.alibaba:fastjson:1.2.8'
 }

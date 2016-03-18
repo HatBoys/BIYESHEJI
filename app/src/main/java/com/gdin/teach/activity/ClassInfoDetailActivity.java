@@ -11,15 +11,18 @@ import com.gdin.teach.R;
 import com.gdin.teach.fragment.ClassInfoDetailFragment;
 import com.gdin.teach.util.CommomUtil;
 
+import java.util.ArrayList;
+
 /**
  * Created by 黄培彦 on 16/3/13.
  * Email: peiyanhuang@yeah.net
- * 类说明: 课程信息详情界面
+ * 类说明: 课程信息详情界面,饼状图用到开源框架https://github.com/lecho/hellocharts-android
  */
 public class ClassInfoDetailActivity extends BaseActivity {
 
     private static int mCurrentposition;
     private static String mClassInfo;
+    private static ArrayList<String> mImageUrlArrayList;
 
     // TODO: 16/3/13 两个onCreate方法，有什么不同点
     @Override
@@ -37,7 +40,7 @@ public class ClassInfoDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_base, new ClassInfoDetailFragment(mCurrentposition, mClassInfo), Constan.CLASSINFODETAILFRAGMENT)
+                .add(R.id.fl_base, new ClassInfoDetailFragment(mCurrentposition, mClassInfo, mImageUrlArrayList), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();
 
         mTlBase.setVisibility(View.VISIBLE);
@@ -60,14 +63,16 @@ public class ClassInfoDetailActivity extends BaseActivity {
 
     /**
      * 跳转到ClassInfoDetailActivity
-     *  @param context
+     * @param context
      * @param position
      * @param item
+     * @param imageUrlArrayList
      */
-    public static void start2ClassInfoDetailActivity(Context context, int position, Object item) {
+    public static void start2ClassInfoDetailActivity(Context context, int position, Object item, ArrayList<String> imageUrlArrayList) {
         Intent mIntent = new Intent(context, ClassInfoDetailActivity.class);
         mCurrentposition = position;
         mClassInfo = (String) item;
+        mImageUrlArrayList = imageUrlArrayList;
         context.startActivity(mIntent);
 
     }

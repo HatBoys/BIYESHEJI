@@ -1,6 +1,9 @@
 package com.gdin.teach.fragment;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,11 +19,15 @@ import com.gdin.teach.R;
 import com.gdin.teach.activity.ClassInfoDetailActivity;
 import com.gdin.teach.bean.ClassInfoDetailBean;
 import com.gdin.teach.custom.GsonRequest;
+import com.gdin.teach.util.PickColors;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 /**
  * Created by 黄培彦 on 16/3/13.
@@ -37,20 +44,33 @@ public class ClassInfoDetailFragment extends BaseFragment {
     TextView mTvClassInfoTime;
     @Bind(R.id.tv_class_info_location)
     TextView mTvClassInfoLocation;
+
+    @Bind(R.id.tv_bespoke_need_person)
+    TextView mTvBespokeNeedPerson;
+    @Bind(R.id.tv_bespoke_person)
+    TextView mTvBespokePerson;
+    @Bind(R.id.pie_chart)
+    PieChartView mPieChart;
     private ClassInfoDetailActivity mClassInfoDetailActivity;
     private GsonRequest<ClassInfoDetailBean> mGsonRequest;
     private ImageLoader mLoader;
     private int mCurrentPoaition;
-    private ArrayList<String> mImageUrlArrayList;
     private String mClassInfo;
+    private int needPersonNum = 50;//应到人数
+    private int bespokePersonNum = 33;//实际预约人数
+    private ArrayList<SliceValue> mSliceValueArrayList;
+    private int colorData[] = {needPersonNum, bespokePersonNum};
+    private PieChartData mPieChardata;
+    private ArrayList<String> mImageUrlList;
 
 
     public ClassInfoDetailFragment() {
     }
 
-    public ClassInfoDetailFragment(int position, String classInfo) {
+    public ClassInfoDetailFragment(int position, String classInfo, ArrayList<String> imageUrlArrayList) {
         mCurrentPoaition = position;
         mClassInfo = classInfo;
+        mImageUrlList = imageUrlArrayList;
     }
 
     @Override
@@ -63,13 +83,6 @@ public class ClassInfoDetailFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         mClassInfoDetailActivity = (ClassInfoDetailActivity) getActivity();
         mClassInfoDetailActivity.setTitle(Constan.CLASSDETAILTITLE);
-        mImageUrlArrayList = new ArrayList<String>();
-        mImageUrlArrayList.add(Constan.FIRSTINFO);
-        mImageUrlArrayList.add(Constan.SECONDINFO);
-        mImageUrlArrayList.add(Constan.THIRDINFO);
-        mImageUrlArrayList.add(Constan.FOUTHINFO);
-        mImageUrlArrayList.add(Constan.FIFTHINFO);
-        mImageUrlArrayList.add(Constan.SIXTHINFO);
     }
 
     @Override
@@ -97,12 +110,56 @@ public class ClassInfoDetailFragment extends BaseFragment {
         mTvClassInfo.setText(mClassInfo);
         mNiClassInfoDetail.setDefaultImageResId(R.mipmap.loading_image);
         mNiClassInfoDetail.setErrorImageResId(R.mipmap.faild_load);
-        int imagePositon = mCurrentPoaition % mImageUrlArrayList.size();
-        mNiClassInfoDetail.setImageUrl(mImageUrlArrayList.get(imagePositon),
+        int imagePositon = mCurrentPoaition % mImageUrlList.size();
+        mNiClassInfoDetail.setImageUrl(mImageUrlList.get(imagePositon),
                 mLoader);
         mTvClassInfoTime.setText("2016 年 03 月 18 日 16:" + mCurrentPoaition + ":09");
         mTvClassInfoLocation.setText("实验楼" + mCurrentPoaition + "课室");
 
+        mTvBespokeNeedPerson.setText(needPersonNum + "");
+        mTvBespokePerson.setText(bespokePersonNum + "");
+        setPieChartData();
+        initPieChart();
+    }
+
+    /**
+     * 初始化饼状图
+     */
+    @TargetApi(Build.VERSION_CODES.M)
+    private void initPieChart() {
+        mPieChardata = new PieChartData();
+        mPieChardata.setHasLabels(true);//显示表情
+        mPieChardata.setHasLabelsOnlyForSelected(false);//不用点击显示占的百分比
+        mPieChardata.setHasLabelsOutside(false);//占的百分比是否显示在饼图外面
+        mPieChardata.setHasCenterCircle(true);//是否是环形显示
+        mPieChardata.setValues(mSliceValueArrayList);//填充数据
+        mPieChardata.setCenterCircleColor(Color.WHITE);//设置环形中间的颜色
+        mPieChardata.setCenterCircleScale(0.5f);//设置环形的大小级别
+        mPieChardata.setCenterText1("预约情况");//环形中间的文字1
+        mPieChardata.setCenterText1Color(getResources().getColor(R.color.colorPrimaryDark));//文字颜色
+        mPieChardata.setCenterText1FontSize(10);//文字大小
+
+//        mPieChardata.setCenterText2("饼图测试");
+//        mPieChardata.setCenterText2Color(Color.BLACK);
+//        mPieChardata.setCenterText2FontSize(18);
+        /**这里也可以自定义你的字体   Roboto-Italic.ttf这个就是你的字体库*/
+//      Typeface tf = Typeface.createFromAsset(this.getAssets(), "Roboto-Italic.ttf");
+//      data.setCenterText1Typeface(tf);
+        mPieChart.setPieChartData(mPieChardata);
+        mPieChart.setValueSelectionEnabled(true);//选择饼图某一块变大
+        mPieChart.setAlpha(0.9f);//设置透明度
+        mPieChart.setCircleFillRatio(1f);//设置饼图大小
+    }
+
+    /**
+     * 设置饼状图数据
+     */
+    private void setPieChartData() {
+        mSliceValueArrayList = new ArrayList<SliceValue>();
+        for (int i = 0; i < colorData.length; i++) {
+            SliceValue mSliceValue = new SliceValue(colorData[i], PickColors.pickColor());
+            mSliceValueArrayList.add(mSliceValue);
+        }
     }
 
     @Override

@@ -7,8 +7,8 @@
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/ni_class_info_detail"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/faild_load"/>
 
@@ -21,7 +21,7 @@
         android:layout_marginTop="3dp"
         android:text="模拟电路"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/text_size_big"
+        android:textSize="@dimen/text_size_little_big"
         />
 
     <LinearLayout
@@ -113,39 +113,58 @@
             android:background="@color/colorPrimaryDark"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             >
 
-            <TextView
-                style="@style/ClassInfoDetail"
-                android:text="@string/need_person_num"
-                />
+            <LinearLayout
+                android:id="@+id/ll_need_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-            <TextView
-                android:id="@+id/tv_bespoke_need_person"
-                style="@style/ClassInfoDetail"
-                />
-        </LinearLayout>
+                <TextView
+                    style="@style/ClassInfoDetail"
+                    android:text="@string/need_person_num"
+                    />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+                <TextView
+                    android:id="@+id/tv_bespoke_need_person"
+                    style="@style/ClassInfoDetail"
+                    />
+            </LinearLayout>
 
-            <TextView
-                style="@style/ClassInfoDetail"
-                android:text="@string/fact_person_num"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ll_need_person"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                >
 
-            <TextView
-                android:id="@+id/tv_bespoke_person"
-                style="@style/ClassInfoDetail"
-                />
-        </LinearLayout>
+
+                <TextView
+                    style="@style/ClassInfoDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fact_person_num"/>
+
+                <TextView
+                    android:id="@+id/tv_bespoke_person"
+                    style="@style/ClassInfoDetail"
+                    />
+            </LinearLayout>
+
+            <lecho.lib.hellocharts.view.PieChartView
+                android:id="@+id/pie_chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_need_person"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
 
 
     </LinearLayout>
