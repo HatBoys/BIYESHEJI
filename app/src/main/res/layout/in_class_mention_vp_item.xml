@@ -2,13 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:orientation="vertical"
     >
 
     <ImageView
         android:id="@+id/iv_in_class_mention"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tv_in_class_name"
+            style="@style/InClassStudentNameNum"
+            android:text="@string/in_class_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_in_class_student_name"
+            style="@style/InClassStudentNameNum"
+            android:layout_toRightOf="@+id/tv_in_class_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_in_class_num"
+            style="@style/InClassStudentNameNum"
+            android:layout_below="@+id/tv_in_class_name"
+            android:text="@string/tv_in_class_num"
+            />
+
+        <TextView
+            android:id="@+id/tv_in_class_student_num"
+            style="@style/InClassStudentNameNum"
+            android:layout_below="@+id/tv_in_class_student_name"
+            android:layout_toRightOf="@+id/tv_in_class_num"
+            />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

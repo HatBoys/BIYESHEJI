@@ -56,6 +56,10 @@ public class Constan {
     public static final String MENTIONIMAGEHEAD = "http://www.jycoder.com/json/Image/";
     public static final String MENTIONIMAGEEND = ".jpg";
 
+    //mention student name number
+    public static final String STUDENTNAME = "霍元甲";
+    public static final String STUDENTNUMBER = "20120445430";
+
 
 
 }

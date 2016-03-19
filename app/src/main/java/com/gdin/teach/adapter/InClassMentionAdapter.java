@@ -7,12 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.MainActivityTeacher;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import butterknife.Bind;
 
 /**
  * Created by 黄培彦 on 16/3/19.
@@ -21,6 +25,13 @@ import java.util.ArrayList;
  */
 public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+
+    @Bind(R.id.iv_in_class_mention)
+    ImageView mIvInClassMention;
+    @Bind(R.id.tv_in_class_student_name)
+    TextView mTvInClassStudentName;
+    @Bind(R.id.tv_in_class_student_num)
+    TextView mTvInClassStudentNum;
 
     private MainActivityTeacher mMainActivityTeacher;
     private ArrayList<String> mUrlList;
@@ -57,7 +68,11 @@ public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final MyViewHolder mViewHolder = (MyViewHolder) holder;
         Picasso.with(mMainActivityTeacher).load(mUrlList.get(position)).placeholder(R.mipmap.student)
-                .error(R.mipmap.education).into(mViewHolder.mImageView);
+                .error(R.mipmap.education).resize(400, 600).into(mViewHolder.mImageView);
+
+        mViewHolder.mTvName.setText(Constan.STUDENTNAME + position);
+        mViewHolder.mTvNum.setText(Constan.STUDENTNUMBER + position);
+
         if (mOnItemClickLitener != null) {
             mViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,10 +101,14 @@ public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView mImageView;
+        TextView mTvName;
+        TextView mTvNum;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.iv_in_class_mention);
+            mTvName = (TextView) itemView.findViewById(R.id.tv_in_class_student_name);
+            mTvNum = (TextView) itemView.findViewById(R.id.tv_in_class_student_num);
         }
 
     }
