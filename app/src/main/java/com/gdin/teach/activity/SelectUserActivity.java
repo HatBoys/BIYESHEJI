@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
@@ -23,6 +24,7 @@ public class SelectUserActivity extends BaseActivity {
             MainActivityTeacher.start2MainActivityTeacher(this);
             finish();
         }
+        mTlBase.setVisibility(View.GONE);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fl_base, new SelectUserFragment(), Constan.SELECTUSERFRAGMENT);
         mFragmentTransaction.commit();

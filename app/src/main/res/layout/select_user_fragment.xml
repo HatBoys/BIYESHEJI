@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center_horizontal"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/iv_school_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/schoole_name"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:text="@string/select_user"
-        android:textSize="@dimen/text_size_normal"/>
+        android:src="@mipmap/school"/>
 
     <LinearLayout
+        android:layout_below="@+id/iv_school_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -29,22 +23,33 @@
             android:id="@+id/tv_user_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="22dp"
             android:drawablePadding="5dp"
-            android:drawableTop="@mipmap/select_user_student"
+            android:drawableTop="@mipmap/student"
             android:gravity="center_horizontal"
             android:text="@string/user_student"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_normal"/>
 
         <TextView
             android:id="@+id/tv_user_teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="22dp"
             android:drawablePadding="5dp"
-            android:drawableTop="@mipmap/select_user_teacher"
+            android:drawableTop="@mipmap/education"
             android:gravity="center_horizontal"
             android:text="@string/user_teacher"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_normal"/>
     </LinearLayout>
-</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/prompt_message"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/text_size_little_small"/>
+</RelativeLayout>

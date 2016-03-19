@@ -57,12 +57,12 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
         mMainActivityTeacher.setToolBar(true);
         mMainActivityTeacher.setFragmentTitle(Constan.CLASSLISTTITLE);
         mClassList = new ArrayList<String>();
-        mClassList.add("模拟电路");
-        mClassList.add("信号与系统");
-        mClassList.add("数字电路");
-        mClassList.add("电路设计");
-        mClassList.add("单片机");
-        mClassList.add("Java编程思想");
+        mClassList.add(Constan.MONIDIANLU);
+        mClassList.add(Constan.XINHAOYUXITONG);
+        mClassList.add(Constan.SHUZIDIANLU);
+        mClassList.add(Constan.DIANLUSHEJI);
+        mClassList.add(Constan.DANPIANJI);
+        mClassList.add(Constan.JAVABIANCHENGSIXIANG);
 
         mImageUrlArrayList = new ArrayList<String>();
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
@@ -21,6 +22,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Intent mIntent = getIntent();
         String mUser = mIntent.getStringExtra(Constan.USER);
+        mTlBase.setVisibility(View.GONE);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
         mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser, mSelectUserActivity), Constan.LOGINFRAGMENT);
         mFragmentTransaction.commit();

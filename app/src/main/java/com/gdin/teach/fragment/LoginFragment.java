@@ -55,12 +55,10 @@ public class LoginFragment extends BaseFragment {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
-        mIvUserIcon.setScaleX(0.5f);
-        mIvUserIcon.setScaleY(0.5f);
         if (Constan.STUDENT.equals(mUser)) {
-            mIvUserIcon.setImageResource(R.drawable.select_user_student);
+            mIvUserIcon.setImageResource(R.mipmap.student);
         } else {
-            mIvUserIcon.setImageResource(R.drawable.select_user_teacher);
+            mIvUserIcon.setImageResource(R.mipmap.education);
         }
         return rootView;
     }
