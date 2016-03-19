@@ -41,6 +41,27 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+   /* public static synchronized MyApplication getInstance() {
+        if (mInstance == null) {
+            mInstance = new MyApplication();
+        }
+        return mInstance;
+    }*/
+
+    /**
+     * 获取Toolbar实例化，避免跳转完Actiity后，Toolbar实例被销毁
+     *
+     * @return
+     */
+    public synchronized void reSetToolBar() {
+        if (mTlBase == null) {
+            mTlBase = (Toolbar) this.findViewById(R.id.tl_base);
+        }
+        if (mTvTitle == null) {
+            mTvTitle = (TextView) this.findViewById(R.id.tv_title);
+        }
+    }
+
     /**
      * 设置导航栏的中间标题
      *

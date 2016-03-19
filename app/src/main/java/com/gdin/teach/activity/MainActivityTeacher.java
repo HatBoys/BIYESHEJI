@@ -31,7 +31,6 @@ public class MainActivityTeacher extends BaseActivity {
 
     /**
      * 跳转到SelectUserActivity
-     *
      * @param context
      */
     public static void start2MainActivityTeacher(Context context) {
@@ -54,8 +53,11 @@ public class MainActivityTeacher extends BaseActivity {
         if (visiable) {
             mTlBase.setVisibility(View.VISIBLE);
             mTlBase.setTitle("");
+        } else {
+            mTlBase.setVisibility(View.GONE);
         }
     }
+
 
     /**
      * 为下属的三个Fragment提供一个设置toolbar的title名称的方法

@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/user"
             android:textSize="@dimen/text_size_normal"
             />
@@ -62,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/password"
             android:textSize="@dimen/text_size_normal"
             />
@@ -97,10 +99,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:background="@drawable/btn_bacground"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:background="@drawable/btn_bacground_shape"
+        android:padding="10dp"
         android:text="@string/login"
-        android:textSize="@dimen/text_size_normal"/>
+        android:textSize="@dimen/text_size_little_big"/>
 
 </LinearLayout>

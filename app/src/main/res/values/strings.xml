@@ -20,4 +20,6 @@
     <string name="need_person_num">应到数：</string>
     <string name="fact_person_num">预约数：</string>
     <string name="prompt_message">说明：请选择用户类型</string>
+    <string name="mention">课堂点名</string>
+    <string name="score">实验成绩</string>
 </resources>

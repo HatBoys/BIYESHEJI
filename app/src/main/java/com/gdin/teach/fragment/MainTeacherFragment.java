@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
+import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.adapter.MainTeacherAdapter;
-import com.gdin.teach.util.CommomUtil;
 import com.gdin.teach.view.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
     public ArrayList<BaseFragment> mFragmentArrayList;
     public FragmentManager mFragmentManager;
     public MainTeacherAdapter mMainTeacherAdapter;
+    private MainActivityTeacher mMainActivityTeacher;
 
     @Override
     public View initView() {
@@ -49,6 +51,7 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
+        mMainActivityTeacher = (MainActivityTeacher) getContext();
         return rootView;
     }
 
@@ -89,16 +92,23 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rb_teacher_before_class:
-                CommomUtil.toastMessage(getContext(), "rb_teacher_before_class");
                 mRgMainTeacherBottom.check(R.id.rb_teacher_before_class);
+                mMainActivityTeacher.reSetToolBar();
+                mMainActivityTeacher.setToolBar(true);
+                mMainActivityTeacher.setFragmentTitle(Constan.CLASSINFO);
                 mVpMainTeacher.setCurrentItem(0);
                 break;
             case R.id.rb_teacher_in_class:
                 mRgMainTeacherBottom.check(R.id.rb_teacher_in_class);
+                mMainActivityTeacher.reSetToolBar();
+                mMainActivityTeacher.setToolBar(false);
                 mVpMainTeacher.setCurrentItem(1);
                 break;
             case R.id.rb_teacher_personal:
                 mRgMainTeacherBottom.check(R.id.rb_teacher_personal);
+                mMainActivityTeacher.reSetToolBar();
+                mMainActivityTeacher.setToolBar(true);
+                mMainActivityTeacher.setFragmentTitle(Constan.PERSONALCENTER);
                 mVpMainTeacher.setCurrentItem(2);
                 break;
 

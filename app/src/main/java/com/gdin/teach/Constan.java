@@ -47,5 +47,11 @@ public class Constan {
     public static final String DANPIANJI = "单片机";
     public static final String JAVABIANCHENGSIXIANG = "Java编程思想";
 
+    //title
+    public static final String CLASSINFO = "课程信息";
+    public static final String INCLASS = "上课";
+    public static final String PERSONALCENTER = "个人中心";
+
+
 
 }

@@ -17,7 +17,7 @@
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:drawablePadding">4dp</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/main_tab_text_color</item>
+        <item name="android:textColor">@color/main_text_color_selector</item>
     </style>
 
     <style name="ClassInfoDetail">

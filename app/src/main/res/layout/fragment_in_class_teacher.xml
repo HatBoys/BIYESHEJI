@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/rg_in_class_top_tab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="上课主界面"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_mention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/in_class_tab_selector"
+            android:button="@null"
+            android:checked="true"
+            android:padding="8dp"
+            android:text="@string/mention"
+            android:textColor="@color/in_class_text_color_selector"
+            />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"/>
+
+        <RadioButton
+            android:id="@+id/rb_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/in_class_tab_selector"
+            android:button="@null"
+            android:padding="8dp"
+            android:text="@string/score"
+            android:textColor="@color/in_class_text_color_selector"
+            />
+    </RadioGroup>
+
+    <com.gdin.teach.view.NoScrollViewPager
+        android:id="@+id/vp_in_class"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
