@@ -3,11 +3,14 @@ package com.gdin.teach.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
@@ -139,19 +142,55 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                 break;
 
             case R.id.bt_inclass_upload:
-                CommomUtil.toastMessage(getContext(), "提交");//保存到本地数据
+
+                initDialog();
+                break;
+        }
+    }
+
+    /**
+     * 实现一个Dialog
+     */
+    private void initDialog() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+
+        final AlertDialog mAlertDialog = mBuilder.create();
+
+        View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_in_class_submit, null);
+        TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
+        Button mLeftButton = (Button) mView.findViewById(R.id.bt_dialog_left);
+        Button mRightButton = (Button) mView.findViewById(R.id.bt_dialog_right);
+        mTextView.setText(Constan.SUBMIT);
+        mLeftButton.setText(Constan.CANCLE);
+        mRightButton.setText(Constan.SURE);
+        mLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAlertDialog.dismiss();
+            }
+        });
+
+        mRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 try {
                     FileOutputStream mFileOutputStream = getActivity().openFileOutput(Constan.MENTIONSAVEDFILE, Context.MODE_PRIVATE);
                     for (int i = 0; i < mUrlList.size(); i++) {
                         mFileOutputStream.write(mUrlList.get(i).getBytes());
                     }
                     mFileOutputStream.close();
+                    CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
+                    mAlertDialog.dismiss();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-        }
+            }
+        });
+        mAlertDialog.setView(mView);
+
+        mAlertDialog.show();
+
     }
 }

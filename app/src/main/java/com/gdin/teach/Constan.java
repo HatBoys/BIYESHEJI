@@ -67,5 +67,10 @@ public class Constan {
     public static final String ALLREBACK = "已撤回全部数据";
     public static final String DOERROR = "操作异常";
 
+    //Dialog提示信息
+    public static final String SUBMIT = "是否提交";
+    public static final String SUBMITSUCCESS = "提交成功";
+    public static final String CANCLE = "取消";
+    public static final String SURE = "确定";
 
 }
