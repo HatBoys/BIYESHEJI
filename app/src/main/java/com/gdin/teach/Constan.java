@@ -60,6 +60,12 @@ public class Constan {
     public static final String STUDENTNAME = "霍元甲";
     public static final String STUDENTNUMBER = "20120445430";
 
+    //本地文件存储
+    public static final String MENTIONSAVEDFILE = "mention";
+
+    //提示信息
+    public static final String ALLREBACK = "已撤回全部数据";
+    public static final String DOERROR = "操作异常";
 
 
 }

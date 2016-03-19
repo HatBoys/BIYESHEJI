@@ -18,6 +18,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/bt_in_class_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="130dp"
@@ -30,10 +31,11 @@
             android:textColor="@color/in_class_below_text_color_selector"/>
 
         <Button
+            android:id="@+id/bt_inclass_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@drawable/in_class_upload_selector"
+            android:drawableRight="@drawable/in_class_upload_selector"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:padding="10dp"

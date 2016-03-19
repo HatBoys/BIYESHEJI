@@ -1,5 +1,6 @@
 package com.gdin.teach.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,20 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.adapter.InClassMentionAdapter;
 import com.gdin.teach.util.CommomUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.recyclerview.animators.ScaleInLeftAnimator;
 
 /**
  * Created by 黄培彦 on 16/3/19.
  * Email: peiyanhuang@yeah.net
- * 类说明:
+ * 类说明: 课堂点名界面
  */
 public class InClassMentionFragment extends BaseFragment implements InClassMentionAdapter.OnItemClickLitener {
 
@@ -30,6 +37,10 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private ArrayList<String> mUrlList;
     private LinearLayoutManager mLinearLayoutManager;
     private InClassMentionAdapter mAdapter;
+    private String mKillUrl = "";
+    private int mKillPosition = -1;
+    private ArrayList<String> mKillUrlList;
+    private ArrayList<Integer> mKillPositionList;
 
     public InClassMentionFragment() {
     }
@@ -46,6 +57,10 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mKillUrlList = new ArrayList<String>();
+        mKillPositionList = new ArrayList<Integer>();
+        File mFile = new File(String.valueOf(getActivity().getDir(Constan.MENTIONSAVEDFILE
+                , Context.MODE_PRIVATE)));
 
     }
 
@@ -84,13 +99,59 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
 
     @Override
     public void onItemClick(View view, int position) {
-        CommomUtil.toastMessage(getContext(), "Click" + position);
+        mKillUrl = mUrlList.get(position);
+        mKillPosition = position;
+
         mUrlList.remove(position);
         mAdapter.notifyItemRemoved(position);
+
+        mKillUrlList.add(mKillUrl);
+        mKillPositionList.add(mKillPosition);
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
 
+    }
+
+    @OnClick({R.id.bt_in_class_cancle, R.id.bt_inclass_upload})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.bt_in_class_cancle:
+                int urlKillList = mKillUrlList.size();
+                int positionKillList = mKillPositionList.size();
+
+                if (urlKillList > 0 && positionKillList > 0 && positionKillList == urlKillList) {
+                    mUrlList.add(mKillPositionList.get(positionKillList - 1), mKillUrlList.get(urlKillList - 1));
+                    mAdapter.notifyItemInserted(mKillPositionList.get(positionKillList - 1));
+
+                    mKillUrlList.remove(urlKillList - 1);
+                    mKillPositionList.remove(positionKillList - 1);
+                }
+                if (urlKillList == 0 && positionKillList == 0) {//已经撤回所有数据
+                    CommomUtil.toastMessage(getContext(), Constan.ALLREBACK);
+                }
+
+                if (urlKillList != positionKillList) {//操作异常
+                    CommomUtil.toastMessage(getContext(), Constan.DOERROR);
+                }
+
+                break;
+
+            case R.id.bt_inclass_upload:
+                CommomUtil.toastMessage(getContext(), "提交");//保存到本地数据
+                try {
+                    FileOutputStream mFileOutputStream = getActivity().openFileOutput(Constan.MENTIONSAVEDFILE, Context.MODE_PRIVATE);
+                    for (int i = 0; i < mUrlList.size(); i++) {
+                        mFileOutputStream.write(mUrlList.get(i).getBytes());
+                    }
+                    mFileOutputStream.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 }
