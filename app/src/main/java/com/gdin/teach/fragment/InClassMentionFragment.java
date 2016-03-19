@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import jp.wasabeef.recyclerview.animators.ScaleInLeftAnimator;
 
 /**
  * Created by 黄培彦 on 16/3/19.
@@ -62,6 +63,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
 
 //        mRlInClassMention.addItemDecoration(new DividerGridItemDecoration(getContext()));
         mRlInClassMention.setLayoutManager(mLinearLayoutManager);//RecycleView的用法
+        mRlInClassMention.setItemAnimator(new ScaleInLeftAnimator());
         mRlInClassMention.setHasFixedSize(true);
         mAdapter = new InClassMentionAdapter(getActivity(), mUrlList);
         mAdapter.setOnItemClickLitener(this);
@@ -84,7 +86,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     public void onItemClick(View view, int position) {
         CommomUtil.toastMessage(getContext(), "Click" + position);
         mUrlList.remove(position);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemRemoved(position);
     }
 
     @Override
