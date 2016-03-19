@@ -45,7 +45,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="1px"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@color/colorPrimaryDark"
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_class_info"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/little_gray"
         android:orientation="vertical"
         android:paddingBottom="10dp">
@@ -107,7 +107,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="1px"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@color/colorPrimaryDark"
@@ -158,6 +158,7 @@
             </LinearLayout>
 
             <lecho.lib.hellocharts.view.PieChartView
+                android:layout_marginTop="5dp"
                 android:id="@+id/pie_chart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by 黄培彦 on 16/3/11.
  * Email: peiyanhuang@yeah.net
- * 类说明:
+ * 类说明: 主界面的Fragment Adapter
  */
 public class MainTeacherAdapter extends FragmentPagerAdapter {
 

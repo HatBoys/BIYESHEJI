@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.adapter.InClassVPAdapter;
 import com.gdin.teach.view.NoScrollViewPager;
@@ -36,6 +37,7 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
     NoScrollViewPager mVpInClass;
     private ArrayList<BaseFragment> mFragmentArrayList;
     private FragmentManager mFragmentManager;
+    private ArrayList<String> mImageUrlArrayList;//学生头像URL
 
     @Override
     public View initView() {
@@ -46,6 +48,10 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragmentArrayList = new ArrayList<BaseFragment>();
+        mImageUrlArrayList = new ArrayList<String>();
+        for (int i = 1; i < 19; i++) {
+            mImageUrlArrayList.add(Constan.MENTIONIMAGEHEAD + i + Constan.MENTIONIMAGEEND);//虚拟学生头像
+        }
     }
 
     @Override
@@ -62,12 +68,12 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
         super.onViewCreated(view, savedInstanceState);
         initData();
         mFragmentManager = getActivity().getSupportFragmentManager();
-
+        mVpInClass.setOffscreenPageLimit(2);
         mVpInClass.setAdapter(new InClassVPAdapter(mFragmentManager, mFragmentArrayList));
     }
 
     private void initData() {
-        mFragmentArrayList.add(new InClassMentionFragment());
+        mFragmentArrayList.add(new InClassMentionFragment(mImageUrlArrayList));
         mFragmentArrayList.add(new InClassScoreFragment());
     }
 
@@ -87,7 +93,6 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
         switch (v.getId()) {
             case R.id.rb_mention:
                 mRgInClassTopTab.check(R.id.rb_mention);
-                // TODO: 16/3/19 ViewPager改变页面
                 mVpInClass.setCurrentItem(0, true);
                 break;
             case R.id.rb_score:

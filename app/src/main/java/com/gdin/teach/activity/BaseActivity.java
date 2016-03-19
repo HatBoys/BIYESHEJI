@@ -41,13 +41,6 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-   /* public static synchronized MyApplication getInstance() {
-        if (mInstance == null) {
-            mInstance = new MyApplication();
-        }
-        return mInstance;
-    }*/
-
     /**
      * 获取Toolbar实例化，避免跳转完Actiity后，Toolbar实例被销毁
      *

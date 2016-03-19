@@ -52,6 +52,10 @@ public class Constan {
     public static final String INCLASS = "上课";
     public static final String PERSONALCENTER = "个人中心";
 
+    //mention image url
+    public static final String MENTIONIMAGEHEAD = "http://www.jycoder.com/json/Image/";
+    public static final String MENTIONIMAGEEND = ".jpg";
+
 
 
 }
