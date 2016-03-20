@@ -66,6 +66,7 @@ public class Constan {
     //提示信息
     public static final String ALLREBACK = "已撤回全部数据";
     public static final String DOERROR = "操作异常";
+    public static final String MENTIONNUMMESSAGE = "已到/总数：";
 
     //Dialog提示信息
     public static final String SUBMIT = "是否提交";

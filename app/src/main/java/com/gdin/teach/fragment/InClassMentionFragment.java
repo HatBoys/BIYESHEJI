@@ -40,7 +40,6 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     @Bind(R.id.tv_mention_num)
     TextView mTvMentionNum;
     private ArrayList<String> mUrlList;
-    private ArrayList<String> mUrlSavedList;
     private LinearLayoutManager mLinearLayoutManager;
     private InClassMentionAdapter mAdapter;
     private String mKillUrl = "";
@@ -49,13 +48,14 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private ArrayList<Integer> mKillPositionList;
     private int mUrlKillList;
     private int mPositionKillList;
+    private int mAllNum;
 
     public InClassMentionFragment() {
     }
 
     public InClassMentionFragment(ArrayList<String> urlArrayList) {
         mUrlList = urlArrayList;
-        mUrlSavedList = urlArrayList;
+        mAllNum = urlArrayList.size();
     }
 
     @Override
@@ -78,6 +78,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
+
+        mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 //        new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL)//瀑布流
 //        new GridLayoutManager(getActivity(), 3)
@@ -116,6 +119,8 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
 
         mKillUrlList.add(mKillUrl);
         mKillPositionList.add(mKillPosition);
+
+        mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
     }
 
     @Override
@@ -144,6 +149,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                 if (mUrlKillList != mPositionKillList) {//操作异常
                     CommomUtil.toastMessage(getContext(), Constan.DOERROR);
                 }
+
+                mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+
 
                 break;
 
@@ -187,7 +195,10 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                     mFileOutputStream.close();
                     CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mAlertDialog.dismiss();
-                    for (int i = 0; i < mUrlSavedList.size(); i++) {
+
+                    mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+
+                    for (int i = 0; i < mAllNum; i++) {
                         mUrlKillList = mKillUrlList.size();
                         mPositionKillList = mKillPositionList.size();//此处解决提交数据后，重新刷新所有学生名单
 
