@@ -37,19 +37,25 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
 
     @Bind(R.id.rl_in_class_mention)
     RecyclerView mRlInClassMention;
+    @Bind(R.id.tv_mention_num)
+    TextView mTvMentionNum;
     private ArrayList<String> mUrlList;
+    private ArrayList<String> mUrlSavedList;
     private LinearLayoutManager mLinearLayoutManager;
     private InClassMentionAdapter mAdapter;
     private String mKillUrl = "";
     private int mKillPosition = -1;
     private ArrayList<String> mKillUrlList;
     private ArrayList<Integer> mKillPositionList;
+    private int mUrlKillList;
+    private int mPositionKillList;
 
     public InClassMentionFragment() {
     }
 
     public InClassMentionFragment(ArrayList<String> urlArrayList) {
         mUrlList = urlArrayList;
+        mUrlSavedList = urlArrayList;
     }
 
     @Override
@@ -121,21 +127,21 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_in_class_cancle:
-                int urlKillList = mKillUrlList.size();
-                int positionKillList = mKillPositionList.size();
+                mUrlKillList = mKillUrlList.size();
+                mPositionKillList = mKillPositionList.size();
 
-                if (urlKillList > 0 && positionKillList > 0 && positionKillList == urlKillList) {
-                    mUrlList.add(mKillPositionList.get(positionKillList - 1), mKillUrlList.get(urlKillList - 1));
-                    mAdapter.notifyItemInserted(mKillPositionList.get(positionKillList - 1));
+                if (mUrlKillList > 0 && mPositionKillList > 0 && mPositionKillList == mUrlKillList) {
+                    mUrlList.add(mKillPositionList.get(mPositionKillList - 1), mKillUrlList.get(mUrlKillList - 1));
+                    mAdapter.notifyItemInserted(mKillPositionList.get(mPositionKillList - 1));
 
-                    mKillUrlList.remove(urlKillList - 1);
-                    mKillPositionList.remove(positionKillList - 1);
+                    mKillUrlList.remove(mUrlKillList - 1);
+                    mKillPositionList.remove(mPositionKillList - 1);
                 }
-                if (urlKillList == 0 && positionKillList == 0) {//已经撤回所有数据
+                if (mUrlKillList == 0 && mPositionKillList == 0) {//已经撤回所有数据
                     CommomUtil.toastMessage(getContext(), Constan.ALLREBACK);
                 }
 
-                if (urlKillList != positionKillList) {//操作异常
+                if (mUrlKillList != mPositionKillList) {//操作异常
                     CommomUtil.toastMessage(getContext(), Constan.DOERROR);
                 }
 
@@ -181,6 +187,19 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                     mFileOutputStream.close();
                     CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mAlertDialog.dismiss();
+                    for (int i = 0; i < mUrlSavedList.size(); i++) {
+                        mUrlKillList = mKillUrlList.size();
+                        mPositionKillList = mKillPositionList.size();//此处解决提交数据后，重新刷新所有学生名单
+
+                        if (mUrlKillList > 0 && mPositionKillList > 0 && mPositionKillList == mUrlKillList) {
+                            mUrlList.add(mKillPositionList.get(mPositionKillList - 1), mKillUrlList.get(mUrlKillList - 1));
+                            mAdapter.notifyItemInserted(mKillPositionList.get(mPositionKillList - 1));
+
+                            mKillUrlList.remove(mUrlKillList - 1);
+                            mKillPositionList.remove(mPositionKillList - 1);
+                        }
+                    }
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
