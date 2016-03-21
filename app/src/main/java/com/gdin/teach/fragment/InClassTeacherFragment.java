@@ -74,7 +74,7 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
 
     private void initData() {
         mFragmentArrayList.add(new InClassMentionFragment(mImageUrlArrayList));
-        mFragmentArrayList.add(new InClassScoreFragment());
+        mFragmentArrayList.add(new InClassScoreFragment(mImageUrlArrayList));
     }
 
     private void initListener() {

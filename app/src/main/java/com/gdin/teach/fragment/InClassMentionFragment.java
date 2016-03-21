@@ -49,6 +49,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private int mUrlKillList;
     private int mPositionKillList;
     private int mAllNum;
+    private AlertDialog mAlertDialog;
 
     public InClassMentionFragment() {
     }
@@ -166,9 +167,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
      * 实现一个Dialog
      */
     private void initDialog() {
-        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
-
-        final AlertDialog mAlertDialog = mBuilder.create();
+//        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+//        抽取出Dialog的创建共性，作为公共方法
+//        final AlertDialog mAlertDialog = mBuilder.create();
 
         View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_in_class_submit, null);
         TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
@@ -177,6 +178,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         mTextView.setText(Constan.SUBMIT);
         mLeftButton.setText(Constan.CANCLE);
         mRightButton.setText(Constan.SURE);
+
+        mAlertDialog = CommomUtil.showCustomDialog(getContext());
+        mAlertDialog.setView(mView);
         mLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,8 +222,6 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                 }
             }
         });
-        mAlertDialog.setView(mView);
-
         mAlertDialog.show();
 
     }

@@ -26,4 +26,10 @@
     <string name="tv_in_class_num">学号：</string>
     <string name="in_class_cancle">撤销</string>
     <string name="in_class_upload">提交</string>
+    <string name="excellence">优秀</string>
+    <string name="good">良好</string>
+    <string name="pass">及格</string>
+    <string name="no_pass">差劲</string>
+    <string name="select_score">课堂实验成绩</string>
+    <string name="sure">确定</string>
 </resources>

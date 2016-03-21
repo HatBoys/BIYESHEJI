@@ -46,13 +46,14 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    public synchronized void reSetToolBar() {
+    public synchronized Toolbar reSetToolBar() {
         if (mTlBase == null) {
             mTlBase = (Toolbar) this.findViewById(R.id.tl_base);
         }
         if (mTvTitle == null) {
             mTvTitle = (TextView) this.findViewById(R.id.tv_title);
         }
+        return null;
     }
 
     /**

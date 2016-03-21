@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/dialog_in_class_score_shape"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tv_dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_score"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_big"/>
+
+    <RadioGroup
+        android:id="@+id/rg_in_class_score_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center_horizontal">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_exce_in_class_score_check"
+                style="@style/InClassStudentScore"
+                android:layout_marginRight="10dp"
+                android:text="@string/excellence"/>
+
+            <RadioButton
+                android:id="@+id/rb_good_in_class_score_check"
+                style="@style/InClassStudentScore"
+                android:text="@string/good"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_pass_in_class_score_check"
+                style="@style/InClassStudentScore"
+                android:layout_marginRight="10dp"
+                android:text="@string/pass"/>
+
+            <RadioButton
+                android:id="@+id/rb_fail_in_class_score_check"
+                style="@style/InClassStudentScore"
+                android:text="@string/no_pass"/>
+        </RadioGroup>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/bt_dialog_score_sure"
+        style="@style/InClassStudentNameNum"
+        android:background="@drawable/in_class_dialog_tab_selector"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:text="@string/sure"
+        android:textColor="@color/in_class_text_dialog_color_selector"
+        />
+
+
+</LinearLayout>

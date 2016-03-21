@@ -50,6 +50,9 @@ public class MainActivityTeacher extends BaseActivity {
      */
     @TargetApi(Build.VERSION_CODES.M)
     public void setToolBar(boolean visiable) {
+        if (mTlBase == null) {
+            mTlBase = reSetToolBar();
+        }
         if (visiable) {
             mTlBase.setVisibility(View.VISIBLE);
             mTlBase.setTitle("");

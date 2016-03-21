@@ -39,4 +39,19 @@
         <item name="android:textSize">@dimen/text_size_normal</item>
     </style>
 
+    //实验成绩
+
+    <style name="InClassStudentScore">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">25dp</item>
+        <item name="android:drawableRight">@drawable/in_class_dialog_score</item>
+        <item name="android:drawablePadding">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+
 </resources>
