@@ -1,5 +1,6 @@
 package com.gdin.teach.fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -51,7 +52,7 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     Button mBtInClassCancle;
     @Bind(R.id.bt_inclass_upload)
     Button mBtInclassUpload;
-    private final ArrayList<String> mImageUrlList;
+    private ArrayList<String> mImageUrlList;
     @Bind(R.id.ll_in_class)
     LinearLayout mLlInClass;
     private InClassScoreAdapter mScoreAdapter;
@@ -69,8 +70,12 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     private int mKillPosition;
     private int mUrlKillSize;
     private int mKillUrlPositionSize;
-    private final int mAllNum;
+    private int mAllNum;
 
+    public InClassScoreFragment() {
+    }
+
+    @SuppressLint("ValidFragment")
     public InClassScoreFragment(ArrayList<String> imageUrlArrayList) {
         mImageUrlList = imageUrlArrayList;
         mAllNum = imageUrlArrayList.size();

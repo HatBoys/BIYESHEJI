@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.gdin.teach.Constan;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
  * Email: peiyanhuang@yeah.net
  * 类说明: 课程信息详情界面,饼状图用到开源框架https://github.com/lecho/hellocharts-android
  */
-public class ClassInfoDetailActivity extends BaseActivity {
+public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
 
     private static int mCurrentposition;
     private static String mClassInfo;
@@ -46,6 +49,7 @@ public class ClassInfoDetailActivity extends BaseActivity {
         mTlBase.setVisibility(View.VISIBLE);
         mTlBase.setNavigationIcon(R.mipmap.back);
         mTlBase.setTitle("");
+
         mTlBase.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +57,7 @@ public class ClassInfoDetailActivity extends BaseActivity {
                 finish();
             }
         });
+        mTlBase.setOnMenuItemClickListener(this);
     }
 
     public void setTitle(String title) {
@@ -63,6 +68,7 @@ public class ClassInfoDetailActivity extends BaseActivity {
 
     /**
      * 跳转到ClassInfoDetailActivity
+     *
      * @param context
      * @param position
      * @param item
@@ -75,5 +81,21 @@ public class ClassInfoDetailActivity extends BaseActivity {
         mImageUrlArrayList = imageUrlArrayList;
         context.startActivity(mIntent);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.share) {
+            CommomUtil.toastMessage(this, "MenuItem");
+            // TODO: 16/3/22 友盟分享
+
+        }
+        return true;
     }
 }

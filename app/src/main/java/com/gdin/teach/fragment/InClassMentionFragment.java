@@ -1,5 +1,6 @@
 package com.gdin.teach.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -64,6 +65,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     public InClassMentionFragment() {
     }
 
+    @SuppressLint("ValidFragment")
     public InClassMentionFragment(ArrayList<String> urlArrayList) {
         mUrlList = urlArrayList;
         mAllNum = urlArrayList.size();

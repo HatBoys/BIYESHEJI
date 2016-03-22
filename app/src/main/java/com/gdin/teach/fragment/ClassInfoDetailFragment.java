@@ -1,5 +1,6 @@
 package com.gdin.teach.fragment;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -63,10 +64,10 @@ public class ClassInfoDetailFragment extends BaseFragment {
     private PieChartData mPieChardata;
     private ArrayList<String> mImageUrlList;
 
-
     public ClassInfoDetailFragment() {
     }
 
+    @SuppressLint("ValidFragment")
     public ClassInfoDetailFragment(int position, String classInfo, ArrayList<String> imageUrlArrayList) {
         mCurrentPoaition = position;
         mClassInfo = classInfo;
