@@ -62,6 +62,7 @@ public class Constan {
 
     //本地文件存储
     public static final String MENTIONSAVEDFILE = "mention";
+    public static final String SCORESAVEDFILE = "score";
 
     //提示信息
     public static final String ALLREBACK = "已撤回全部数据";
@@ -70,7 +71,7 @@ public class Constan {
     public static final String PLEASECHECK = "勾选成绩";
 
     //Dialog提示信息
-    public static final String SUBMIT = "是否提交";
+    public static final String SUBMIT = "是否提交旷课名单";
     public static final String SUBMITSUCCESS = "提交成功";
     public static final String CANCLE = "取消";
     public static final String SURE = "确定";

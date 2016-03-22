@@ -6,10 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gdin.teach.Constan;
@@ -39,6 +44,8 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     RecyclerView mRlInClassMention;
     @Bind(R.id.tv_mention_num)
     TextView mTvMentionNum;
+    @Bind(R.id.ll_in_class)
+    LinearLayout mLlInClass;
     private ArrayList<String> mUrlList;
     private LinearLayoutManager mLinearLayoutManager;
     private InClassMentionAdapter mAdapter;
@@ -50,6 +57,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private int mPositionKillList;
     private int mAllNum;
     private AlertDialog mAlertDialog;
+    private WindowManager.LayoutParams mParams;
+    private Window mWindow;
+    private PopupWindow mPopupWindow;
 
     public InClassMentionFragment() {
     }
@@ -71,6 +81,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         mKillPositionList = new ArrayList<Integer>();
         File mFile = new File(String.valueOf(getActivity().getDir(Constan.MENTIONSAVEDFILE
                 , Context.MODE_PRIVATE)));
+
+        mWindow = getActivity().getWindow();
+        mParams = mWindow.getAttributes();
 
     }
 
@@ -179,12 +192,28 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         mLeftButton.setText(Constan.CANCLE);
         mRightButton.setText(Constan.SURE);
 
-        mAlertDialog = CommomUtil.showCustomDialog(getContext());
-        mAlertDialog.setView(mView);
+       /* mAlertDialog = CommomUtil.showCustomDialog(getContext());
+
+        mAlertDialog.setView(mView);*/
+
+        mPopupWindow = CommomUtil.showPopupWindow(mView);
+        mParams.alpha = 0.2f;//设置背景颜色
+        mWindow.setAttributes(mParams);
+
+        mPopupWindow.showAtLocation(mLlInClass, Gravity.CENTER, 0, 0);
+
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mParams.alpha = 1f;
+                mWindow.setAttributes(mParams);
+            }
+        });
+
         mLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAlertDialog.dismiss();
+                mPopupWindow.dismiss();
             }
         });
 
@@ -198,7 +227,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                     }
                     mFileOutputStream.close();
                     CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
-                    mAlertDialog.dismiss();
+                    mPopupWindow.dismiss();
 
                     mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
 
@@ -222,7 +251,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                 }
             }
         });
-        mAlertDialog.show();
+//        mAlertDialog.show();
 
     }
 }

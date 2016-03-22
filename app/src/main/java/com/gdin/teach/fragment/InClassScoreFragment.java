@@ -1,6 +1,7 @@
 package com.gdin.teach.fragment;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,10 @@ import com.gdin.teach.R;
 import com.gdin.teach.adapter.InClassScoreAdapter;
 import com.gdin.teach.util.CommomUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -58,9 +63,17 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     private RadioButton mButtonGood;
     private RadioButton mButtonPass;
     private RadioButton mButtonFail;
+    private View mItemView;
+    private ArrayList<String> mKillUrlList;
+    private ArrayList<Integer> mKillUrlPositionList;
+    private int mKillPosition;
+    private int mUrlKillSize;
+    private int mKillUrlPositionSize;
+    private final int mAllNum;
 
     public InClassScoreFragment(ArrayList<String> imageUrlArrayList) {
         mImageUrlList = imageUrlArrayList;
+        mAllNum = imageUrlArrayList.size();
     }
 
 
@@ -74,6 +87,10 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
         super.onCreate(savedInstanceState);
         mWindow = getActivity().getWindow();
         mParams = mWindow.getAttributes();
+        mKillUrlList = new ArrayList<String>();
+        mKillUrlPositionList = new ArrayList<Integer>();
+        File mFile = new File(String.valueOf(getActivity().getDir(Constan.SCORESAVEDFILE
+                , Context.MODE_PRIVATE)));
     }
 
     @Override
@@ -102,10 +119,10 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_in_class_cancle:
-
+                solveCancle();
                 break;
             case R.id.bt_inclass_upload:
-
+                initDialog();
                 break;
             case R.id.rb_exce_in_class_score_check:
                 mRadioGroup.check(R.id.rb_exce_in_class_score_check);
@@ -126,6 +143,11 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
             case R.id.bt_dialog_score_sure:
                 if (mButtonExce.isChecked() || mButtonGood.isChecked() || mButtonPass.isChecked() || mButtonFail.isChecked()) {
                     mPopupWindow.dismiss();
+                    mKillUrlList.add(mImageUrlList.get(mKillPosition));
+                    mKillUrlPositionList.add(mKillPosition);
+                    mImageUrlList.remove(mKillPosition);
+                    mScoreAdapter.notifyItemRemoved(mKillPosition);
+
                 } else {
                     CommomUtil.toastMessage(getContext(), Constan.PLEASECHECK);
                 }
@@ -133,9 +155,106 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
         }
     }
 
+    /**
+     * 实现一个Dialog
+     */
+    private void initDialog() {
+//        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+//        抽取出Dialog的创建共性，作为公共方法
+//        final AlertDialog mAlertDialog = mBuilder.create();
+
+        View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_in_class_submit, null);
+        TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
+        Button mLeftButton = (Button) mView.findViewById(R.id.bt_dialog_left);
+        Button mRightButton = (Button) mView.findViewById(R.id.bt_dialog_right);
+        mTextView.setText(Constan.SUBMIT);
+        mLeftButton.setText(Constan.CANCLE);
+        mRightButton.setText(Constan.SURE);
+
+       /* mAlertDialog = CommomUtil.showCustomDialog(getContext());
+
+        mAlertDialog.setView(mView);*/
+
+        mPopupWindow = CommomUtil.showPopupWindow(mView);
+        mParams.alpha = 0.2f;//设置背景颜色
+        mWindow.setAttributes(mParams);
+
+        mPopupWindow.showAtLocation(mLlInClass, Gravity.CENTER, 0, 0);
+
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mParams.alpha = 1f;
+                mWindow.setAttributes(mParams);
+            }
+        });
+
+        mLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopupWindow.dismiss();
+            }
+        });
+
+        mRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    FileOutputStream mFileOutputStream = getActivity().openFileOutput(Constan.SCORESAVEDFILE, Context.MODE_PRIVATE);
+                    for (int i = 0; i < mImageUrlList.size(); i++) {
+                        mFileOutputStream.write(mImageUrlList.get(i).getBytes());
+                    }
+                    mFileOutputStream.close();
+                    CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
+                    mPopupWindow.dismiss();
+
+
+                    for (int i = 0; i < mAllNum; i++) {
+                        mKillUrlPositionSize = mKillUrlPositionList.size();
+                        mUrlKillSize = mKillUrlList.size();
+                        if (mKillUrlPositionSize > 0 && mUrlKillSize > 0 && mUrlKillSize == mKillUrlPositionSize) {
+                            mImageUrlList.add(mKillUrlPositionList.get(mKillUrlPositionSize - 1), mKillUrlList.get(mUrlKillSize - 1));
+                            mScoreAdapter.notifyItemInserted(mKillUrlPositionList.get(mKillUrlPositionSize - 1));
+
+                            mKillUrlList.remove(mUrlKillSize - 1);
+                            mKillUrlPositionList.remove(mKillUrlPositionSize - 1);
+                        }
+                    }
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    private void solveCancle() {
+        mUrlKillSize = mKillUrlList.size();
+        mKillUrlPositionSize = mKillUrlPositionList.size();
+
+        if (mUrlKillSize > 0 && mKillUrlPositionSize > 0 && mKillUrlPositionSize == mUrlKillSize) {
+            mImageUrlList.add(mKillUrlPositionList.get(mKillUrlPositionSize - 1), mKillUrlList.get(mUrlKillSize - 1));
+            mScoreAdapter.notifyItemInserted(mKillUrlPositionList.get(mKillUrlPositionSize - 1));
+
+            mKillUrlList.remove(mUrlKillSize - 1);
+            mKillUrlPositionList.remove(mKillUrlPositionSize - 1);
+        }
+        if (mUrlKillSize == 0 && mKillUrlPositionSize == 0) {//已经撤回所有数据
+            CommomUtil.toastMessage(getContext(), Constan.ALLREBACK);
+        }
+
+        if (mUrlKillSize != mKillUrlPositionSize) {//操作异常
+            CommomUtil.toastMessage(getContext(), Constan.DOERROR);
+        }
+    }
+
     @Override
     public void onItemClick(View view, int position) {
         CommomUtil.toastMessage(getContext(), position + "");
+        mKillPosition = position;
         initDialogView();
     }
 
