@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/ll_in_class"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<LinearLayout
+    android:id="@+id/ll_in_class"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rl_in_class_mention"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rl_in_class_mention"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_in_class_null_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:text="@string/tv_in_class_null_data"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_big"
+            />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_mention_num"

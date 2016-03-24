@@ -75,5 +75,8 @@ public class Constan {
     public static final String SUBMITSUCCESS = "提交成功";
     public static final String CANCLE = "取消";
     public static final String SURE = "确定";
+    public static final String SHARECONTENT = "骁智课堂App，精简我的备课时间，我推荐它";
+    public static final String SHARETITLE = "骁智课堂";
+    public static final String SUBMITSCORE = "是否提交实验成绩";
 
 }

@@ -47,6 +47,8 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     TextView mTvMentionNum;
     @Bind(R.id.ll_in_class)
     LinearLayout mLlInClass;
+    @Bind(R.id.tv_in_class_null_data)
+    TextView mTvInClassNullData;
     private ArrayList<String> mUrlList;
     private LinearLayoutManager mLinearLayoutManager;
     private InClassMentionAdapter mAdapter;
@@ -137,6 +139,11 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         mKillPositionList.add(mKillPosition);
 
         mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+
+        if (mUrlList.size() == 0) {
+            CommomUtil.toastMessage(getContext().getApplicationContext(), "最后一个数据");
+            mTvInClassNullData.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -148,34 +155,42 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_in_class_cancle:
-                mUrlKillList = mKillUrlList.size();
-                mPositionKillList = mKillPositionList.size();
-
-                if (mUrlKillList > 0 && mPositionKillList > 0 && mPositionKillList == mUrlKillList) {
-                    mUrlList.add(mKillPositionList.get(mPositionKillList - 1), mKillUrlList.get(mUrlKillList - 1));
-                    mAdapter.notifyItemInserted(mKillPositionList.get(mPositionKillList - 1));
-
-                    mKillUrlList.remove(mUrlKillList - 1);
-                    mKillPositionList.remove(mPositionKillList - 1);
+                if (mUrlList.size() == 0) {
+                    CommomUtil.toastMessage(getContext().getApplicationContext(), "即将恢复最后一个删除的数据");
+                    mTvInClassNullData.setVisibility(View.GONE);
                 }
-                if (mUrlKillList == 0 && mPositionKillList == 0) {//已经撤回所有数据
-                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.ALLREBACK);
-                }
-
-                if (mUrlKillList != mPositionKillList) {//操作异常
-                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.DOERROR);
-                }
-
-                mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
-
+                solveCancle();
 
                 break;
 
             case R.id.bt_inclass_upload:
-
                 initDialog();
                 break;
         }
+    }
+
+    private void solveCancle() {
+        mUrlKillList = mKillUrlList.size();
+        mPositionKillList = mKillPositionList.size();
+
+        if (mUrlKillList > 0 && mPositionKillList > 0 && mPositionKillList == mUrlKillList) {
+            mUrlList.add(mKillPositionList.get(mPositionKillList - 1), mKillUrlList.get(mUrlKillList - 1));
+            mAdapter.notifyItemInserted(mKillPositionList.get(mPositionKillList - 1));
+
+            mKillUrlList.remove(mUrlKillList - 1);
+            mKillPositionList.remove(mPositionKillList - 1);
+        }
+        if (mUrlKillList == 0 && mPositionKillList == 0) {//已经撤回所有数据
+            CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.ALLREBACK);
+        }
+
+        if (mUrlKillList != mPositionKillList) {//操作异常
+            CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.DOERROR);
+        }
+
+        mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+
+
     }
 
     /**
@@ -185,7 +200,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
 //        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
 //        抽取出Dialog的创建共性，作为公共方法
 //        final AlertDialog mAlertDialog = mBuilder.create();
-
+        if (mUrlList.size() == 0) {
+            mTvInClassNullData.setVisibility(View.VISIBLE);
+        }
         View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_in_class_submit, null);
         TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
         Button mLeftButton = (Button) mView.findViewById(R.id.bt_dialog_left);
@@ -216,6 +233,9 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
             @Override
             public void onClick(View v) {
                 mPopupWindow.dismiss();
+                if (mUrlList.size() == 0) {
+                    mTvInClassNullData.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -231,7 +251,8 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                     CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mPopupWindow.dismiss();
 
-                    mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
+                    mTvInClassNullData.setVisibility(View.GONE);
+
 
                     for (int i = 0; i < mAllNum; i++) {
                         mUrlKillList = mKillUrlList.size();
@@ -245,6 +266,8 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                             mKillPositionList.remove(mPositionKillList - 1);
                         }
                     }
+
+                    mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

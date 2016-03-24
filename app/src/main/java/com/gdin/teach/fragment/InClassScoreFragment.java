@@ -52,6 +52,8 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     Button mBtInClassCancle;
     @Bind(R.id.bt_inclass_upload)
     Button mBtInclassUpload;
+    @Bind(R.id.tv_in_class_null_data)
+    TextView mTvInClassNullData;
     private ArrayList<String> mImageUrlList;
     @Bind(R.id.ll_in_class)
     LinearLayout mLlInClass;
@@ -124,9 +126,15 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_in_class_cancle:
+//                mTvInClassNullData.setVisibility(View.GONE);
+                if (mImageUrlList.size() == 0) {
+                    CommomUtil.toastMessage(getContext().getApplicationContext(), "即将恢复最后一个删除的数据");
+                    mTvInClassNullData.setVisibility(View.GONE);
+                }
                 solveCancle();
                 break;
             case R.id.bt_inclass_upload:
+                mTvInClassNullData.setVisibility(View.GONE);
                 initDialog();
                 break;
             case R.id.rb_exce_in_class_score_check:
@@ -172,7 +180,7 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
         TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
         Button mLeftButton = (Button) mView.findViewById(R.id.bt_dialog_left);
         Button mRightButton = (Button) mView.findViewById(R.id.bt_dialog_right);
-        mTextView.setText(Constan.SUBMIT);
+        mTextView.setText(Constan.SUBMITSCORE);
         mLeftButton.setText(Constan.CANCLE);
         mRightButton.setText(Constan.SURE);
 
@@ -258,9 +266,9 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
 
     @Override
     public void onItemClick(View view, int position) {
-        CommomUtil.toastMessage(getActivity().getApplicationContext(), position + "");
         mKillPosition = position;
         initDialogView();
+
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -290,6 +298,10 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
             public void onDismiss() {
                 mParams.alpha = 1f;
                 mWindow.setAttributes(mParams);
+                if (mImageUrlList.size() == 1) {
+                    CommomUtil.toastMessage(getContext().getApplicationContext(), "最后一个数据");
+                    mTvInClassNullData.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

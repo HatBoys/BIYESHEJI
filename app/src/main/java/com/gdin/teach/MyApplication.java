@@ -1,12 +1,14 @@
 package com.gdin.teach;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 
 /**

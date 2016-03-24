@@ -1,7 +1,9 @@
 package com.gdin.teach.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -15,6 +17,7 @@ import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.ClassInfoDetailFragment;
 import com.gdin.teach.util.CommomUtil;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMAuthListener;
@@ -133,6 +136,12 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
 
     private void initListenerUmeng() {
 
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setTitle("分享");
+        dialog.setMessage("正在跳转中，客官请稍等");
+        Config.dialog = dialog;
+
+
         mShareAPI = UMShareAPI.get(this);
 
         final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
@@ -143,9 +152,9 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
                 BitmapFactory.decodeResource(getResources(), R.drawable.school_icon));
 
         new ShareAction(this).setDisplayList(displaylist)
-                .withText("呵呵")
-                .withTitle("title")
-                .withTargetUrl("http://www.baidu.com")
+//                .withText("呵呵")
+//                .withTitle("title")
+//                .withTargetUrl("http://www.baidu.com")
                 .withMedia(image)
                 .setListenerList(mUMShareListener)
                 .setShareboardclickCallback(shareBoardlistener)
@@ -157,8 +166,10 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
         @Override
         public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
 
-            UMImage image = new UMImage(getApplicationContext(),
-                    BitmapFactory.decodeResource(getResources(), R.mipmap.launcher));
+//            UMImage image = new UMImage(getApplicationContext(),
+//                    BitmapFactory.decodeResource(getResources(), R.mipmap.launcher));
+            Bitmap mBitmap = CommomUtil.takeScreenShot(ClassInfoDetailActivity.this);
+            UMImage mImage = new UMImage(getApplicationContext(), mBitmap);
 
             switch (share_media) {
                 case WEIXIN:
@@ -178,9 +189,10 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
             new ShareAction(ClassInfoDetailActivity.this)
                     .setPlatform(mSHARE_media)
                     .setCallback(mUMShareListener)
-                    .withText("骁智课堂分享测试")
-                    .withTargetUrl("http://user.qzone.qq.com/1140390843/main")
-                    .withMedia(image)
+                    .withText(Constan.SHARECONTENT)
+//                    .withTargetUrl("http://user.qzone.qq.com/1140390843/main")
+                    .withMedia(mImage)
+                    .withTitle(Constan.SHARETITLE)
                     .share();
         }
 

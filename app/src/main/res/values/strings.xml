@@ -32,4 +32,5 @@
     <string name="no_pass">差劲</string>
     <string name="select_score">课堂实验成绩</string>
     <string name="sure">确定</string>
+    <string name="tv_in_class_null_data">没有更多名单了</string>
 </resources>
