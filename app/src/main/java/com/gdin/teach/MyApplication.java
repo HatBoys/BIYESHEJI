@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.umeng.socialize.PlatformConfig;
 
 /**
  * Created by 黄培彦 on 16/3/10.
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        PlatformConfig.setWeixin("wx932a7b654e1c2b7e", "9a892f298e5f2995afbfab21a9d42e9e");
         mApplicationContext = getApplicationContext();
         mRequestQueue = getRequestQueue();
         mSharedPreferences = mApplicationContext.getSharedPreferences(Constan.MYSHAREPREFERENCE, MODE_PRIVATE);

@@ -2,19 +2,35 @@ package com.gdin.teach.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.ClassInfoDetailFragment;
 import com.gdin.teach.util.CommomUtil;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN;
+import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN_CIRCLE;
 
 /**
  * Created by 黄培彦 on 16/3/13.
@@ -26,17 +42,15 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
     private static int mCurrentposition;
     private static String mClassInfo;
     private static ArrayList<String> mImageUrlArrayList;
+    private UMShareAPI mShareAPI;
+    private SHARE_MEDIA mSHARE_media;
 
     // TODO: 16/3/13 两个onCreate方法，有什么不同点
-    @Override
+    /*@Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-       /* setContentView(R.layout.activity_class_info_detail);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fl_class_info_detail_activity, new ClassInfoDetailFragment(), Constan.CLASSINFODETAILFRAGMENT)
-                .commit();*/
-    }
+
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +67,6 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
         mTlBase.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommomUtil.toastMessage(getApplicationContext(), "back");
                 finish();
             }
         });
@@ -92,10 +105,85 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.share) {
-            CommomUtil.toastMessage(this, "MenuItem");
             // TODO: 16/3/22 友盟分享
-
+            initListenerUmeng();
         }
         return true;
+    }
+
+    private UMShareListener mUMShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA share_media) {
+            Toast.makeText(getApplicationContext(), share_media + " 分享成功啦", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+            Toast.makeText(getApplicationContext(), share_media + " 分享失败啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+            Toast.makeText(getApplicationContext(), share_media + " 分享取消啦", Toast.LENGTH_SHORT).show();
+
+        }
+    };
+
+    private void initListenerUmeng() {
+
+        mShareAPI = UMShareAPI.get(this);
+
+        final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
+                {
+                        WEIXIN, WEIXIN_CIRCLE
+                };
+        UMImage image = new UMImage(this,
+                BitmapFactory.decodeResource(getResources(), R.drawable.school_icon));
+
+        new ShareAction(this).setDisplayList(displaylist)
+                .withText("呵呵")
+                .withTitle("title")
+                .withTargetUrl("http://www.baidu.com")
+                .withMedia(image)
+//                .setListenerList(mUMShareListener)
+                .setShareboardclickCallback(shareBoardlistener)
+                .open();
+
+    }
+
+    private ShareBoardlistener shareBoardlistener = new ShareBoardlistener() {
+        @Override
+        public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
+
+            UMImage image = new UMImage(getApplicationContext(),
+                    BitmapFactory.decodeResource(getResources(), R.mipmap.launcher));
+
+            switch (share_media) {
+                case WEIXIN:
+                    mSHARE_media = WEIXIN;
+                    break;
+                case WEIXIN_CIRCLE:
+                    mSHARE_media = WEIXIN_CIRCLE;
+                    break;
+            }
+
+            new ShareAction(ClassInfoDetailActivity.this)
+                    .setPlatform(mSHARE_media)
+                    .setCallback(mUMShareListener)
+                    .withText("骁智课堂分享测试")
+                    .withTargetUrl("http://user.qzone.qq.com/1140390843/main")
+                    .withMedia(image)
+                    .share();
+        }
+
+    };
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShareAPI.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }
