@@ -159,11 +159,11 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                     mKillPositionList.remove(mPositionKillList - 1);
                 }
                 if (mUrlKillList == 0 && mPositionKillList == 0) {//已经撤回所有数据
-                    CommomUtil.toastMessage(getContext(), Constan.ALLREBACK);
+                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.ALLREBACK);
                 }
 
                 if (mUrlKillList != mPositionKillList) {//操作异常
-                    CommomUtil.toastMessage(getContext(), Constan.DOERROR);
+                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.DOERROR);
                 }
 
                 mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
@@ -228,7 +228,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                         mFileOutputStream.write(mUrlList.get(i).getBytes());
                     }
                     mFileOutputStream.close();
-                    CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
+                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mPopupWindow.dismiss();
 
                     mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);

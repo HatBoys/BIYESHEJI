@@ -26,4 +26,7 @@ dependencies {
     compile files('src/main/libs/umeng_social_sdk.jar')
     compile files('src/main/libs/SocialSDK_WeiXin_1.jar')
     compile files('src/main/libs/SocialSDK_WeiXin_2.jar')
+    compile files('src/main/libs/mta-sdk-1.6.2.jar')
+    compile files('src/main/libs/open_sdk_r5509.jar')
+    compile files('src/main/libs/SocialSDK_QQZone_3.jar')
 }

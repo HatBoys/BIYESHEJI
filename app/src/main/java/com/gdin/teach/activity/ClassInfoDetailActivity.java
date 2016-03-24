@@ -29,6 +29,7 @@ import com.umeng.socialize.utils.ShareBoardlistener;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.umeng.socialize.bean.SHARE_MEDIA.*;
 import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN;
 import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN_CIRCLE;
 
@@ -114,18 +115,18 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
     private UMShareListener mUMShareListener = new UMShareListener() {
         @Override
         public void onResult(SHARE_MEDIA share_media) {
-            Toast.makeText(getApplicationContext(), share_media + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), " 分享成功啦", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-            Toast.makeText(getApplicationContext(), share_media + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), " 分享失败啦", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onCancel(SHARE_MEDIA share_media) {
-            Toast.makeText(getApplicationContext(), share_media + " 分享取消啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), " 分享取消啦", Toast.LENGTH_SHORT).show();
 
         }
     };
@@ -136,7 +137,7 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
 
         final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
                 {
-                        WEIXIN, WEIXIN_CIRCLE
+                        WEIXIN, WEIXIN_CIRCLE, QQ, QZONE
                 };
         UMImage image = new UMImage(this,
                 BitmapFactory.decodeResource(getResources(), R.drawable.school_icon));
@@ -146,7 +147,7 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
                 .withTitle("title")
                 .withTargetUrl("http://www.baidu.com")
                 .withMedia(image)
-//                .setListenerList(mUMShareListener)
+                .setListenerList(mUMShareListener)
                 .setShareboardclickCallback(shareBoardlistener)
                 .open();
 
@@ -165,6 +166,12 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
                     break;
                 case WEIXIN_CIRCLE:
                     mSHARE_media = WEIXIN_CIRCLE;
+                    break;
+                case QQ:
+                    mSHARE_media = QQ;
+                    break;
+                case QZONE:
+                    mSHARE_media = QZONE;
                     break;
             }
 

@@ -154,7 +154,7 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
                     mScoreAdapter.notifyItemRemoved(mKillPosition);
 
                 } else {
-                    CommomUtil.toastMessage(getContext(), Constan.PLEASECHECK);
+                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.PLEASECHECK);
                 }
                 break;
         }
@@ -210,7 +210,7 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
                         mFileOutputStream.write(mImageUrlList.get(i).getBytes());
                     }
                     mFileOutputStream.close();
-                    CommomUtil.toastMessage(getContext(), Constan.SUBMITSUCCESS);//保存到本地数据
+                    CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mPopupWindow.dismiss();
 
 
@@ -248,17 +248,17 @@ public class InClassScoreFragment extends BaseFragment implements InClassScoreAd
             mKillUrlPositionList.remove(mKillUrlPositionSize - 1);
         }
         if (mUrlKillSize == 0 && mKillUrlPositionSize == 0) {//已经撤回所有数据
-            CommomUtil.toastMessage(getContext(), Constan.ALLREBACK);
+            CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.ALLREBACK);
         }
 
         if (mUrlKillSize != mKillUrlPositionSize) {//操作异常
-            CommomUtil.toastMessage(getContext(), Constan.DOERROR);
+            CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.DOERROR);
         }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        CommomUtil.toastMessage(getContext(), position + "");
+        CommomUtil.toastMessage(getActivity().getApplicationContext(), position + "");
         mKillPosition = position;
         initDialogView();
     }

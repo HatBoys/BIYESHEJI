@@ -66,7 +66,7 @@ public class LoginFragment extends BaseFragment {
     @OnClick(R.id.bt_login)
     public void login() {
         if ("".equals(mEtUserName.getText().toString()) || "".equals(mEtUserPassword.getText().toString())) {
-            CommomUtil.toastMessage(getContext(), getString(R.string.login_error_toast));
+            CommomUtil.toastMessage(getActivity().getApplicationContext(), getString(R.string.login_error_toast));
             return;
         }
         if (Constan.STUDENT.equals(mUser)) {

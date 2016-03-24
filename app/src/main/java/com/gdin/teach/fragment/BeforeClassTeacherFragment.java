@@ -116,7 +116,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        CommomUtil.toastMessage(getContext(), "Click" + position);
+        CommomUtil.toastMessage(getActivity().getApplicationContext().getApplicationContext(), "Click" + position);
         // TODO: 16/3/13 跳转详情(暂时找不到跳转Fragment的方法,只能跳转去Activity)
         /*mMainActivityTeacher.mFragmentManager
                 .beginTransaction()

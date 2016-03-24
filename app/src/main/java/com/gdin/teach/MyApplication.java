@@ -25,6 +25,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         PlatformConfig.setWeixin("wx932a7b654e1c2b7e", "9a892f298e5f2995afbfab21a9d42e9e");
+        PlatformConfig.setQQZone("1105277230", "y7dndjXnjB8Xb76j");
         mApplicationContext = getApplicationContext();
         mRequestQueue = getRequestQueue();
         mSharedPreferences = mApplicationContext.getSharedPreferences(Constan.MYSHAREPREFERENCE, MODE_PRIVATE);
