@@ -32,7 +32,9 @@ public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuIte
                 finish();
             }
         });
+        reSetToolBar();
         mTlBase.setTitle("");
+        reSetToolBar();
         mTvTitle.setText(Constan.BROADCAST);
         mTlBase.setOnMenuItemClickListener(this);
 
@@ -57,7 +59,7 @@ public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuIte
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        CommomUtil.toastMessage(getApplicationContext(),"share");
+        CommomUtil.toastMessage(getApplicationContext(), "share");
         return false;
     }
 }

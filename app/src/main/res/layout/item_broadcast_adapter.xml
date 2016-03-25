@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/item_bg"
+                android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_broadcast"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_broadcast_title"
+            style="@style/BroadcastAdapterItem"
+            android:text="@string/broadcast_item_title"
+            />
+
+        <TextView
+            android:id="@+id/tv_broadcast_item_title"
+            style="@style/BroadcastAdapterItem"
+            android:ellipsize="end"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_broadcast"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BroadcastAdapterItem"
+            android:text="@string/broadcast_item_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_broadcast_item_content"
+            style="@style/BroadcastAdapterItem"
+            android:ellipsize="end"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@+id/ll_content"
+        android:background="@color/alpha"/>
+
+</RelativeLayout>

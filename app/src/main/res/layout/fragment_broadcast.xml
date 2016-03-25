@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/little_gray"
-              android:orientation="vertical">
+<LinearLayout
+    android:id="@+id/rl_broadcast"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/little_gray"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
 
     <EditText
+        android:id="@+id/et_broadcast_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
@@ -21,18 +26,57 @@
         android:textColorHint="@color/little_blue"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:textSize="@dimen/text_size_big"
+        android:visibility="gone"
         />
 
     <EditText
+        android:id="@+id/et_broadcast_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edittext_bg_shape"
-        android:hint="@string/broadcast_title"
-        android:padding="12dp"
+        android:gravity="start"
+        android:hint="@string/broadcast_content"
         android:lineSpacingExtra="10dp"
+        android:padding="12dp"
         android:textColorHint="@color/little_blue"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:textSize="@dimen/text_size_little_big"
+        android:visibility="gone"
         />
+
+    <Button
+        android:id="@+id/bt_saved_broadcast_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/dialog_tab_selector"
+        android:text="@string/saved_broadcast"
+        android:textColor="@color/in_class_text_dialog_color_selector"
+        android:visibility="gone"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv_add_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0"
+        android:drawablePadding="3dp"
+        android:drawableTop="@mipmap/add"
+        android:gravity="center_horizontal"
+        android:text="@string/add_broadcast"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="visible"/>
 
 </LinearLayout>

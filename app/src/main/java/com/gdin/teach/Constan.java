@@ -11,6 +11,9 @@ public class Constan {
     public static final String FINISHSPLASH = "FinishSplash";
     public static final String FINISHLOGIN = "FinishLogin";
     public static final String SAVEDICON= "savedIcon";
+    public static final String SAVEDBROADCASTTITLE= "savedBroadcastFileTitle";
+    public static final String SAVEDBROADCASTCONTENT= "savedBroadcastFileContent";
+    public static final String HADSAVEDFILES= "hadSavedFiles";
 
     //color
     public static final String COLORPRIMARYDARK = "#1db9a2";
@@ -75,6 +78,7 @@ public class Constan {
     public static final String MENTIONNUMMESSAGE = "已到/总数：";
     public static final String PLEASECHECK = "勾选成绩";
     public static final String REGISTERLATER = "迟到补签";
+    public static final String BROADCASTTITLECONTENT = "标题和内容都不能为空";
 
     //Dialog提示信息
     public static final String SUBMIT = "是否提交旷课名单";
@@ -87,5 +91,6 @@ public class Constan {
     public static final String SELECTPICTUREFROM = "选择头像来源";
     public static final String TAKEPHOTO = "拍照";
     public static final String GALLERY = "相册";
+    public static final String SAVEDORNOT = "是否保存";
 
 }
