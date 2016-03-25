@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+
     <RadioGroup
         android:id="@+id/rg_in_class_top_tab"
         android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             android:textColor="@color/in_class_text_color_selector"
             />
     </RadioGroup>
+
 
     <com.gdin.teach.view.NoScrollViewPager
         android:id="@+id/vp_in_class"

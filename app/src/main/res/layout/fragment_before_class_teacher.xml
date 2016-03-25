@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/little_gray"
               android:gravity="center_horizontal"
               android:orientation="vertical">
+
+    <include layout="@layout/top_tab_line_layout"/>
 
     <com.gdin.teach.view.UpLoadSwipeRefreshLayout
         android:id="@+id/sf_class_info"
@@ -14,8 +17,8 @@
             android:id="@+id/lv_info_class"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="1px"
-            android:divider="@color/little_blue"
+            android:divider="@color/alpha"
+            android:dividerHeight="6dp"
             android:scrollbars="none"
             />
 

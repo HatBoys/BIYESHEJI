@@ -2,35 +2,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/little_gray"
                 android:orientation="vertical">
 
-
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/ni_class_info_detail"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/faild_load"/>
-
-    <TextView
-        android:id="@+id/tv_class_info"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_class_info_image"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ni_class_info_detail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
-        android:text="模拟电路"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/text_size_little_big"
-        />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/item_bg">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/ni_class_info_detail"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/faild_load"/>
+
+        <TextView
+            android:id="@+id/tv_class_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ni_class_info_detail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="模拟电路"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_little_big"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_class_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_class_info"
+        android:layout_below="@+id/ll_class_info_image"
         android:layout_marginTop="10dp"
-        android:background="@color/little_gray"
+        android:background="@color/item_bg"
         android:orientation="vertical"
         android:paddingBottom="10dp">
 
@@ -92,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_class_info"
         android:layout_marginTop="10dp"
-        android:background="@color/little_gray"
+        android:background="@color/item_bg"
         android:orientation="vertical"
         android:paddingBottom="10dp">
 
@@ -158,12 +167,12 @@
             </LinearLayout>
 
             <lecho.lib.hellocharts.view.PieChartView
-                android:layout_marginTop="5dp"
                 android:id="@+id/pie_chart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_need_person"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"/>
 
         </RelativeLayout>
 

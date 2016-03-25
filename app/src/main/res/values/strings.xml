@@ -33,4 +33,11 @@
     <string name="select_score">课堂实验成绩</string>
     <string name="sure">确定</string>
     <string name="tv_in_class_null_data">没有更多名单了</string>
+    <string name="register">迟到补签</string>
+    <string name="broadcast">发布公告</string>
+    <string name="remind">课程提醒</string>
+    <string name="setting">修改密码</string>
+    <string name="interacrion">课程互动</string>
+    <string name="cocyright">版权声明</string>
+    <string name="teacher_name">用户名</string>
 </resources>

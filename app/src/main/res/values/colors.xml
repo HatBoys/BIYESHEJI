@@ -6,8 +6,10 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#3C3C3C</color>
-    <color name="little_gray">#F5F5F5</color>
+    <color name="little_gray">#EFEFF4</color>
     <color name="little_blue">#C3E3DE</color>
     <color name="little_blue_alpha">#aaC3E3DE</color>
     <color name="little_gray_alpha">#003C3C3C</color>
+    <color name="alpha">#00000000</color>
+    <color name="item_bg">#F9FAFB</color>
 </resources>

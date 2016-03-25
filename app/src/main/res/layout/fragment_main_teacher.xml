@@ -18,7 +18,6 @@
         android:id="@+id/rg_main_teacher_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/little_gray"
         android:orientation="horizontal">
 
         <RadioButton
