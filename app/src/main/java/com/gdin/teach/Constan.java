@@ -21,6 +21,7 @@ public class Constan {
     public static final String BEFORECLASSTEACHERFRAGMENT = "BeforeClassTeacherFragment";
     public static final String CLASSINFODETAILFRAGMENT = "ClassInfoDetailFragment";
     public static final String MAINTEACHERFRAGMENT = "MainTeacherFragment";
+    public static final String BROADCASTFRAGMENT = "BroadcastFragment";
 
     //user
     public static final String USER = "user";
@@ -52,6 +53,7 @@ public class Constan {
     public static final String CLASSINFO = "课程信息";
     public static final String INCLASS = "上课";
     public static final String PERSONALCENTER = "个人中心";
+    public static final String BROADCAST = "公告";
 
     //mention image url
     public static final String MENTIONIMAGEHEAD = "http://www.jycoder.com/json/Image/";

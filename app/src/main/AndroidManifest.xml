@@ -26,6 +26,8 @@
         </activity>
         <activity android:name="com.gdin.teach.activity.ClassInfoDetailActivity">
         </activity>
+        <activity android:name="com.gdin.teach.activity.BroadcastActivity">
+        </activity>
 
         <meta-data
             android:name="UMENG_APPKEY"

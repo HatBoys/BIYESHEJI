@@ -24,11 +24,11 @@ import android.widget.Toast;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
+import com.gdin.teach.activity.BroadcastActivity;
 import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.util.CommomUtil;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -97,7 +97,7 @@ public class PersonalTeacherFragment extends BaseFragment {
                 settingRegister();
                 break;
             case R.id.ll_broadcast:
-
+                settingBroadcast();
                 break;
             case R.id.ll_remind:
                 break;
@@ -111,6 +111,10 @@ public class PersonalTeacherFragment extends BaseFragment {
                 settingUserIcon();
                 break;
         }
+    }
+
+    private void settingBroadcast() {
+        BroadcastActivity.start2BraodcastActivity(getActivity());
     }
 
     private void settingRegister() {
