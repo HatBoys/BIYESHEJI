@@ -10,6 +10,7 @@ public class Constan {
     public static final String MYSHAREPREFERENCE = "MySharepreference";
     public static final String FINISHSPLASH = "FinishSplash";
     public static final String FINISHLOGIN = "FinishLogin";
+    public static final String SAVEDICON= "savedIcon";
 
     //color
     public static final String COLORPRIMARYDARK = "#1db9a2";
@@ -63,12 +64,15 @@ public class Constan {
     //本地文件存储
     public static final String MENTIONSAVEDFILE = "mention";
     public static final String SCORESAVEDFILE = "score";
+    public static final String USERICONFILE = "user_icon_file";
+    public static final String USERICONFILEKEY = "user_icon_file_key";
 
     //提示信息
     public static final String ALLREBACK = "已撤回全部数据";
     public static final String DOERROR = "操作异常";
     public static final String MENTIONNUMMESSAGE = "已到/总数：";
     public static final String PLEASECHECK = "勾选成绩";
+    public static final String REGISTERLATER = "迟到补签";
 
     //Dialog提示信息
     public static final String SUBMIT = "是否提交旷课名单";
@@ -78,5 +82,8 @@ public class Constan {
     public static final String SHARECONTENT = "骁智课堂App，精简我的备课时间，我推荐它";
     public static final String SHARETITLE = "骁智课堂";
     public static final String SUBMITSCORE = "是否提交实验成绩";
+    public static final String SELECTPICTUREFROM = "选择头像来源";
+    public static final String TAKEPHOTO = "拍照";
+    public static final String GALLERY = "相册";
 
 }

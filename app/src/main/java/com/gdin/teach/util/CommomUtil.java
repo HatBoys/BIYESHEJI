@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,7 @@ public class CommomUtil {
 
     /**
      * 屏幕截图
+     *
      * @param act
      * @return
      */
@@ -99,7 +101,7 @@ public class CommomUtil {
         Bitmap scrBmp = null;
         try {
             // 去掉标题栏的截图
-            scrBmp = Bitmap.createBitmap( scrView.getDrawingCache(), 0, statusBarHeight,
+            scrBmp = Bitmap.createBitmap(scrView.getDrawingCache(), 0, statusBarHeight,
                     width, height - statusBarHeight);
         } catch (IllegalArgumentException e) {
             Log.d("", "#### 旋转屏幕导致去掉状态栏失败");
@@ -107,6 +109,19 @@ public class CommomUtil {
         scrView.setDrawingCacheEnabled(false);
         scrView.destroyDrawingCache();
         return scrBmp;
+    }
+
+    /**
+     * 检查设备是否存在SDCard的工具方法
+     */
+    public static boolean hasSdcard() {
+        String state = Environment.getExternalStorageState();
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            // 有存储的SDCard
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

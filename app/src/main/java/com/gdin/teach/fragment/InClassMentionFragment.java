@@ -63,6 +63,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private WindowManager.LayoutParams mParams;
     private Window mWindow;
     private PopupWindow mPopupWindow;
+    private File mFile;
 
     public InClassMentionFragment() {
     }
@@ -83,7 +84,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         super.onCreate(savedInstanceState);
         mKillUrlList = new ArrayList<String>();
         mKillPositionList = new ArrayList<Integer>();
-        File mFile = new File(String.valueOf(getActivity().getDir(Constan.MENTIONSAVEDFILE
+        mFile = new File(String.valueOf(getActivity().getDir(Constan.MENTIONSAVEDFILE
                 , Context.MODE_PRIVATE)));
 
         mWindow = getActivity().getWindow();
@@ -248,13 +249,16 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                         mFileOutputStream.write(mUrlList.get(i).getBytes());
                     }
                     mFileOutputStream.close();
+
                     CommomUtil.toastMessage(getActivity().getApplicationContext(), Constan.SUBMITSUCCESS);//保存到本地数据
                     mPopupWindow.dismiss();
+                    if (mUrlList.size() > 0) {
+                        mTvInClassNullData.setVisibility(View.GONE);
+                    } else {
+                        mTvInClassNullData.setVisibility(View.VISIBLE);
+                    }
 
-                    mTvInClassNullData.setVisibility(View.GONE);
-
-
-                    for (int i = 0; i < mAllNum; i++) {
+                    /*for (int i = 0; i < mAllNum; i++) {
                         mUrlKillList = mKillUrlList.size();
                         mPositionKillList = mKillPositionList.size();//此处解决提交数据后，重新刷新所有学生名单
 
@@ -265,7 +269,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
                             mKillUrlList.remove(mUrlKillList - 1);
                             mKillPositionList.remove(mPositionKillList - 1);
                         }
-                    }
+                    }*/
 
                     mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
 

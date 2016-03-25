@@ -40,6 +40,8 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
     public FragmentManager mFragmentManager;
     public MainTeacherAdapter mMainTeacherAdapter;
     private MainActivityTeacher mMainActivityTeacher;
+    public RadioButton mButton;
+    public NoScrollViewPager mNoScrollViewPager;
 
     @Override
     public View initView() {
@@ -50,6 +52,8 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        mButton = (RadioButton) rootView.findViewById(R.id.rb_teacher_in_class);
+        mNoScrollViewPager = (NoScrollViewPager) rootView.findViewById(R.id.vp_main_teacher);
         ButterKnife.bind(this, rootView);
         mMainActivityTeacher = (MainActivityTeacher) getContext();
         return rootView;
