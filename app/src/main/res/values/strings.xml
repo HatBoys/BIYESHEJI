@@ -42,8 +42,9 @@
     <string name="teacher_name">用户名</string>
     <string name="broadcast_title">标题</string>
     <string name="broadcast_content">公告内容</string>
-    <string name="saved_broadcast">保存</string>
+    <string name="saved_broadcast">保存公告</string>
     <string name="broadcast_item_title">标题：</string>
     <string name="broadcast_item_content">内容:</string>
     <string name="add_broadcast">添加公告</string>
+    <string name="cancle_broadcast">退出编辑</string>
 </resources>

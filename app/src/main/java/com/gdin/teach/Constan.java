@@ -25,6 +25,7 @@ public class Constan {
     public static final String CLASSINFODETAILFRAGMENT = "ClassInfoDetailFragment";
     public static final String MAINTEACHERFRAGMENT = "MainTeacherFragment";
     public static final String BROADCASTFRAGMENT = "BroadcastFragment";
+    public static final String BROADCASTDETAILFRAGMENT = "BroadcastDetailFragment";
 
     //user
     public static final String USER = "user";
@@ -79,6 +80,11 @@ public class Constan {
     public static final String PLEASECHECK = "勾选成绩";
     public static final String REGISTERLATER = "迟到补签";
     public static final String BROADCASTTITLECONTENT = "标题和内容都不能为空";
+    public static final String BROADCASTCANCLESHARE = "退出分享";
+    public static final String BROADCASTSHARE = "开始分享";
+    public static final String BROADCASTCANCLESAVED = "退出编辑";
+    public static final String BROADCASTSAVED= "保存公告";
+
 
     //Dialog提示信息
     public static final String SUBMIT = "是否提交旷课名单";
@@ -92,5 +98,6 @@ public class Constan {
     public static final String TAKEPHOTO = "拍照";
     public static final String GALLERY = "相册";
     public static final String SAVEDORNOT = "是否保存";
+    public static final String DELECTORNOT = "是否删除";
 
 }

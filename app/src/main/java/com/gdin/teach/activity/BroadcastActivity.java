@@ -18,7 +18,7 @@ import com.gdin.teach.util.CommomUtil;
  * Email: peiyanhuang@yeah.net
  * 类说明: 发布公告
  */
-public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+public class BroadcastActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,6 @@ public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuIte
         mTlBase.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                CommomUtil.toastMessage(getApplicationContext(), "back");
                 finish();
             }
         });
@@ -36,16 +35,8 @@ public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuIte
         mTlBase.setTitle("");
         reSetToolBar();
         mTvTitle.setText(Constan.BROADCAST);
-        mTlBase.setOnMenuItemClickListener(this);
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
 
     /**
      * 跳转到BroadcastActivity
@@ -57,9 +48,5 @@ public class BroadcastActivity extends BaseActivity implements Toolbar.OnMenuIte
         activity.startActivity(mIntent);
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        CommomUtil.toastMessage(getApplicationContext(), "share");
-        return false;
-    }
+
 }

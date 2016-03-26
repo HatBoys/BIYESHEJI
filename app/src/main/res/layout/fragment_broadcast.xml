@@ -47,16 +47,35 @@
         android:visibility="gone"
         />
 
-    <Button
-        android:id="@+id/bt_saved_broadcast_file"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/dialog_tab_selector"
-        android:text="@string/saved_broadcast"
-        android:textColor="@color/in_class_text_dialog_color_selector"
-        android:visibility="gone"
-        />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_cancle_broadcast_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/dialog_tab_selector"
+            android:text="@string/cancle_broadcast"
+            android:textColor="@color/in_class_text_dialog_color_selector"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/bt_saved_broadcast_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/dialog_tab_selector"
+            android:text="@string/saved_broadcast"
+            android:textColor="@color/in_class_text_dialog_color_selector"
+            android:visibility="gone"
+            />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_broadcast"
@@ -71,6 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="0"
         android:drawablePadding="3dp"
         android:drawableTop="@mipmap/add"

@@ -32,6 +32,8 @@ public class BroadcastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -47,7 +49,7 @@ public class BroadcastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder mMyViewHolder = (MyViewHolder) holder;
         mMyViewHolder.tvTitle.setText(mBroadCastBeanList.get(position).getTitle());
         mMyViewHolder.tvContent.setText(mBroadCastBeanList.get(position).getContent());
@@ -58,6 +60,15 @@ public class BroadcastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 public void onClick(View v) {
                     int pos = mMyViewHolder.getLayoutPosition();
                     mOnItemClickListener.onItemClick(mMyViewHolder.itemView, pos);
+                }
+            });
+
+            mMyViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = mMyViewHolder.getLayoutPosition();
+                    mOnItemClickListener.onItemLongClick(mMyViewHolder.itemView, pos);
+                    return false;
                 }
             });
 
