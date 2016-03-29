@@ -30,6 +30,7 @@
             android:password="true"
             android:singleLine="true"
             android:textColor="@color/colorPrimaryDark"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/text_size_little_big"/>
     </LinearLayout>
 
@@ -66,6 +67,7 @@
             android:password="true"
             android:singleLine="true"
             android:textColor="@color/colorPrimaryDark"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/text_size_little_big"/>
     </LinearLayout>
 
@@ -102,6 +104,7 @@
             android:password="true"
             android:singleLine="true"
             android:textColor="@color/colorPrimaryDark"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/text_size_little_big"/>
     </LinearLayout>
 
