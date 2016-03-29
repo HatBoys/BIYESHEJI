@@ -50,4 +50,7 @@
     <string name="past_pass">原始密码：</string>
     <string name="new_pass">重置密码：</string>
     <string name="resum_pass">核对密码：</string>
+    <string name="copyright">\t\t\t使用软件意味用户是自愿使用本软件，并且是接受此许可协议的所有条款。如果不同意此许可协议就不能使用本软件。尊重原始作者的著作权，不得修改、隐藏、删除后台版权声明及支持信息。该软件用户不得利用软件发表、传播、储存违反国家法律、危害国家安全、祖国统一、社会稳定的内容，或侮辱、诽谤、色情、暴力等任何违反国家法律法规政策的内容。不得利用软件传播、储存侵害他人知识产权、商业秘密权等合法权利的内容。</string>
+    <string name="icon_copyright">著作权所有 © 黄培彦</string>
+    <string name="copyright_declare">版权©声明</string>
 </resources>

@@ -26,6 +26,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
@@ -115,13 +118,47 @@ public class PersonalTeacherFragment extends BaseFragment {
                 initSettingPass();
                 break;
             case R.id.ll_interaction:
+                initInteraction();
                 break;
             case R.id.tv_copyright:
+                initCopyright();
                 break;
             case R.id.iv_user_icon://设置用户头像
                 settingUserIcon();
                 break;
         }
+    }
+
+    /**
+     * 版权声明
+     */
+    private void initCopyright() {
+        View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_copyright, null);
+        Button mButton = (Button) mView.findViewById(R.id.bt_dialog_checked);
+        myPopupWindow(mView);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopupWindow.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 初始化即时通信
+     */
+    private void initInteraction() {
+        CommomUtil.toastApplicationMessage(getActivity(), "暂未开发");
+        /*AVObject testObject = new AVObject("TestObject");
+        testObject.put("words", "Hello World!");
+        testObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.d("saved", "success!");
+                }
+            }
+        });*/
     }
 
     private void initSettingPass() {
@@ -160,20 +197,7 @@ public class PersonalTeacherFragment extends BaseFragment {
         mLeftButton.setText(Constan.TAKEPHOTO);
         mRightButton.setText(Constan.GALLERY);
 
-        mPopupWindow = CommomUtil.showPopupWindow(mView);
-
-        mParams.alpha = 0.2f;//设置背景颜色
-        mWindow.setAttributes(mParams);
-
-        mPopupWindow.showAtLocation(mLlPersonCenter, Gravity.CENTER, 0, 0);
-
-        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                mParams.alpha = 1f;
-                mWindow.setAttributes(mParams);
-            }
-        });
+        myPopupWindow(mView);
         /**
          * 拍照
          */
@@ -193,6 +217,23 @@ public class PersonalTeacherFragment extends BaseFragment {
             }
         });
 
+    }
+
+    private void myPopupWindow(View view) {
+        mPopupWindow = CommomUtil.showPopupWindow(view);
+
+        mParams.alpha = 0.2f;//设置背景颜色
+        mWindow.setAttributes(mParams);
+
+        mPopupWindow.showAtLocation(mLlPersonCenter, Gravity.CENTER, 0, 0);
+
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mParams.alpha = 1f;
+                mWindow.setAttributes(mParams);
+            }
+        });
     }
 
     // 从本地相册选取图片作为头像

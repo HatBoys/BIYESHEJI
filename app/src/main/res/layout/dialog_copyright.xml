@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="@string/copyright_declare"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"/>
+
+    <TextView
+        android:id="@+id/tv_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:lineSpacingExtra="12dp"
+        android:text="@string/copyright"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="1"
+        android:text="@string/icon_copyright"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"/>
+
+    <Button
+        android:id="@+id/bt_dialog_checked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/dialog_tab_selector"
+        android:text="@string/sure"
+        android:textColor="@color/in_class_text_color_selector"/>
+</LinearLayout>
