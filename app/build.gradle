@@ -34,15 +34,53 @@ android {
         multiDexEnabled true
     }
     buildTypes {
-        release {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+// 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
 
-    configurations{
+    configurations {
         all*.exclude module: 'qq-sdk'
         //排除掉因为多个a.class文件
+    }
+
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        qihoo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qihoo"]
+        }
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+        qq {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qq"]
+        }
     }
 }
 
@@ -68,8 +106,9 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.1'
     compile project(':mylibrary')
     compile project(':PushSDK')
+    compile 'com.umeng.analytics:analytics:latest.integration'
 
-    compile ('com.android.support:support-v4:21.0.3')
+    compile('com.android.support:support-v4:21.0.3')
     //avoscloud-sdk 为 LeanCloud基础包
     compile('cn.leancloud.android:avoscloud-sdk:v3.+')
 
