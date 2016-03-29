@@ -1,13 +1,18 @@
 package com.gdin.teach.fragment;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.AlarmClock;
+import android.provider.CalendarContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +31,11 @@ import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.BroadcastActivity;
 import com.gdin.teach.activity.MainActivityTeacher;
+import com.gdin.teach.activity.ResetPassActivity;
 import com.gdin.teach.util.CommomUtil;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengRegistrar;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -100,8 +109,10 @@ public class PersonalTeacherFragment extends BaseFragment {
                 settingBroadcast();
                 break;
             case R.id.ll_remind:
+                initRemind();
                 break;
             case R.id.ll_setting:
+                initSettingPass();
                 break;
             case R.id.ll_interaction:
                 break;
@@ -111,6 +122,21 @@ public class PersonalTeacherFragment extends BaseFragment {
                 settingUserIcon();
                 break;
         }
+    }
+
+    private void initSettingPass() {
+        ResetPassActivity.start2ResetPassActivity(getActivity());
+    }
+
+    private void initRemind() {
+        //开启推送并设置注册的回调处理
+        PushAgent mPushAgent = PushAgent.getInstance(getActivity().getApplicationContext());
+        mPushAgent.enable();
+
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(CalendarContract.Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.Events.TITLE, Constan.REMINDCLASS);
+        startActivity(intent);
     }
 
     private void settingBroadcast() {

@@ -10,10 +10,10 @@ public class Constan {
     public static final String MYSHAREPREFERENCE = "MySharepreference";
     public static final String FINISHSPLASH = "FinishSplash";
     public static final String FINISHLOGIN = "FinishLogin";
-    public static final String SAVEDICON= "savedIcon";
-    public static final String SAVEDBROADCASTTITLE= "savedBroadcastFileTitle";
-    public static final String SAVEDBROADCASTCONTENT= "savedBroadcastFileContent";
-    public static final String HADSAVEDFILES= "hadSavedFiles";
+    public static final String SAVEDICON = "savedIcon";
+    public static final String SAVEDBROADCASTTITLE = "savedBroadcastFileTitle";
+    public static final String SAVEDBROADCASTCONTENT = "savedBroadcastFileContent";
+    public static final String HADSAVEDFILES = "hadSavedFiles";
 
     //color
     public static final String COLORPRIMARYDARK = "#1db9a2";
@@ -26,6 +26,7 @@ public class Constan {
     public static final String MAINTEACHERFRAGMENT = "MainTeacherFragment";
     public static final String BROADCASTFRAGMENT = "BroadcastFragment";
     public static final String BROADCASTDETAILFRAGMENT = "BroadcastDetailFragment";
+    public static final String RESETPASSFRAGMENT = "ResetPassFragment";
 
     //user
     public static final String USER = "user";
@@ -36,6 +37,7 @@ public class Constan {
     //页面标题
     public static final String CLASSLISTTITLE = "课程信息";
     public static final String CLASSDETAILTITLE = "课程详情";
+    public static final String SETTINGPASS = "修改密码";
 
 
     //class info
@@ -83,7 +85,15 @@ public class Constan {
     public static final String BROADCASTCANCLESHARE = "退出分享";
     public static final String BROADCASTSHARE = "开始分享";
     public static final String BROADCASTCANCLESAVED = "退出编辑";
-    public static final String BROADCASTSAVED= "保存公告";
+    public static final String BROADCASTSAVED = "保存公告";
+    public static final String REMINDCLASS = "开课提醒";
+    public static final String SETTINGPASTPASS = "请填写原始密码";
+    public static final String SETTINGNEWPASS = "请填写重置密码";
+    public static final String SETTINGRESUMPASS = "请填写核对密码";
+    public static final String NEWANDRESUMDIF = "设置新密码不一致";
+    public static final String PASTPASSERROR = "原始密码不正确";
+    public static final String NEWANDPASTLIKELY = "新密码应不同于原始密码";
+    public static final String RESETPASSSUCCESS = "新密码设置成功";
 
 
     //Dialog提示信息
@@ -99,5 +109,10 @@ public class Constan {
     public static final String GALLERY = "相册";
     public static final String SAVEDORNOT = "是否保存";
     public static final String DELECTORNOT = "是否删除";
+
+    //用户信息
+    public static final String USERNAME = "20120445";
+
+    public static final String USERPASS = "123456";
 
 }

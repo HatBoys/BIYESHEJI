@@ -24,7 +24,7 @@ public class LoginActivity extends BaseActivity {
         String mUser = mIntent.getStringExtra(Constan.USER);
         mTlBase.setVisibility(View.GONE);
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser, mSelectUserActivity), Constan.LOGINFRAGMENT);
+        mFragmentTransaction.add(R.id.fl_base, new LoginFragment(mUser), Constan.LOGINFRAGMENT);
         mFragmentTransaction.commit();
     }
 

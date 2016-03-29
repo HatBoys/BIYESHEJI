@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.gdin.teach.R;
+import com.umeng.message.PushAgent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +39,10 @@ public class BaseActivity extends AppCompatActivity {
         if (mTlBase != null) {
             setSupportActionBar(mTlBase);
         }
+        PushAgent mPushAgent = PushAgent.getInstance(getApplicationContext());
+        mPushAgent.enable();
+
+        PushAgent.getInstance(getApplicationContext()).onAppStart();
 
     }
 

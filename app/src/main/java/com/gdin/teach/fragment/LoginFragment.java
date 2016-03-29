@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gdin.teach.Constan;
+import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.activity.SelectUserActivity;
@@ -32,14 +34,15 @@ public class LoginFragment extends BaseFragment {
     @Bind(R.id.et_user_password)
     EditText mEtUserPassword;
     @Bind(R.id.bt_login)
-    TextView mBtLogin;
+    Button mBtLogin;
     private String mUser;
     private SelectUserActivity mSelectUserActivity;
+    private String mInserUserPass;
 
     @SuppressLint("ValidFragment")
-    public LoginFragment(String user, SelectUserActivity selectUserActivity) {
+    public LoginFragment(String user) {
         mUser = user;
-        mSelectUserActivity = selectUserActivity;
+//        mSelectUserActivity = selectUserActivity;
     }
 
     public LoginFragment() {
@@ -65,7 +68,17 @@ public class LoginFragment extends BaseFragment {
 
     @OnClick(R.id.bt_login)
     public void login() {
-        if ("".equals(mEtUserName.getText().toString()) || "".equals(mEtUserPassword.getText().toString())) {
+
+        String userName = mEtUserName.getText().toString().trim();
+        String userPass = mEtUserPassword.getText().toString().trim();
+
+        if (MyApplication.mSharedPreferences.contains(Constan.USERPASS)) {
+            mInserUserPass = MyApplication.mSharedPreferences.getString(Constan.USERPASS, "");
+        } else {
+            mInserUserPass = Constan.USERPASS;
+        }
+
+        if ("".equals(userName) || "".equals(userPass) || !Constan.USERNAME.equals(userName) || !mInserUserPass.equals(userPass)) {
             CommomUtil.toastMessage(getActivity().getApplicationContext(), getString(R.string.login_error_toast));
             return;
         }
@@ -74,10 +87,13 @@ public class LoginFragment extends BaseFragment {
         } else {
             //Teacher Fragment
             MainActivityTeacher.start2MainActivityTeacher(getContext());
-            if (mSelectUserActivity instanceof SelectUserActivity) {
-                mSelectUserActivity.finish();
-            }
+            /*if (getActivity() instanceof SelectUserActivity) {
+                getActivity().finish();
+            }*/
+            MyApplication.mSharedPreferences.edit().putString(Constan.USERPASS, userPass).commit();
         }
+
+        getActivity().finish();
     }
 
     @Override

@@ -47,4 +47,7 @@
     <string name="broadcast_item_content">内容:</string>
     <string name="add_broadcast">添加公告</string>
     <string name="cancle_broadcast">退出编辑</string>
+    <string name="past_pass">原始密码：</string>
+    <string name="new_pass">重置密码：</string>
+    <string name="resum_pass">核对密码：</string>
 </resources>

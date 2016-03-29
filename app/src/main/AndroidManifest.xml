@@ -28,11 +28,13 @@
         </activity>
         <activity android:name="com.gdin.teach.activity.BroadcastActivity">
         </activity>
+        <activity android:name="com.gdin.teach.activity.ResetPassActivity">
+        </activity>
 
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="4eaee02c527015373b000003">
-        </meta-data>
+        <!--   <meta-data
+               android:name="UMENG_APPKEY"
+               android:value="4eaee02c527015373b000003">
+           </meta-data>-->
 
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
@@ -86,6 +88,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
