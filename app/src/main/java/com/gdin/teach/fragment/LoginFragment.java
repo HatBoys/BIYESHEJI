@@ -84,6 +84,7 @@ public class LoginFragment extends BaseFragment {
         }
         if (Constan.STUDENT.equals(mUser)) {
             // TODO: 16/3/11 Student Fragment
+            CommomUtil.toastApplicationMessage(getContext(),"暂未开发，请用教师端登录");
         } else {
             //Teacher Fragment
             MainActivityTeacher.start2MainActivityTeacher(getContext());

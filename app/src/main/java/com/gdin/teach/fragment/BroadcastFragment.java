@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
+import com.gdin.teach.activity.BroadcastActivity;
 import com.gdin.teach.adapter.BroadcastAdapter;
 import com.gdin.teach.bean.BroadCastBean;
 import com.gdin.teach.util.CommomUtil;
@@ -195,7 +196,7 @@ public class BroadcastFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mBroadCastBeanList.remove(position);
-                if (mBroadCastBeanList.size()==0){
+                if (mBroadCastBeanList.size() == 0) {
                     MyApplication.mSharedPreferences.edit().remove(Constan.HADSAVEDFILES).commit();
                     showEditBroadcast();
                 }
@@ -258,7 +259,7 @@ public class BroadcastFragment extends BaseFragment {
         TextView mTextView = (TextView) mView.findViewById(R.id.tv_dialog_content);
         Button mLeftButton = (Button) mView.findViewById(R.id.bt_dialog_left);
         Button mRightButton = (Button) mView.findViewById(R.id.bt_dialog_right);
-        mTextView.setText(Constan.DELECTORNOT);
+        mTextView.setText(Constan.SAVEDORNOT);
         mLeftButton.setText(Constan.CANCLE);
         mRightButton.setText(Constan.SURE);
 
@@ -357,9 +358,12 @@ public class BroadcastFragment extends BaseFragment {
     }
 
     private UMShareListener mUMShareListener = new UMShareListener() {
+
         @Override
         public void onResult(SHARE_MEDIA share_media) {
             Toast.makeText(getActivity(), " 分享成功", Toast.LENGTH_SHORT).show();
+            BroadcastActivity mBroadcastActivity = (BroadcastActivity) getActivity();
+            mBroadcastActivity.setFocuseToolBar();
         }
 
         @Override

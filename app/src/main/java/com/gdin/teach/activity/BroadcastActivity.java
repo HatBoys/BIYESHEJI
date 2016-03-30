@@ -38,6 +38,11 @@ public class BroadcastActivity extends BaseActivity {
 
     }
 
+    public void setFocuseToolBar() {
+        mTlBase.setNavigationIcon(R.mipmap.back);
+    }
+
+
     /**
      * 跳转到BroadcastActivity
      *
