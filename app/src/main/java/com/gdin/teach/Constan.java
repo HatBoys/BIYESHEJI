@@ -118,7 +118,8 @@ public class Constan {
     public static final String USERPASS = "123456";
 
     //分享跳转url
-    public static final String SHAREURL = "http://www.gdin.edu.cn";
+//    public static final String SHAREURL = "http://www.gdin.edu.cn";广东技术师范学院
+    public static final String SHAREURL = "http://a.app.qq.com/o/simple.jsp?pkgname=com.gdin.teach";
 
 
 }
