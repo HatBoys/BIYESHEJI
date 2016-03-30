@@ -16,7 +16,10 @@ public class Constan {
     public static final String HADSAVEDFILES = "hadSavedFiles";
 
     //color
-    public static final String COLORPRIMARYDARK = "#1db9a2";
+    public static final String COLORPRIMARYDARK = "#C3E3DE";
+    public static final String COLORFIRST = "#586bbe";
+    public static final String COLORSECOND = "#00bdd3";
+    public static final String COLORTHIRD = "#37af57";
 
     //Fragment tag
     public static final String SELECTUSERFRAGMENT = "SelectUserFragment";
@@ -112,7 +115,10 @@ public class Constan {
 
     //用户信息
     public static final String USERNAME = "20120445";
-
     public static final String USERPASS = "123456";
+
+    //分享跳转url
+    public static final String SHAREURL = "http://www.gdin.edu.cn";
+
 
 }

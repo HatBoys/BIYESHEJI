@@ -190,7 +190,7 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
                     .setPlatform(mSHARE_media)
                     .setCallback(mUMShareListener)
                     .withText(Constan.SHARECONTENT)
-//                    .withTargetUrl("http://user.qzone.qq.com/1140390843/main")
+                    .withTargetUrl(Constan.SHAREURL)
                     .withMedia(mImage)
                     .withTitle(Constan.SHARETITLE)
                     .share();

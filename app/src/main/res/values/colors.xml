@@ -12,4 +12,7 @@
     <color name="little_gray_alpha">#003C3C3C</color>
     <color name="alpha">#00000000</color>
     <color name="item_bg">#F9FAFB</color>
+    <color name="color_first">#586BBE</color>
+    <color name="color_second">#00BDD3</color>
+    <color name="color_third">#37AF57</color>
 </resources>

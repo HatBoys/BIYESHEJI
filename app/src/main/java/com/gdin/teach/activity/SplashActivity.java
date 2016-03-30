@@ -7,8 +7,10 @@ import android.os.Bundle;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
+import com.gdin.teach.R;
 import com.gdin.teach.fragment.SplashFragmentFirst;
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
 
 
 /**
@@ -27,11 +29,17 @@ public class SplashActivity extends AppIntro {
         if (MyApplication.mSharedPreferences.getBoolean(Constan.FINISHSPLASH, false)) {
             SelectUserActivity.start2SelectUserActivity(this);
         }
-
-        addSlide(new SplashFragmentFirst());
-        addSlide(new SplashFragmentFirst());
-        addSlide(new SplashFragmentFirst());
-        setSeparatorColor(Color.parseColor(Constan.COLORPRIMARYDARK));
+        setVibrate(true);
+        setVibrateIntensity(30);
+        addSlide(AppIntroFragment.newInstance(getString(R.string.mention), getString(R.string.mention_detail), R.mipmap.splash_a, getResources()
+                .getColor(R.color.color_first)));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.score), getString(R.string.score_detail), R.mipmap.splash_b, getResources()
+                .getColor(R.color.color_second)));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.broadcast), getString(R.string.broadcast_detail), R.mipmap.splash_c, getResources()
+                .getColor(R.color.color_third)));
+        setImageNextButton(getResources().getDrawable(R.mipmap.next));
+        setSeparatorColor(getResources().getColor(R.color.alpha));
+        setDoneText("开始探索");
         showSkipButton(false);
         setProgressButtonEnabled(true);
     }

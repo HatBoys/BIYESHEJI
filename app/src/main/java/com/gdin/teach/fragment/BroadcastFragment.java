@@ -405,6 +405,7 @@ public class BroadcastFragment extends BaseFragment {
                     .setCallback(mUMShareListener)
                     .withText(mEtBroadcastContent.getText().toString().trim())
                     .withMedia(mImage)
+                    .withTargetUrl(Constan.SHAREURL)
                     .withTitle(mEtBroadcastTitle.getText().toString().trim())
                     .share();
         }

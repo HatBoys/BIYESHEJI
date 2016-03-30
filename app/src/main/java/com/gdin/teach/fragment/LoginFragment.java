@@ -40,9 +40,9 @@ public class LoginFragment extends BaseFragment {
     private String mInserUserPass;
 
     @SuppressLint("ValidFragment")
-    public LoginFragment(String user) {
+    public LoginFragment(SelectUserActivity selectUserActivity, String user) {
         mUser = user;
-//        mSelectUserActivity = selectUserActivity;
+        mSelectUserActivity = selectUserActivity;
     }
 
     public LoginFragment() {
@@ -84,9 +84,10 @@ public class LoginFragment extends BaseFragment {
         }
         if (Constan.STUDENT.equals(mUser)) {
             // TODO: 16/3/11 Student Fragment
-            CommomUtil.toastApplicationMessage(getContext(),"暂未开发，请用教师端登录");
+            CommomUtil.toastApplicationMessage(getContext(), "暂未开发，请用教师端登录");
         } else {
             //Teacher Fragment
+            mSelectUserActivity.finish();
             MainActivityTeacher.start2MainActivityTeacher(getContext());
             /*if (getActivity() instanceof SelectUserActivity) {
                 getActivity().finish();

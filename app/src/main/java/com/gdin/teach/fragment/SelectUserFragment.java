@@ -47,13 +47,11 @@ public class SelectUserFragment extends BaseFragment {
 
     @OnClick(R.id.tv_user_student)
     public void skipToStudent() {
-        CommomUtil.toastMessage(getContext(), "student");
-        LoginActivity.start2LoginActivity(getContext(), Constan.STUDENT);
+        LoginActivity.start2LoginActivity(getActivity(), Constan.STUDENT);
     }
 
     @OnClick(R.id.tv_user_teacher)
     public void skipToTeacger() {
-        CommomUtil.toastMessage(getContext(), "teacher");
-        LoginActivity.start2LoginActivity(getContext(), Constan.TEACHER);
+        LoginActivity.start2LoginActivity(getActivity(), Constan.TEACHER);
     }
 }

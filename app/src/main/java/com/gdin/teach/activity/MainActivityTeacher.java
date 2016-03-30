@@ -30,11 +30,13 @@ public class MainActivityTeacher extends BaseActivity {
     }
 
     /**
-     * 跳转到SelectUserActivity
+     * 跳转到MainActivityTeacher
+     *
      * @param context
      */
     public static void start2MainActivityTeacher(Context context) {
         Intent mIntent = new Intent(context, MainActivityTeacher.class);
+        mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(mIntent);
 //        if (context instanceof LoginActivity) {
 //            LoginActivity mLoginActivity = (LoginActivity) context;
