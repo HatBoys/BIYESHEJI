@@ -362,8 +362,8 @@ public class BroadcastFragment extends BaseFragment {
         @Override
         public void onResult(SHARE_MEDIA share_media) {
             Toast.makeText(getActivity(), " 分享成功", Toast.LENGTH_SHORT).show();
-            BroadcastActivity mBroadcastActivity = (BroadcastActivity) getActivity();
-            mBroadcastActivity.setFocuseToolBar();
+//            BroadcastActivity mBroadcastActivity = (BroadcastActivity) getActivity();
+//            mBroadcastActivity.setFocuseToolBar();
         }
 
         @Override

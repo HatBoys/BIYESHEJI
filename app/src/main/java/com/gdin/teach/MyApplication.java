@@ -27,7 +27,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        PlatformConfig.setWeixin("wx932a7b654e1c2b7e", "9a892f298e5f2995afbfab21a9d42e9e");
+        PlatformConfig.setWeixin("wx932a7b654e1c2b7e", "5ac5baf7da0203dffc47eafbc72e5ac0");
         PlatformConfig.setQQZone("1105277230", "y7dndjXnjB8Xb76j");
 
         // 初始化参数依次为 this, AppId, AppKey
