@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gdin.teach.Constan;
+import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.LoginActivity;
 import com.gdin.teach.util.CommomUtil;
@@ -48,10 +49,12 @@ public class SelectUserFragment extends BaseFragment {
     @OnClick(R.id.tv_user_student)
     public void skipToStudent() {
         LoginActivity.start2LoginActivity(getActivity(), Constan.STUDENT);
+        MyApplication.mSharedPreferences.edit().putString("user","student").commit();
     }
 
     @OnClick(R.id.tv_user_teacher)
     public void skipToTeacger() {
         LoginActivity.start2LoginActivity(getActivity(), Constan.TEACHER);
+        MyApplication.mSharedPreferences.edit().putString("user","teacher").commit();
     }
 }

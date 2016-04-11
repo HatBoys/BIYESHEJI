@@ -14,6 +14,7 @@ import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.MainActivityTeacher;
+import com.gdin.teach.activity.MainStudentActivity;
 import com.gdin.teach.activity.SelectUserActivity;
 import com.gdin.teach.util.CommomUtil;
 
@@ -84,16 +85,17 @@ public class LoginFragment extends BaseFragment {
         }
         if (Constan.STUDENT.equals(mUser)) {
             // TODO: 16/3/11 Student Fragment
-            CommomUtil.toastApplicationMessage(getContext(), "暂未开发，请用教师端登录");
+//            CommomUtil.toastApplicationMessage(getContext(), "暂未开发，请用教师端登录");
+            MainStudentActivity.start2MainStudentActivity(getContext());
         } else {
             //Teacher Fragment
-            mSelectUserActivity.finish();
             MainActivityTeacher.start2MainActivityTeacher(getContext());
             /*if (getActivity() instanceof SelectUserActivity) {
                 getActivity().finish();
             }*/
-            MyApplication.mSharedPreferences.edit().putString(Constan.USERPASS, userPass).commit();
         }
+        MyApplication.mSharedPreferences.edit().putString(Constan.USERPASS, userPass).commit();
+        mSelectUserActivity.finish();
 
         getActivity().finish();
     }

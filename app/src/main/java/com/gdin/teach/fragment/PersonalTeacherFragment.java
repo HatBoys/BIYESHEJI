@@ -1,18 +1,14 @@
 package com.gdin.teach.fragment;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,19 +22,15 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.SaveCallback;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.BroadcastActivity;
 import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.activity.ResetPassActivity;
+import com.gdin.teach.activity.SelectUserActivity;
 import com.gdin.teach.util.CommomUtil;
-import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
-import com.umeng.message.UmengRegistrar;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -340,4 +332,14 @@ public class PersonalTeacherFragment extends BaseFragment {
         }
     }
 
+    @OnClick(R.id.ll_user_exit)
+    public void onClick() {
+        MyApplication.mSharedPreferences.edit().remove("user").commit();
+        MyApplication.mSharedPreferences.edit().remove(Constan.FINISHLOGIN).commit();
+        MyApplication.mSharedPreferences.edit().remove(Constan.SAVEDBROADCASTTITLE).commit();
+        MyApplication.mSharedPreferences.edit().remove(Constan.SAVEDBROADCASTCONTENT).commit();
+        MyApplication.mSharedPreferences.edit().remove(Constan.HADSAVEDFILES).commit();
+        SelectUserActivity.start2SelectUserActivity(getActivity());
+        getActivity().finish();
+    }
 }

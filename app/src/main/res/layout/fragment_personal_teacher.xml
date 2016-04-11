@@ -165,6 +165,29 @@
                     android:textColor="@color/colorPrimaryDark"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_user_exit"
+                style="@style/PersonnalCenterItem"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/exit"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:drawablePadding="190dp"
+                    android:drawableRight="@mipmap/right"
+                    android:gravity="center_vertical"
+                    android:text="@string/user_exit"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_copyright"

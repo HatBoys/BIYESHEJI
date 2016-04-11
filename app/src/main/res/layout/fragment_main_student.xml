@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.gdin.teach.view.NoScrollViewPager
+        android:id="@+id/vp_main_student"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </com.gdin.teach.view.NoScrollViewPager>
+
+    <RadioGroup
+        android:id="@+id/rg_main_student_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_student_before_class"
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/before_class"
+            android:text="@string/before_class"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_student_in_class"
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/in_class"
+            android:text="@string/in_class"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_student_personal"
+            style="@style/MainBottomTab"
+            android:drawableTop="@drawable/personal_center"
+            android:text="@string/personnal_center"
+            />
+
+
+    </RadioGroup>
+
+</LinearLayout>

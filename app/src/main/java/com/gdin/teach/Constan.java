@@ -30,6 +30,7 @@ public class Constan {
     public static final String BROADCASTFRAGMENT = "BroadcastFragment";
     public static final String BROADCASTDETAILFRAGMENT = "BroadcastDetailFragment";
     public static final String RESETPASSFRAGMENT = "ResetPassFragment";
+    public static final String MAINSTUDENTFRAGMENT = "MainStudentFragment";
 
     //user
     public static final String USER = "user";

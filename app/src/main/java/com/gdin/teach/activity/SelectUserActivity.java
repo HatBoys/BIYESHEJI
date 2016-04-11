@@ -20,8 +20,12 @@ public class SelectUserActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFinishLogin = MyApplication.mSharedPreferences.getBoolean(Constan.FINISHLOGIN, false);
-        if (mFinishLogin) {
+        String user = MyApplication.mSharedPreferences.getString("user", "");
+        if (mFinishLogin && "teacher".equals(user)) {
             MainActivityTeacher.start2MainActivityTeacher(this);
+            finish();
+        } else if (mFinishLogin && "student".equals(user)) {
+            MainStudentActivity.start2MainStudentActivity(this);
             finish();
         }
         mTlBase.setVisibility(View.GONE);
@@ -44,7 +48,7 @@ public class SelectUserActivity extends BaseActivity {
     public static void start2SelectUserActivity(Context context) {
         Intent mIntent = new Intent(context, SelectUserActivity.class);
         context.startActivity(mIntent);
-        SplashActivity mSplashActivity = (SplashActivity) context;
-        mSplashActivity.finish();
+//        SplashActivity mSplashActivity = (SplashActivity) context;
+//        mSplashActivity.finish();
     }
 }
