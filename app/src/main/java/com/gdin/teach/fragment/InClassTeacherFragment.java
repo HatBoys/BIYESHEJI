@@ -49,8 +49,10 @@ public class InClassTeacherFragment extends BaseFragment implements View.OnClick
         super.onCreate(savedInstanceState);
         mFragmentArrayList = new ArrayList<BaseFragment>();
         mImageUrlArrayList = new ArrayList<String>();
-        for (int i = 1; i < 19; i++) {
-            mImageUrlArrayList.add(Constan.MENTIONIMAGEHEAD + i + Constan.MENTIONIMAGEEND);//虚拟学生头像
+        String[] studentImageArr = getResources().getStringArray(R.array.teacherImageUrl);
+        for (int i = 0; i < studentImageArr.length; i++) {
+//            mImageUrlArrayList.add(Constan.MENTIONIMAGEHEAD + i + Constan.MENTIONIMAGEEND);//虚拟学生头像
+            mImageUrlArrayList.add(studentImageArr[i]);//虚拟学生头像
         }
     }
 

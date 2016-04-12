@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="teacherImageUrl">
+        <item>http://www.ps314.com/uploads/111123/1-111123162K3391.jpg</item>
+        <item>http://img685.ph.126.net/JVCtF1fBxRQ6mxNhGxtgSA==/2802927818086025544.jpg</item>
+        <item>http://img849.ph.126.net/nczrZp5_JOClIu_dkiBvBA==/566609128119542283.jpg</item>
+        <item>http://img533.ph.126.net/WVGq6hDrdMu55Ndfi_hZLg==/2596325185180278063.jpg</item>
+        <item>http://img1.ph.126.net/RQZ1IM5WGZ_YOEts6_tFpQ==/3182074611715812493.jpg</item>
+        <item>http://img858.ph.126.net/cJsl3zmuG47pQ3F1-TVmIg==/674695519176922100.jpg</item>
+        <item>http://img533.ph.126.net/cyAlHqakDhIzkRL_XRPjuA==/2596325185180278033.jpg</item>
+        <item>http://img535.ph.126.net/7ev4NMC28rAmNRuYsiA4iw==/94857067152652908.jpg</item>
+        <item>http://img128.ph.126.net/yZwn_7z9I39HufYggiv-aw==/1622984715715319788.jpg</item>
+        <item>http://img535.ph.126.net/g1dQ_eieJAZLHKP2ukV0og==/2614902533643147789.jpg</item>
+        <item>http://img687.ph.126.net/r-j6RZASQLGmbS6k3wuIsA==/1114077957822019384.jpg</item>
+        <item>http://img847.ph.126.net/avT91k7XBvjvy0RSoUmdkQ==/762234236934542167.jpg</item>
+        <item>http://img612.ph.126.net/RpsuU2rJwBRgadpgm4EmWA==/1701234759241020853.jpg</item>
+        <item>http://www.people.com.cn/mediafile/pic/20121026/80/8409760752656770144.jpg</item>
+    </string-array>
+</resources>
