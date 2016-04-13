@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_student_test"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:textSize="@dimen/text_size_little_big"
+        android:textColor="@android:color/holo_red_light"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bt_before_que"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="@null"
+            android:padding="5dp"
+            android:text="@string/before_que"
+            android:textColor="@color/test_text_color_selector"/>
+
+
+        <Button
+            android:id="@+id/bt_check_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:padding="5dp"
+            android:text="@string/submit"
+            android:textColor="@color/test_text_color_selector"/>
+
+        <Button
+            android:id="@+id/bt_next_que"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:background="@null"
+            android:padding="5dp"
+            android:text="@string/next_que"
+            android:textColor="@color/test_text_color_selector"/>
+
+    </RelativeLayout>
 </LinearLayout>

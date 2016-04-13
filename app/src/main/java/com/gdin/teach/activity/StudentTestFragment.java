@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gdin.teach.R;
 import com.gdin.teach.adapter.StudentTestAdapter;
@@ -18,17 +19,22 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 黄培彦 on 16/4/13.
  * Email: peiyanhuang@yeah.net
  * 类说明:
  */
-public class StudentTestFragment extends BaseFragment {
+public class StudentTestFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
     @Bind(R.id.vp_student_test)
     ViewPager mVpStudentTest;
-    private  StudentClassInfoBean mClassInfoBean;
+    @Bind(R.id.tv_answer)
+    TextView mTvAnswer;
+    private StudentClassInfoBean mClassInfoBean;
     private ArrayList<StudentTestDataBean> mBeanArrayList;
+    private StudentTestAdapter mAdapter;
+    private boolean toggleCheckeVisiable = true;
 
     public StudentTestFragment() {
     }
@@ -57,15 +63,20 @@ public class StudentTestFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
         mVpStudentTest.setOffscreenPageLimit(6);
-        mVpStudentTest.setAdapter(new StudentTestAdapter(mActivity,mBeanArrayList));
+        mVpStudentTest.setFilterTouchesWhenObscured(true);
+        mAdapter = new StudentTestAdapter(mActivity, mBeanArrayList);
+        mVpStudentTest.setAdapter(mAdapter);
+        mTvAnswer.setText("答案:" + mBeanArrayList.get(0).getAnswer());
+        mVpStudentTest.setOnPageChangeListener(this);
     }
+
 
     private void initData() {
 
         mBeanArrayList = new ArrayList<StudentTestDataBean>();
 
         String[] title = getResources().getStringArray(R.array.studentTestTitle);
-        String[] questionA= getResources().getStringArray(R.array.studentTestA);
+        String[] questionA = getResources().getStringArray(R.array.studentTestA);
         String[] questionB = getResources().getStringArray(R.array.studentTestB);
         String[] questionC = getResources().getStringArray(R.array.studentTestC);
         String[] questionD = getResources().getStringArray(R.array.studentTestD);
@@ -90,5 +101,43 @@ public class StudentTestFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick({R.id.bt_before_que, R.id.bt_next_que})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.bt_before_que:
+                mVpStudentTest.setCurrentItem(mVpStudentTest.getCurrentItem() - 1, false);
+                break;
+            case R.id.bt_next_que:
+                mVpStudentTest.setCurrentItem(mVpStudentTest.getCurrentItem() + 1, false);
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        mTvAnswer.setText("答案:" + mBeanArrayList.get(position).getAnswer());
+    }
+
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @OnClick(R.id.bt_check_answer)
+    public void onClick() {
+        if (toggleCheckeVisiable) {
+            mTvAnswer.setVisibility(View.VISIBLE);
+        } else {
+            mTvAnswer.setVisibility(View.GONE);
+        }
+        toggleCheckeVisiable = !toggleCheckeVisiable;
     }
 }

@@ -60,4 +60,7 @@
     <string name="take_note">笔记</string>
     <string name="person_test">测试</string>
     <string name="student_test">测试</string>
+    <string name="before_que">上一题</string>
+    <string name="next_que">下一题</string>
+    <string name="submit">核对</string>
 </resources>
