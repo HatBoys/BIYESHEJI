@@ -10,14 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.ClassInfoDetailActivity;
-import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.adapter.ClassInfoAdapter;
 import com.gdin.teach.bean.StudentClassInfoBean;
-import com.gdin.teach.util.CommomUtil;
-import com.gdin.teach.view.UpLoadSwipeRefreshLayout;
 
 import java.util.ArrayList;
 

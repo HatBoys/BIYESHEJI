@@ -17,6 +17,8 @@
         <item>http://www.people.com.cn/mediafile/pic/20121026/80/8409760752656770144.jpg</item>
     </string-array>
 
+
+    <!--data of class start-->
     <string-array name="classInfoImageUrl">
         <item>http://ec4.images-amazon.com/images/I/41dqIY4SLKL._SX363_BO1,204,203,200_.jpg</item>
         <item>http://ec4.images-amazon.com/images/I/514Od2NNG5L._SX365_BO1,204,203,200_.jpg</item>
@@ -79,5 +81,56 @@
         <item>50</item>
         <item>45</item>
     </string-array>
+
+    <!--data of class end-->
+
+    <!--data of test start-->
+    <string-array name="studentTestTitle">
+        <item>以下PLD中，与或阵列均可编程的是下列哪一个器件</item>
+        <item>硅开关二极管导通时的正向压降为:</item>
+        <item>门电路输入端对地所接电阻R≤ROFF时，相当于此端</item>
+        <item>两个开关控制一盏灯,只有两个开关都闭合时灯才不亮,则该电路的逻辑关系是</item>
+        <item>有一个4位的D/A转换器，设它的满刻度输出电压为10V，当输入数字量为1101时，输出电压为</item>
+    </string-array>
+
+    <string-array name="studentTestA">
+        <item>A．PROM</item>
+        <item>A．0.5V</item>
+        <item>A．接逻辑"1"</item>
+        <item>A．与非</item>
+        <item>A．8.125V</item>
+    </string-array>
+    <string-array name="studentTestB">
+        <item>B．PAL</item>
+        <item>B．0.7V</item>
+        <item>B．接逻辑"0"</item>
+        <item>B．或非</item>
+        <item>B．4V</item>
+    </string-array>
+    <string-array name="studentTestC">
+        <item>C．PLA</item>
+        <item>C．0.1V</item>
+        <item>C．接2.4V电压</item>
+        <item>C．同或</item>
+        <item>C．6.25V</item>
+    </string-array>
+    <string-array name="studentTestD">
+        <item>D．GAL</item>
+        <item>D．0.3V</item>
+        <item>D．逻辑不定</item>
+        <item>D．异或</item>
+        <item>D．9.375V</item>
+    </string-array>
+
+    <string-array name="studentTestCorrect">
+        <item>C</item>
+        <item>B</item>
+        <item>B</item>
+        <item>A</item>
+        <item>A</item>
+    </string-array>
+
+
+    <!--data of test end-->
 
 </resources>

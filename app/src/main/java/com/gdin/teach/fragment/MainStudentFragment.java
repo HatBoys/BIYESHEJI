@@ -73,7 +73,7 @@ public class MainStudentFragment extends BaseFragment {
         mFragmentArrayList = new ArrayList<BaseFragment>();
         mFragmentArrayList.add(new BeforeClassTeacherFragment());
         mFragmentArrayList.add(new BeforeClassTeacherFragment());
-        mFragmentArrayList.add(new BeforeClassTeacherFragment());
+        mFragmentArrayList.add(new StudentClassListFragment());
     }
 
     @Override

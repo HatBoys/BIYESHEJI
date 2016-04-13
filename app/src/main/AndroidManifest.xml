@@ -56,6 +56,8 @@
         </activity>
         <activity android:name="com.gdin.teach.activity.MainStudentActivity">
         </activity>
+        <activity android:name="com.gdin.teach.activity.StudentTestActivity">
+        </activity>
 
         <!--   <meta-data
                android:name="UMENG_APPKEY"
