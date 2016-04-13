@@ -7,4 +7,6 @@
     <dimen name="text_size_little_big">18sp</dimen>
     <dimen name="text_size_small">11sp</dimen>
     <dimen name="text_size_little_small">13sp</dimen>
+    <dimen name="shadow_width">30dp</dimen>
+    <dimen name="slidingmenu_offset">120dp</dimen>
 </resources>

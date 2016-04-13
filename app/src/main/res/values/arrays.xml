@@ -16,4 +16,50 @@
         <item>http://img612.ph.126.net/RpsuU2rJwBRgadpgm4EmWA==/1701234759241020853.jpg</item>
         <item>http://www.people.com.cn/mediafile/pic/20121026/80/8409760752656770144.jpg</item>
     </string-array>
+
+    <string-array name="classInfoImageUrl">
+        <item>http://ec4.images-amazon.com/images/I/41dqIY4SLKL._SX363_BO1,204,203,200_.jpg</item>
+        <item>http://ec4.images-amazon.com/images/I/514Od2NNG5L._SX365_BO1,204,203,200_.jpg</item>
+        <item>http://ec4.images-amazon.com/images/I/415hiNw3i-L._SX352_BO1,204,203,200_.jpg</item>
+        <item>http://ec4.images-amazon.com/images/I/51j1E3VHQ%2BL._SX343_BO1,204,203,200_.jpg</item>
+        <item>http://ec4.images-amazon.com/images/I/518keh3JE3L._SX345_BO1,204,203,200_.jpg</item>
+        <item>http://ec4.images-amazon.com/images/I/51lMLob62AL._SX348_BO1,204,203,200_.jpg</item>
+    </string-array>
+
+    <string-array name="classInfoClassName">
+        <item>模拟电子技术基础</item>
+        <item>信号与系统引论</item>
+        <item>数字电子技术基础</item>
+        <item>电路设计</item>
+        <item>51单片机C语言教程</item>
+        <item>Java编程思想</item>
+    </string-array>
+
+    <string-array name="classInfoClassTeacher">
+        <item>陈小玲</item>
+        <item>蔡君</item>
+        <item>冯明库</item>
+        <item>杨振野</item>
+        <item>韩克</item>
+        <item>尹颖予</item>
+    </string-array>
+
+    <string-array name="classInfoClassTime">
+        <item>04-13 周三 9:50</item>
+        <item>04-11 周一 14:50</item>
+        <item>04-15 周五 15:50</item>
+        <item>04-14 周四 16:50</item>
+        <item>04-12 周二 13:50</item>
+        <item>04-13 周三 10:50</item>
+    </string-array>
+
+    <string-array name="classInfoClassPosition">
+        <item>一教 302</item>
+        <item>二教 406</item>
+        <item>工业中心 506</item>
+        <item>实验楼 409</item>
+        <item>实验楼 207</item>
+        <item>实验楼 402</item>
+    </string-array>
+
 </resources>

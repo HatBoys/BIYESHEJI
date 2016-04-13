@@ -1,5 +1,6 @@
 package com.gdin.teach.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,7 @@ import com.gdin.teach.R;
 import com.gdin.teach.activity.ClassInfoDetailActivity;
 import com.gdin.teach.activity.MainActivityTeacher;
 import com.gdin.teach.adapter.ClassInfoAdapter;
+import com.gdin.teach.bean.StudentClassInfoBean;
 import com.gdin.teach.util.CommomUtil;
 import com.gdin.teach.view.UpLoadSwipeRefreshLayout;
 
@@ -27,19 +29,16 @@ import butterknife.ButterKnife;
  * Email: peiyanhuang@yeah.net
  * 类说明: 课前课程信息
  */
-public class BeforeClassTeacherFragment extends BaseFragment implements AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, UpLoadSwipeRefreshLayout.OnLoadListener {
-
+public class BeforeClassTeacherFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+//, SwipeRefreshLayout.OnRefreshListener, UpLoadSwipeRefreshLayout.OnLoadListener
 
     @Bind(R.id.lv_info_class)
     ListView mLvInfoClass;
-    @Bind(R.id.sf_class_info)
-    UpLoadSwipeRefreshLayout mSfClassInfo;
-    private ArrayList<String> mStringArrayList;
+    //    @Bind(R.id.sf_class_info)
+//    UpLoadSwipeRefreshLayout mSfClassInfo;
     private ClassInfoAdapter mClassInfoAdapter;
     private int mRefreshTime;
-    private MainActivityTeacher mMainActivityTeacher;
-    private ArrayList<String> mClassList;
-    private ArrayList<String> mImageUrlArrayList;
+    private ArrayList<StudentClassInfoBean> mInfoBeanArrayList;
 
     public BeforeClassTeacherFragment() {
     }
@@ -53,26 +52,30 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainActivityTeacher = (MainActivityTeacher) getActivity();
-        mMainActivityTeacher.setToolBar(true);
-        mMainActivityTeacher.setFragmentTitle(Constan.CLASSLISTTITLE);
-        mClassList = new ArrayList<String>();
-        mClassList.add(Constan.MONIDIANLU);
-        mClassList.add(Constan.XINHAOYUXITONG);
-        mClassList.add(Constan.SHUZIDIANLU);
-        mClassList.add(Constan.DIANLUSHEJI);
-        mClassList.add(Constan.DANPIANJI);
-        mClassList.add(Constan.JAVABIANCHENGSIXIANG);
+        initData();
 
-        mImageUrlArrayList = new ArrayList<String>();
+    }
 
-        mImageUrlArrayList.add(Constan.FIRSTINFO);
-        mImageUrlArrayList.add(Constan.SECONDINFO);
-        mImageUrlArrayList.add(Constan.THIRDINFO);
-        mImageUrlArrayList.add(Constan.FOUTHINFO);
-        mImageUrlArrayList.add(Constan.FIFTHINFO);
-        mImageUrlArrayList.add(Constan.SIXTHINFO);
+    private void initData() {
 
+        mInfoBeanArrayList = new ArrayList<StudentClassInfoBean>();
+
+        String[] classInfoImageUrl = getResources().getStringArray(R.array.classInfoImageUrl);
+        String[] classInfoClassName = getResources().getStringArray(R.array.classInfoClassName);
+        String[] classInfoClassPosition = getResources().getStringArray(R.array.classInfoClassPosition);
+        String[] classInfoClassTeacher = getResources().getStringArray(R.array.classInfoClassTeacher);
+        String[] classInfoClassTime = getResources().getStringArray(R.array.classInfoClassTime);
+
+        for (int i = 0; i < classInfoClassName.length; i++) {
+            StudentClassInfoBean mInfoBean = new StudentClassInfoBean();
+
+            mInfoBean.setImageUrl(classInfoImageUrl[i]);
+            mInfoBean.setClassName(classInfoClassName[i]);
+            mInfoBean.setClassPosition(classInfoClassPosition[i]);
+            mInfoBean.setClassTeacher(classInfoClassTeacher[i]);
+            mInfoBean.setClassTime(classInfoClassTime[i]);
+            mInfoBeanArrayList.add(mInfoBean);
+        }
     }
 
     @Override
@@ -87,10 +90,10 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initListViewData();
-        mSfClassInfo.setListView(mLvInfoClass);
+//        mSfClassInfo.setListView(mLvInfoClass);
         mLvInfoClass.setAdapter(mClassInfoAdapter);
-        mSfClassInfo.setOnRefreshListener(this);
-        mSfClassInfo.setOnLoadListener(this);
+//        mSfClassInfo.setOnRefreshListener(this);
+//        mSfClassInfo.setOnLoadListener(this);
         mLvInfoClass.setOnItemClickListener(this);
 
     }
@@ -99,13 +102,7 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
      * 虚拟数据
      */
     private void initListViewData() {
-        mStringArrayList = new ArrayList<String>();
-
-        for (int i = 0; i < 18; i++) {
-            int imageIndex = i % mClassList.size();
-            mStringArrayList.add(mClassList.get(imageIndex));
-        }
-        mClassInfoAdapter = new ClassInfoAdapter(getContext(), mStringArrayList, mImageUrlArrayList);
+        mClassInfoAdapter = new ClassInfoAdapter(getContext(), mInfoBeanArrayList);
     }
 
     @Override
@@ -125,39 +122,43 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
                 .commit();*/
 
         ClassInfoDetailActivity.start2ClassInfoDetailActivity(getContext(), position
-                , mClassInfoAdapter.getItem(position), mImageUrlArrayList);//跳转到ClassInfoDetailActivity
+                , mClassInfoAdapter.getItem(position));//跳转到ClassInfoDetailActivity
     }
 
-    @Override
+  /*  @Override
     public void onRefresh() {
         mSfClassInfo.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mStringArrayList.clear();
+                mInfoBeanArrayList.clear();
                 mRefreshTime++;
                 for (int i = 0; i < 18; i++) {
-                    int imageIndex = i % mClassList.size();
-                    mStringArrayList.add(mClassList.get(imageIndex) + "第" + mRefreshTime + "次版本");
+                    int imageIndex = i % mInfoBeanArrayList.size();
+//                    mInfoBeanArrayList.add(mInfoBeanArrayList.get(imageIndex).getClassName() + "第" + mRefreshTime + "次版本");
+                    StudentClassInfoBean mInfoBean = new StudentClassInfoBean();
+                    mInfoBean.setClassName(mInfoBeanArrayList.get(imageIndex).getClassName() + "第" + mRefreshTime + "次版本");
+                    mInfoBean.setImageUrl(mInfoBeanArrayList.get(imageIndex).());
+                    mInfoBeanArrayList.add();
                 }
                 mClassInfoAdapter.notifyDataSetChanged();
 //                mSfClassInfo.cancelLongPress();
                 mSfClassInfo.setRefreshing(false);//停止刷新
             }
         }, 1500);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void onLoad() {
         mSfClassInfo.postDelayed(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < 12; i++) {
-                    int imageIndex = i % mClassList.size();
-                    mStringArrayList.add(mClassList.get(imageIndex));
+                    int imageIndex = i % mInfoBeanArrayList.size();
+                    mStringArrayList.add(mInfoBeanArrayList.get(imageIndex));
                 }
                 mClassInfoAdapter.notifyDataSetChanged();
                 mSfClassInfo.setLoading(false);
             }
         }, 2000);
-    }
+    }*/
 }

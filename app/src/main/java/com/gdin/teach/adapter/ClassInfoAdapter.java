@@ -11,6 +11,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
+import com.gdin.teach.bean.StudentClassInfoBean;
 
 import java.util.ArrayList;
 
@@ -21,28 +22,26 @@ import java.util.ArrayList;
  */
 public class ClassInfoAdapter extends BaseAdapter {
 
-    private ArrayList<String> mStringArrayList;
     private Context mContext;
-    private ArrayList<String> mImageUrlList;
     private ImageLoader mLoader;
+    private ArrayList<StudentClassInfoBean> mInfoBeanArrayList;
 
     public ClassInfoAdapter() {
     }
 
-    public ClassInfoAdapter(Context context, ArrayList<String> stringArrayList, ArrayList<String> imageUrlArrayList) {
+    public ClassInfoAdapter(Context context, ArrayList<StudentClassInfoBean> infoBeanArrayList) {
         this.mContext = context;
-        this.mStringArrayList = stringArrayList;
-        this.mImageUrlList = imageUrlArrayList;
+        this.mInfoBeanArrayList = infoBeanArrayList;
     }
 
     @Override
     public int getCount() {
-        return mStringArrayList.size();
+        return mInfoBeanArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mStringArrayList.get(position);
+        return mInfoBeanArrayList.get(position);
     }
 
     @Override
@@ -56,8 +55,12 @@ public class ClassInfoAdapter extends BaseAdapter {
         if (convertView == null) {
             mViewHolder = new ViewHolder();
             convertView = View.inflate(mContext, R.layout.class_info_list_item, null);
-            mViewHolder.mTextView = (TextView) convertView.findViewById(R.id.tv_class_info_list);
+            mViewHolder.mClassName = (TextView) convertView.findViewById(R.id.tv_class_info_list);
             mViewHolder.mNetworkImageView = (NetworkImageView) convertView.findViewById(R.id.ni_class_info_list);
+            mViewHolder.mClassTeacher = (TextView) convertView.findViewById(R.id.tv_class_info_teacher);
+            mViewHolder.mClassLocation = (TextView) convertView.findViewById(R.id.tv_class_info_location);
+            mViewHolder.mClassTime = (TextView) convertView.findViewById(R.id.tv_class_info_time);
+
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (ViewHolder) convertView.getTag();//从标签中取出来
@@ -75,18 +78,24 @@ public class ClassInfoAdapter extends BaseAdapter {
             }
         });
 
-        mViewHolder.mTextView.setText(mStringArrayList.get(position));
+        mViewHolder.mClassName.setText(mInfoBeanArrayList.get(position).getClassName());
+        mViewHolder.mClassTeacher.setText(mInfoBeanArrayList.get(position).getClassTeacher());
+        mViewHolder.mClassLocation.setText(mInfoBeanArrayList.get(position).getClassPosition());
+        mViewHolder.mClassTime.setText(mInfoBeanArrayList.get(position).getClassTime());
 
         mViewHolder.mNetworkImageView.setDefaultImageResId(R.mipmap.loading_image);
         mViewHolder.mNetworkImageView.setErrorImageResId(R.mipmap.faild_load);
-        int imagePositon = position % mImageUrlList.size();
-        mViewHolder.mNetworkImageView.setImageUrl(mImageUrlList.get(imagePositon), mLoader);
+        int imagePositon = position % mInfoBeanArrayList.size();
+        mViewHolder.mNetworkImageView.setImageUrl(mInfoBeanArrayList.get(imagePositon).getImageUrl(), mLoader);
 
         return convertView;
     }
 
     public static class ViewHolder {
-        TextView mTextView;
+        TextView mClassName;
+        TextView mClassTeacher;
+        TextView mClassLocation;
+        TextView mClassTime;
         NetworkImageView mNetworkImageView;
     }
 }

@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
+import com.gdin.slidingmenulib.lib.SlidingMenu;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.MainStudentFragment;
 import com.gdin.teach.fragment.MainTeacherFragment;
+import com.gdin.teach.fragment.SampleListFragment;
 
 /**
  * Created by 黄培彦 on 16/4/11.
@@ -22,12 +24,36 @@ import com.gdin.teach.fragment.MainTeacherFragment;
 public class MainStudentActivity extends BaseActivity {
 
     public FragmentManager mFragmentManager;
+    private SlidingMenu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragmentManager = getSupportFragmentManager();
         mFragmentManager.beginTransaction().add(R.id.fl_base, new MainStudentFragment(), Constan.MAINSTUDENTFRAGMENT).commit();
+        mTlBase.setTitle("");
+        mTlBase.setNavigationIcon(R.mipmap.setting);
+        mTlBase.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 16/4/13 SlidingMenu
+                mMenu.showMenu();
+            }
+        });
+        initSlidingMenu();
+    }
+
+    private void initSlidingMenu() {
+        mMenu = new SlidingMenu(this);
+        mMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        mMenu.setShadowWidthRes(R.dimen.shadow_width);
+        mMenu.setShadowDrawable(R.drawable.shadow);
+        mMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        mMenu.setFadeDegree(0.35f);
+        mMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        // 设置滑动菜单的视图界面
+        mMenu.setMenu(R.layout.menu_frame);
+        getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame, new SampleListFragment()).commit();//给menu增添界面
     }
 
     /**
@@ -40,6 +66,16 @@ public class MainStudentActivity extends BaseActivity {
         mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(mIntent);
         MyApplication.mSharedPreferences.edit().putBoolean(Constan.FINISHLOGIN, true).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //点击返回键关闭滑动菜单
+        if (mMenu.isMenuShowing()) {
+            mMenu.showContent();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     /**

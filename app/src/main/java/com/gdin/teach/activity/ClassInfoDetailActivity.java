@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
+import com.gdin.teach.bean.StudentClassInfoBean;
 import com.gdin.teach.fragment.ClassInfoDetailFragment;
 import com.gdin.teach.util.CommomUtil;
 import com.umeng.socialize.Config;
@@ -48,6 +49,7 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
     private static ArrayList<String> mImageUrlArrayList;
     private UMShareAPI mShareAPI;
     private SHARE_MEDIA mSHARE_media;
+    private static StudentClassInfoBean mStudentClassInfoBean;
 
     // TODO: 16/3/13 两个onCreate方法，有什么不同点
     /*@Override
@@ -61,7 +63,7 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
         super.onCreate(savedInstanceState);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fl_base, new ClassInfoDetailFragment(mCurrentposition, mClassInfo, mImageUrlArrayList), Constan.CLASSINFODETAILFRAGMENT)
+                .add(R.id.fl_base, new ClassInfoDetailFragment(mCurrentposition, mClassInfo, mStudentClassInfoBean), Constan.CLASSINFODETAILFRAGMENT)
                 .commit();
 
         mTlBase.setVisibility(View.VISIBLE);
@@ -91,11 +93,10 @@ public class ClassInfoDetailActivity extends BaseActivity implements Toolbar.OnM
      * @param item
      * @param imageUrlArrayList
      */
-    public static void start2ClassInfoDetailActivity(Context context, int position, Object item, ArrayList<String> imageUrlArrayList) {
+    public static void start2ClassInfoDetailActivity(Context context, int position, Object item) {
         Intent mIntent = new Intent(context, ClassInfoDetailActivity.class);
         mCurrentposition = position;
-        mClassInfo = (String) item;
-        mImageUrlArrayList = imageUrlArrayList;
+        mStudentClassInfoBean = (StudentClassInfoBean) item;
         context.startActivity(mIntent);
 
     }

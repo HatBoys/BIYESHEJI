@@ -18,8 +18,7 @@ import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.ClassInfoDetailActivity;
-import com.gdin.teach.bean.ClassInfoDetailBean;
-import com.gdin.teach.custom.GsonRequest;
+import com.gdin.teach.bean.StudentClassInfoBean;
 import com.gdin.teach.util.PickColors;
 
 import java.util.ArrayList;
@@ -53,7 +52,6 @@ public class ClassInfoDetailFragment extends BaseFragment {
     @Bind(R.id.pie_chart)
     PieChartView mPieChart;
     private ClassInfoDetailActivity mClassInfoDetailActivity;
-    private GsonRequest<ClassInfoDetailBean> mGsonRequest;
     private ImageLoader mLoader;
     private int mCurrentPoaition;
     private String mClassInfo;
@@ -62,16 +60,16 @@ public class ClassInfoDetailFragment extends BaseFragment {
     private ArrayList<SliceValue> mSliceValueArrayList;
     private int colorData[] = {needPersonNum, bespokePersonNum};
     private PieChartData mPieChardata;
-    private ArrayList<String> mImageUrlList;
+    private StudentClassInfoBean mStudentClassInfoBean;
 
     public ClassInfoDetailFragment() {
     }
 
     @SuppressLint("ValidFragment")
-    public ClassInfoDetailFragment(int position, String classInfo, ArrayList<String> imageUrlArrayList) {
+    public ClassInfoDetailFragment(int position, String classInfo, StudentClassInfoBean studentClassInfoBean) {
         mCurrentPoaition = position;
         mClassInfo = classInfo;
-        mImageUrlList = imageUrlArrayList;
+        mStudentClassInfoBean = studentClassInfoBean;
     }
 
     @Override
@@ -111,8 +109,8 @@ public class ClassInfoDetailFragment extends BaseFragment {
         mTvClassInfo.setText(mClassInfo);
         mNiClassInfoDetail.setDefaultImageResId(R.mipmap.loading_image);
         mNiClassInfoDetail.setErrorImageResId(R.mipmap.faild_load);
-        int imagePositon = mCurrentPoaition % mImageUrlList.size();
-        mNiClassInfoDetail.setImageUrl(mImageUrlList.get(imagePositon),
+//        int imagePositon = mCurrentPoaition % mClassInfoDetailBean.size();
+        mNiClassInfoDetail.setImageUrl(mStudentClassInfoBean.getImageUrl(),
                 mLoader);
         mTvClassInfoTime.setText("2016 年 03 月 18 日 16:" + mCurrentPoaition + ":09");
         mTvClassInfoLocation.setText("实验楼" + mCurrentPoaition + "课室");

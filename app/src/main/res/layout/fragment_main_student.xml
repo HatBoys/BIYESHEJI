@@ -28,14 +28,14 @@
             android:id="@+id/rb_student_in_class"
             style="@style/MainBottomTab"
             android:drawableTop="@drawable/in_class"
-            android:text="@string/in_class"
+            android:text="@string/take_note"
             />
 
         <RadioButton
             android:id="@+id/rb_student_personal"
             style="@style/MainBottomTab"
-            android:drawableTop="@drawable/personal_center"
-            android:text="@string/personnal_center"
+            android:drawableTop="@drawable/student_test"
+            android:text="@string/person_test"
             />
 
 

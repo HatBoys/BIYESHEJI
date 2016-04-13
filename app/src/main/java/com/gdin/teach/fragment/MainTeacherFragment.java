@@ -68,8 +68,8 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
         mMainTeacherAdapter = new MainTeacherAdapter(mFragmentArrayList, mFragmentManager);
         mVpMainTeacher.setAdapter(mMainTeacherAdapter);
         mRbTeacherBeforeClass.setChecked(true);
-        mVpMainTeacher.setCurrentItem(0);
         mVpMainTeacher.setOffscreenPageLimit(3);
+        beforeClassClick();
     }
 
     private void initListener() {
@@ -96,11 +96,7 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rb_teacher_before_class:
-                mRgMainTeacherBottom.check(R.id.rb_teacher_before_class);
-                mMainActivityTeacher.reSetToolBar();
-                mMainActivityTeacher.setToolBar(true);
-                mMainActivityTeacher.setFragmentTitle(Constan.CLASSINFO);
-                mVpMainTeacher.setCurrentItem(0);
+                beforeClassClick();
                 break;
             case R.id.rb_teacher_in_class:
                 mRgMainTeacherBottom.check(R.id.rb_teacher_in_class);
@@ -117,5 +113,13 @@ public class MainTeacherFragment extends BaseFragment implements View.OnClickLis
                 break;
 
         }
+    }
+
+    private void beforeClassClick() {
+        mRgMainTeacherBottom.check(R.id.rb_teacher_before_class);
+        mMainActivityTeacher.reSetToolBar();
+        mMainActivityTeacher.setToolBar(true);
+        mMainActivityTeacher.setFragmentTitle(Constan.CLASSINFO);
+        mVpMainTeacher.setCurrentItem(0);
     }
 }

@@ -8,10 +8,10 @@
 
     <include layout="@layout/top_tab_line_layout"/>
 
-    <com.gdin.teach.view.UpLoadSwipeRefreshLayout
+   <!-- <com.gdin.teach.view.UpLoadSwipeRefreshLayout
         android:id="@+id/sf_class_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
         <ListView
             android:id="@+id/lv_info_class"
@@ -22,5 +22,5 @@
             android:scrollbars="none"
             />
 
-    </com.gdin.teach.view.UpLoadSwipeRefreshLayout>
+    <!--</com.gdin.teach.view.UpLoadSwipeRefreshLayout>-->
 </LinearLayout>

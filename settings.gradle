@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':PushSDK'
+include ':app', ':mylibrary', ':PushSDK', ':slidingmenulib'

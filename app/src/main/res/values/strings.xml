@@ -57,4 +57,6 @@
     <string name="score_detail">点击三好生头像，送上最好的优秀奖励</string>
     <string name="broadcast_detail">通知的麻烦事就不交给学委啦！公告替我搞定</string>
     <string name="user_exit">退出登录</string>
+    <string name="take_note">笔记</string>
+    <string name="person_test">测试</string>
 </resources>

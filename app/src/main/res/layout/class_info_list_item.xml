@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:background="@color/item_bg"
-              android:padding="5dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/class_info_item_selector"
+                android:padding="5dp">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/ni_class_info_list"
@@ -13,15 +13,64 @@
         android:layout_marginLeft="5dp"
         android:padding="5dp"/>
 
-    <TextView
-        android:id="@+id/tv_class_info_list"
+    <RelativeLayout
+        android:id="@+id/ll_class_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:padding="16dp"
-        android:singleLine="true"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/text_size_normal"
-        />
+        android:layout_toRightOf="@+id/ni_class_info_list">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_class_info_list"
+            style="@style/ClassInfoItem"
+            android:layout_marginLeft="6dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_little_big"
+            />
+
+        <TextView
+            android:id="@+id/tv_class_info_teacher"
+            style="@style/ClassInfoItem"
+            android:layout_alignParentEnd="true"
+            android:drawableLeft="@mipmap/teacher"
+            android:drawablePadding="4dp"
+            android:text="@string/app_name"
+            android:textColor="@color/little_blue"
+            tools:ignore="RtlCompat"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ni_class_info_list"
+        android:layout_toRightOf="@+id/ni_class_info_list">
+
+        <TextView
+            android:id="@+id/tv_class_info_location"
+            style="@style/ClassInfoItem"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/location"
+            android:drawablePadding="6dp"
+            android:text="@string/app_name"
+            android:textColor="@color/little_blue"
+            tools:ignore="RtlCompat"/>
+
+        <TextView
+            android:id="@+id/tv_class_info_time"
+            style="@style/ClassInfoItem"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/time"
+            android:drawablePadding="6dp"
+            android:text="@string/app_name"
+            android:textColor="@color/little_blue"
+            tools:ignore="RtlCompat"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
