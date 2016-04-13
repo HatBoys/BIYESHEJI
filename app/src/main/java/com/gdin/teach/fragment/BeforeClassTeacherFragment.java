@@ -65,6 +65,8 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
         String[] classInfoClassPosition = getResources().getStringArray(R.array.classInfoClassPosition);
         String[] classInfoClassTeacher = getResources().getStringArray(R.array.classInfoClassTeacher);
         String[] classInfoClassTime = getResources().getStringArray(R.array.classInfoClassTime);
+        String[] classInfoClassYuYueNum = getResources().getStringArray(R.array.classInfoClassYuYueNum);
+        String[] classInfoClassYingDaoNum = getResources().getStringArray(R.array.classInfoClassYingDaoNum);
 
         for (int i = 0; i < classInfoClassName.length; i++) {
             StudentClassInfoBean mInfoBean = new StudentClassInfoBean();
@@ -74,6 +76,8 @@ public class BeforeClassTeacherFragment extends BaseFragment implements AdapterV
             mInfoBean.setClassPosition(classInfoClassPosition[i]);
             mInfoBean.setClassTeacher(classInfoClassTeacher[i]);
             mInfoBean.setClassTime(classInfoClassTime[i]);
+            mInfoBean.setYuYueNum(Integer.parseInt(classInfoClassYuYueNum[i]));
+            mInfoBean.setYinDaoNum(Integer.parseInt(classInfoClassYingDaoNum[i]));
             mInfoBeanArrayList.add(mInfoBean);
         }
     }

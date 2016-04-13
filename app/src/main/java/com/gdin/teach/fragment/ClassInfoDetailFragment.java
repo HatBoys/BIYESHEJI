@@ -55,12 +55,10 @@ public class ClassInfoDetailFragment extends BaseFragment {
     private ImageLoader mLoader;
     private int mCurrentPoaition;
     private String mClassInfo;
-    private int needPersonNum = 50;//应到人数
-    private int bespokePersonNum = 33;//实际预约人数
     private ArrayList<SliceValue> mSliceValueArrayList;
-    private int colorData[] = {needPersonNum, bespokePersonNum};
     private PieChartData mPieChardata;
     private StudentClassInfoBean mStudentClassInfoBean;
+    private int[] mColorData;
 
     public ClassInfoDetailFragment() {
     }
@@ -112,11 +110,11 @@ public class ClassInfoDetailFragment extends BaseFragment {
 //        int imagePositon = mCurrentPoaition % mClassInfoDetailBean.size();
         mNiClassInfoDetail.setImageUrl(mStudentClassInfoBean.getImageUrl(),
                 mLoader);
-        mTvClassInfoTime.setText("2016 年 03 月 18 日 16:" + mCurrentPoaition + ":09");
-        mTvClassInfoLocation.setText("实验楼" + mCurrentPoaition + "课室");
+        mTvClassInfoTime.setText(mStudentClassInfoBean.getClassTime());
+        mTvClassInfoLocation.setText(mStudentClassInfoBean.getClassPosition());
+        mTvBespokeNeedPerson.setText(mStudentClassInfoBean.getYinDaoNum() + "");
+        mTvBespokePerson.setText(mStudentClassInfoBean.getYuYueNum() + "");
 
-        mTvBespokeNeedPerson.setText(needPersonNum + "");
-        mTvBespokePerson.setText(bespokePersonNum + "");
         setPieChartData();
         initPieChart();
     }
@@ -154,9 +152,10 @@ public class ClassInfoDetailFragment extends BaseFragment {
      * 设置饼状图数据
      */
     private void setPieChartData() {
+        mColorData = new int[]{mStudentClassInfoBean.getYinDaoNum(), mStudentClassInfoBean.getYuYueNum()};
         mSliceValueArrayList = new ArrayList<SliceValue>();
-        for (int i = 0; i < colorData.length; i++) {
-            SliceValue mSliceValue = new SliceValue(colorData[i], PickColors.pickColor());
+        for (int i = 0; i < mColorData.length; i++) {
+            SliceValue mSliceValue = new SliceValue(mColorData[i], PickColors.pickColor());
             mSliceValueArrayList.add(mSliceValue);
         }
     }

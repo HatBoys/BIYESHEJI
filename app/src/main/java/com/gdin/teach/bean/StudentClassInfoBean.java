@@ -11,6 +11,8 @@ public class StudentClassInfoBean {
     private String classTeacher;
     private String classTime;
     private String classPosition;
+    private int yuYueNum;
+    private int yinDaoNum;
 
     public String getImageUrl() {
         return imageUrl;
@@ -50,5 +52,21 @@ public class StudentClassInfoBean {
 
     public void setClassPosition(String classPosition) {
         this.classPosition = classPosition;
+    }
+
+    public int getYuYueNum() {
+        return yuYueNum;
+    }
+
+    public void setYuYueNum(int yuYueNum) {
+        this.yuYueNum = yuYueNum;
+    }
+
+    public int getYinDaoNum() {
+        return yinDaoNum;
+    }
+
+    public void setYinDaoNum(int yinDaoNum) {
+        this.yinDaoNum = yinDaoNum;
     }
 }
