@@ -28,6 +28,7 @@ public class SplashActivity extends AppIntro {
 
         if (MyApplication.mSharedPreferences.getBoolean(Constan.FINISHSPLASH, false)) {
             SelectUserActivity.start2SelectUserActivity(this);
+            finish();
         }
         setVibrate(true);
         setVibrateIntensity(30);
