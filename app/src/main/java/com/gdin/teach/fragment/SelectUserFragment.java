@@ -10,7 +10,6 @@ import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.LoginActivity;
-import com.gdin.teach.util.CommomUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

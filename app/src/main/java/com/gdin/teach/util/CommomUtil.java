@@ -54,7 +54,7 @@ public class CommomUtil {
 
     public static PopupWindow showPopupWindow(View view) {
         //实例化pw对话框并且设置布局，大小，是否能获得焦点，第三个参数为true可以获得焦点，一般设置为true即可
-        final PopupWindow mPopupWindow = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT,
+        final PopupWindow mPopupWindow = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT, true);
         //对话框是否获得焦点，这是为true时，点击pw以外的地方不响应，否则点击响应。
         mPopupWindow.setFocusable(true);

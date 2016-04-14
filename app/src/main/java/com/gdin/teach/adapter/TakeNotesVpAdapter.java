@@ -24,6 +24,8 @@ public class TakeNotesVpAdapter extends PagerAdapter {
 
     private ArrayList<TakeNotesMottosBean> mBeanArrayList;
     private Activity mActivity;
+    private TextView mContent;
+    private TextView mAuthor;
 
 
     public TakeNotesVpAdapter(Activity activity, ArrayList<TakeNotesMottosBean> beanArrayList) {
@@ -44,10 +46,11 @@ public class TakeNotesVpAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+
         View mView = mActivity.getLayoutInflater().inflate(R.layout.take_notes_adapter_item, null);
 
-        TextView mContent = (TextView) mView.findViewById(R.id.tv_content);
-        TextView mAuthor = (TextView) mView.findViewById(R.id.tv_author);
+        mContent = (TextView) mView.findViewById(R.id.tv_content);
+        mAuthor = (TextView) mView.findViewById(R.id.tv_author);
 
         mContent.setText("         " + mBeanArrayList.get(position).getContent());
         mAuthor.setText("——" + mBeanArrayList.get(position).getAuthor());

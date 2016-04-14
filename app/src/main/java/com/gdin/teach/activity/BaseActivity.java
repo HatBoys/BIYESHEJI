@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gdin.teach.R;
@@ -26,6 +27,8 @@ public class BaseActivity extends AppCompatActivity {
     FrameLayout mFlBase;
     @Bind(R.id.tv_title)
     TextView mTvTitle;
+    @Bind(R.id.ll_content)
+    LinearLayout mLlContent;
 
     public BaseActivity() {
     }

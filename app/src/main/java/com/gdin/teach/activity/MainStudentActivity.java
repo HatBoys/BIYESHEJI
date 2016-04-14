@@ -6,16 +6,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.PopupWindow;
 
 import com.gdin.slidingmenulib.lib.SlidingMenu;
 import com.gdin.teach.Constan;
 import com.gdin.teach.MyApplication;
 import com.gdin.teach.R;
 import com.gdin.teach.fragment.MainStudentFragment;
-import com.gdin.teach.fragment.MainTeacherFragment;
 import com.gdin.teach.fragment.SampleListFragment;
 import com.gdin.teach.util.CommomUtil;
 
@@ -24,11 +29,19 @@ import com.gdin.teach.util.CommomUtil;
  * Email: peiyanhuang@yeah.net
  * 类说明: Teacher主页
  */
-public class MainStudentActivity extends BaseActivity {
+public class MainStudentActivity extends BaseActivity implements PopupWindow.OnDismissListener, View.OnClickListener {
 
     public FragmentManager mFragmentManager;
     private SlidingMenu mMenu;
     private MenuItem mItem;
+
+    private WindowManager.LayoutParams mParams;
+    private Window mWindow;
+    private Button mNotes;
+    private Button mPhoto;
+    private Button mRecord;
+    private Button mVideo;
+    private PopupWindow mPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,8 @@ public class MainStudentActivity extends BaseActivity {
                 mMenu.showMenu();
             }
         });
+        mWindow = this.getWindow();
+        mParams = mWindow.getAttributes();
 
         initSlidingMenu();
     }
@@ -122,9 +137,46 @@ public class MainStudentActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        CommomUtil.toastMessage(this,"add");
-        // TODO: 16/4/14 skip to take notes activity;
+//        TakeNotesActivity.start2TakeNotesActivity(this);
+        initSelectDialog();
         return true;
+    }
+
+    private void initSelectDialog() {
+//        mBuilder = new AlertDialog.Builder(getApplicationContext());
+//        mBuilder.setView(mView);
+//        mBuilder.create();
+//        mBuilder.show();
+        /**
+         * 报错:  java.lang.IllegalStateException: You need to use a Theme.AppCompat theme
+         * (or descendant) with this activity.
+         */
+
+        View mView = getLayoutInflater().inflate(R.layout.select_notes_types, null);
+        mNotes = (Button) mView.findViewById(R.id.bt_notes);
+        mPhoto = (Button) mView.findViewById(R.id.bt_photo);
+        mRecord = (Button) mView.findViewById(R.id.bt_record);
+        mVideo = (Button) mView.findViewById(R.id.bt_video);
+        initListener();
+        mPopupWindow = CommomUtil.showPopupWindow(mView);
+        mParams.alpha = 0.6f;//设置背景颜色
+        mWindow.setAttributes(mParams);
+        if (mLlContent != null) {
+            mPopupWindow.showAtLocation(mLlContent, Gravity.LEFT, 0, 0);
+        }
+        /* else {
+            mPopupWindow.showAsDropDown(mTlBase, 0, 0);
+        }*/
+
+        mPopupWindow.setOnDismissListener(this);
+
+    }
+
+    private void initListener() {
+        mNotes.setOnClickListener(this);
+        mPhoto.setOnClickListener(this);
+        mRecord.setOnClickListener(this);
+        mVideo.setOnClickListener(this);
     }
 
     public void setMenuVisable(boolean visiable) {
@@ -141,5 +193,31 @@ public class MainStudentActivity extends BaseActivity {
      */
     public void setFragmentTitle(String title) {
         setMyTitle(title);
+    }
+
+    @Override
+    public void onDismiss() {
+        mParams.alpha = 1f;
+        mWindow.setAttributes(mParams);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_notes:
+                // TODO: 16/4/14 skip to other app
+                break;
+            case R.id.bt_photo:
+                break;
+            case R.id.bt_record:
+                break;
+            case R.id.bt_video:
+                break;
+        }
+
+    }
+
+    public View getContentView(){
+        return mLlContent;
     }
 }
