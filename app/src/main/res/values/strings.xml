@@ -63,4 +63,8 @@
     <string name="before_que">上一题</string>
     <string name="next_que">下一题</string>
     <string name="submit">核对</string>
+    <string name="notes">笔记</string>
+    <string name="photo">拍照</string>
+    <string name="record">录音</string>
+    <string name="viedo">录像</string>
 </resources>

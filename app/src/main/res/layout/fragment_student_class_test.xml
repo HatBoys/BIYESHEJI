@@ -35,14 +35,16 @@
             android:textColor="@color/test_text_color_selector"/>
 
 
-        <Button
+        <CheckBox
             android:id="@+id/bt_check_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:background="@null"
+            android:button="@null"
             android:padding="5dp"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/test_student_checke_selector"
             android:text="@string/submit"
             android:textColor="@color/test_text_color_selector"/>
 

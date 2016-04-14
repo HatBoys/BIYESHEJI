@@ -133,4 +133,26 @@
 
     <!--data of test end-->
 
+    <!--data of motto start-->
+    <string-array name="takeNotesMottoContent">
+        <item>學者如登山焉，動而益高，如寤寐焉，久而益足。</item>
+        <item>春庭早色和煙暖；午夜書聲帶月寒。</item>
+        <item>三人行，必有我師焉。擇其善者而從之，其不善者而改之。</item>
+        <item>韜略終須建新國，奮發還得讀良書</item>
+        <item>求學將以致用；讀書先在虛心。</item>
+        <item>少年讀書，如隙中窺月；中年讀書，如庭中望月；老年讀書，如臺上玩月。皆以閱歷之深淺，為所得之深淺耳。</item>
+        <item>非靜無以成學。</item>
+    </string-array>
+    <string-array name="takeNotesMottoAuthor">
+        <item>（漢）徐幹</item>
+        <item>《對聯集錦》</item>
+        <item>孔子</item>
+        <item>郭沫若</item>
+        <item>《對聯集錦》</item>
+        <item>張潮</item>
+        <item>（三國）諸葛亮</item>
+    </string-array>
+
+    <!--data of motto end-->
+
 </resources>

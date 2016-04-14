@@ -72,7 +72,7 @@ public class MainStudentFragment extends BaseFragment {
     private void initData() {
         mFragmentArrayList = new ArrayList<BaseFragment>();
         mFragmentArrayList.add(new BeforeClassTeacherFragment());
-        mFragmentArrayList.add(new BeforeClassTeacherFragment());
+        mFragmentArrayList.add(new TakeNotesFragment());
         mFragmentArrayList.add(new StudentClassListFragment());
     }
 
@@ -94,6 +94,7 @@ public class MainStudentFragment extends BaseFragment {
                 mMainStudentActivity.setToolBar(true);
                 mMainStudentActivity.setFragmentTitle(Constan.TAKENOTES);
                 mVpMainStudent.setCurrentItem(1);
+                settingMenuVisiable(true);
                 break;
             case R.id.rb_student_personal:
                 mRgMainStudentBottom.check(R.id.rb_student_personal);
@@ -101,7 +102,14 @@ public class MainStudentFragment extends BaseFragment {
                 mMainStudentActivity.setToolBar(true);
                 mMainStudentActivity.setFragmentTitle(Constan.PERSONALTEST);
                 mVpMainStudent.setCurrentItem(2);
+                settingMenuVisiable(false);
                 break;
+        }
+    }
+
+    private void settingMenuVisiable(boolean visiable) {
+        if (mMainStudentActivity != null) {
+            mMainStudentActivity.setMenuVisable(visiable);
         }
     }
 
@@ -114,5 +122,6 @@ public class MainStudentFragment extends BaseFragment {
         mMainStudentActivity.setToolBar(true);
         mMainStudentActivity.setFragmentTitle(Constan.STUDENTCLASS);
         mVpMainStudent.setCurrentItem(0);
+        settingMenuVisiable(false);
     }
 }

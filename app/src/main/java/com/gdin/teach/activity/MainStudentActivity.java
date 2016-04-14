@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.gdin.slidingmenulib.lib.SlidingMenu;
@@ -15,6 +17,7 @@ import com.gdin.teach.R;
 import com.gdin.teach.fragment.MainStudentFragment;
 import com.gdin.teach.fragment.MainTeacherFragment;
 import com.gdin.teach.fragment.SampleListFragment;
+import com.gdin.teach.util.CommomUtil;
 
 /**
  * Created by 黄培彦 on 16/4/11.
@@ -25,6 +28,7 @@ public class MainStudentActivity extends BaseActivity {
 
     public FragmentManager mFragmentManager;
     private SlidingMenu mMenu;
+    private MenuItem mItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class MainStudentActivity extends BaseActivity {
                 mMenu.showMenu();
             }
         });
+
         initSlidingMenu();
     }
 
@@ -54,6 +59,16 @@ public class MainStudentActivity extends BaseActivity {
         // 设置滑动菜单的视图界面
         mMenu.setMenu(R.layout.menu_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.menu_frame, new SampleListFragment()).commit();//给menu增添界面
+    }
+
+    public void setSligdingMenuIgnorView(View view) {
+        if (mMenu != null) {
+            mMenu.addIgnoredView(view);
+        }
+    }
+
+    public void clearSlidingMenuIgnoreView() {
+        mMenu.clearIgnoredViews();
     }
 
     /**
@@ -94,6 +109,28 @@ public class MainStudentActivity extends BaseActivity {
         } else {
             mTlBase.setVisibility(View.GONE);
         }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.take_notes_menu, menu);
+        mItem = menu.findItem(R.id.take_notes);
+        setMenuVisable(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        CommomUtil.toastMessage(this,"add");
+        // TODO: 16/4/14 skip to take notes activity;
+        return true;
+    }
+
+    public void setMenuVisable(boolean visiable) {
+        if (mItem == null)
+            return;
+        mItem.setVisible(visiable);
     }
 
 
