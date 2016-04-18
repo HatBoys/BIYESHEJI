@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.activity.MainActivityTeacher;
+import com.gdin.teach.bean.StudentInfoBean;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,14 +35,14 @@ public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     TextView mTvInClassStudentNum;
 
     private MainActivityTeacher mMainActivityTeacher;
-    private ArrayList<String> mUrlList;
+    private ArrayList<StudentInfoBean> mInfoBeanArrayList;
 
     public InClassMentionAdapter() {
     }
 
-    public InClassMentionAdapter(FragmentActivity activity, ArrayList<String> urlList) {
+    public InClassMentionAdapter(FragmentActivity activity, ArrayList<StudentInfoBean> studentInfoBeen) {
         mMainActivityTeacher = (MainActivityTeacher) activity;
-        mUrlList = urlList;
+        mInfoBeanArrayList = studentInfoBeen;
     }
 
     public interface OnItemClickLitener {
@@ -67,10 +68,11 @@ public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final MyViewHolder mViewHolder = (MyViewHolder) holder;
-        Picasso.with(mMainActivityTeacher).load(mUrlList.get(position)).placeholder(R.mipmap.student)
+        Picasso.with(mMainActivityTeacher).load(mInfoBeanArrayList.get(position).getImageUrl())
+                .placeholder(R.mipmap.student)
                 .error(R.mipmap.education).resize(400, 600).into(mViewHolder.mImageView);
 
-        mViewHolder.mTvName.setText(Constan.STUDENTNAME + position);
+        mViewHolder.mTvName.setText(mInfoBeanArrayList.get(position).getName());
         mViewHolder.mTvNum.setText(Constan.STUDENTNUMBER + position);
 
         if (mOnItemClickLitener != null) {
@@ -96,7 +98,7 @@ public class InClassMentionAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemCount() {
-        return mUrlList.size();
+        return mInfoBeanArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

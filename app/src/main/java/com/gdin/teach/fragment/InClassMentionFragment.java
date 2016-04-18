@@ -21,6 +21,9 @@ import android.widget.TextView;
 import com.gdin.teach.Constan;
 import com.gdin.teach.R;
 import com.gdin.teach.adapter.InClassMentionAdapter;
+import com.gdin.teach.bean.StudentClassInfoBean;
+import com.gdin.teach.bean.StudentInfoBean;
+import com.gdin.teach.bean.TakeNotesMottosBean;
 import com.gdin.teach.util.CommomUtil;
 
 import java.io.File;
@@ -64,6 +67,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
     private Window mWindow;
     private PopupWindow mPopupWindow;
     private File mFile;
+    private ArrayList<StudentInfoBean> mBeanArrayList;
 
     public InClassMentionFragment() {
     }
@@ -97,7 +101,7 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
-
+        initData();
         mTvMentionNum.setText(Constan.MENTIONNUMMESSAGE + mKillUrlList.size() + "/" + mAllNum);
 
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -111,10 +115,24 @@ public class InClassMentionFragment extends BaseFragment implements InClassMenti
         mRlInClassMention.setLayoutManager(mLinearLayoutManager);//RecycleView的用法
         mRlInClassMention.setItemAnimator(new ScaleInLeftAnimator());
         mRlInClassMention.setHasFixedSize(true);
-        mAdapter = new InClassMentionAdapter(getActivity(), mUrlList);
+        mAdapter = new InClassMentionAdapter(getActivity(), mBeanArrayList);
         mAdapter.setOnItemClickLitener(this);
         mRlInClassMention.setAdapter(mAdapter);
         return rootView;
+    }
+
+    private void initData() {
+        mBeanArrayList = new ArrayList<StudentInfoBean>();
+
+        String[] imageUrl = getResources().getStringArray(R.array.teacherImageUrl);
+        String[] studentName = getResources().getStringArray(R.array.studentMentionName);
+
+        for (int i = 0; i < imageUrl.length; i++) {
+            StudentInfoBean mStudentInfoBean = new StudentInfoBean();
+            mStudentInfoBean.setImageUrl(imageUrl[i]);
+            mStudentInfoBean.setName(studentName[i]);
+            mBeanArrayList.add(mStudentInfoBean);
+        }
     }
 
     @Override
